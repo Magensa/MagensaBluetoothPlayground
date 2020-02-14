@@ -7,7 +7,7 @@ import { clearAlertInfo } from '../../../redux/actions';
 
 export default _ => {
     const [ displayAlert, setDisplayAlert ] = useState(false);
-    const alertObj = useSelector(state => state.toastInfo);
+    const toastInfo = useSelector(state => state.toastInfo);
     const alertDispatch = useDispatch();
 
     const closeAlert = (e, eventType) => {
@@ -18,11 +18,11 @@ export default _ => {
     };
 
     useEffect(() => {
-        if (alertObj)
+        if (toastInfo)
             setDisplayAlert(true);
-    }, [alertObj]);
+    }, [toastInfo]);
 
-    return (alertObj) ? (
+    return (toastInfo) ? (
         <Snackbar 
             open={ displayAlert } 
             autoHideDuration={5000} 
@@ -33,17 +33,17 @@ export default _ => {
             }}
         >
             <Alert 
-                severity={( alertObj.alertType || "success" )} 
+                severity={( toastInfo.toastType || "success" )} 
                 variant='filled' 
                 onClose={ closeAlert }
             >
                 <AlertTitle>
-                    { (alertObj.alertType) ? 
-                        `${alertObj.alertType.charAt(0).toUpperCase()}${alertObj.alertType.substring(1)}` 
+                    { (toastInfo.toastType) ? 
+                        `${toastInfo.toastType.charAt(0).toUpperCase()}${toastInfo.toastType.substring(1)}` 
                         : ""
                     }
                 </AlertTitle>
-                {alertObj.alertMsg}
+                {toastInfo.toastMsg}
             </Alert>
         </Snackbar>
     ) : null;
