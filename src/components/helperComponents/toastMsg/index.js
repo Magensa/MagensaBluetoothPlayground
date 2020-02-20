@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Snackbar from '@material-ui/core/Snackbar';
 import { Alert, AlertTitle } from '@material-ui/lab';
-import { clearAlertInfo } from '../../../redux/actions';
+import { clearToastInfo } from '../../../redux/actions';
 
 
 export default _ => {
@@ -13,7 +13,7 @@ export default _ => {
     const closeAlert = (e, eventType) => {
         if (eventType !== 'clickaway') {
             setDisplayAlert(false);
-            alertDispatch( clearAlertInfo() );
+            alertDispatch( clearToastInfo() );
         }
     };
 
