@@ -9,33 +9,26 @@ import {
     makeStyles,
     Button
 } from '@material-ui/core';
+import { flexBase } from '../../../constants/styleConstants';
 
 
 const logoCardStyles = makeStyles(({ spacing }) => ({
     cardWrapper: {
-        width: spacing(40),
+        width: spacing(30),
         padding: spacing(1),
         margin: spacing(2)
     },
     cardImg: {
-        height: 250,
-        width: 250
+        minHeight: 150,
+        minWidth: 150
     },
-    cardMediaStyle: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    cardBtn: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
-}));
+    cardMediaStyle: flexBase,
+    cardBtn: flexBase
+}))
 
 
 export default ({ cardContent: 
-    { title, LogoComponent, versionText, osSupport }
+    { title, LogoComponent, versionText, osSupport, keyId }
 }) => {
     const { cardWrapper, cardImg, cardMediaStyle, cardBtn } = logoCardStyles();
 
@@ -44,7 +37,7 @@ export default ({ cardContent:
             <CardActionArea>
                 <CardMedia className={ cardMediaStyle }>
                     <div className={ cardImg }>
-                        <LogoComponent />
+                        <LogoComponent keyId={ keyId } />
                     </div>
                 </CardMedia>
                 <CardContent>
@@ -52,7 +45,7 @@ export default ({ cardContent:
                     {title}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                    {`Web Bluetooth supported as of version: ${versionText}`}
+                    {`Web Bluetooth supported with version: ${versionText}`}
                 </Typography>
                 </CardContent>
             </CardActionArea>

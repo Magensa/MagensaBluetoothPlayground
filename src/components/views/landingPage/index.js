@@ -1,28 +1,29 @@
-import React, { memo, useCallback } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React, { memo, useCallback, useRef, createContext } from 'react';
 import ToastMsg from '../../helperComponents/toastMsg';
-import CardData from '../cardData';
+import RootRouter from './rootRouter';
 import LandingPageBanner from './landingPageBanner';
-import CompatabilityInfo from '../compatibilityInfo';
-import { compatabilityPath } from '../../../constants';
 
-export default memo(_ => {
+const LandingPageContext = createContext();
+
+const LandingPage = memo(_ => {
     const trxHandler = useCallback(callBackData => {
         console.log("trxCallback", callBackData);
     }, []);
 
+    const fixNavHeight = useRef(null);
+
     return (
         <>
             <ToastMsg />
-            <LandingPageBanner />
-            <Switch>
-                <Route path="/" exact>
-                    <CardData trxHandler={ trxHandler } />
-                </Route>
-                <Route path={ compatabilityPath }>
-                    <CompatabilityInfo />
-                </Route>
-            </Switch>
+            <LandingPageBanner ref={ fixNavHeight } />
+            <LandingPageContext.Provider value={ fixNavHeight }>
+                <RootRouter trxHandler={ trxHandler } ref={ fixNavHeight } />
+            </LandingPageContext.Provider>
         </>
     );
 });
+
+export { 
+    LandingPage,
+    LandingPageContext 
+};

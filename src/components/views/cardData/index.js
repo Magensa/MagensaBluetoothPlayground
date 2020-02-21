@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Button from '@material-ui/core/Button';
 import { scanForDevices } from 'magensa-bluetooth';
 import { catchAndDisplay } from '../../../utils/helperFunctions';
 import { selectDevice } from '../../../redux/actions';
+import Grid from '@material-ui/core/Grid';
+import CardDataDisplay from './cardDataDisplay';
+import NoPairedDevice from './noPairedDevice';
 
-export default ({ trxHandler }) => {
+export default ({ trxHandler, navHeight }) => {
+    const [ heightOffset, setHeightOffset ] = useState(74);
     const selectedDevice = useSelector(state => state.selectedDevice);
     const cardDataDispatch = useDispatch();
     const catchDisplayToUser = catchAndDisplay(cardDataDispatch);
+    
 
     const pairDevice = async() => {
         try {
@@ -29,10 +33,14 @@ export default ({ trxHandler }) => {
         }
     }
 
-    return (selectedDevice) ?
-        <h1>Card Data with device {`${selectedDevice.name}`} {console.log('selectedDevice', selectedDevice)}</h1>
-        :
-        <Button onClick={ pairDevice } variant='contained' color='primary'>
-            Pair Device
-        </Button>
+    return (
+        <Grid container>
+            {(selectedDevice) ?
+                <CardDataDisplay selectedDevice={ selectedDevice } />
+                :
+                <NoPairedDevice pairDevice={ pairDevice } />
+            }
+        </Grid>
+    ); 
+        
 }
