@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { scanForDevices } from 'magensa-bluetooth';
 import { catchAndDisplay } from '../../../utils/helperFunctions';
@@ -7,8 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import CardDataDisplay from './cardDataDisplay';
 import NoPairedDevice from './noPairedDevice';
 
-export default ({ trxHandler, navHeight }) => {
-    const [ heightOffset, setHeightOffset ] = useState(74);
+export default ({ trxHandler }) => {
     const selectedDevice = useSelector(state => state.selectedDevice);
     const cardDataDispatch = useDispatch();
     const catchDisplayToUser = catchAndDisplay(cardDataDispatch);

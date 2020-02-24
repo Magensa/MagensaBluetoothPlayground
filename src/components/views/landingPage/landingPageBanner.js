@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import { Link as RrLink } from 'react-router-dom';
 import {
     AppBar,
@@ -9,25 +9,26 @@ import {
     Link as MuiLink
 } from '@material-ui/core';
 import { compatabilityPath } from '../../../constants';
+import useScreenSize from '../../customHooks/useScreenSize';
 
-const landingPageBannerStyles = makeStyles(({ spacing }) => ({
+const landingPageBannerStyles = makeStyles({
     navWrapper: {
-        padding: spacing(2)
+        padding: ({ spacing }) => spacing(2)
     },
     itemText: {
         textAlign: 'center'
     }
-}));
+});
 
-export default forwardRef((props, navRef) => {
-    const { navWrapper: wrapperStyles, itemText } = landingPageBannerStyles();
+export default _ => {
+    const { spacing, isLargeScreen } = useScreenSize();
+    const { navWrapper: wrapperStyles, itemText } = landingPageBannerStyles({ spacing });
 
     return (
         <AppBar 
             position="fixed" 
             color='default'
             className='mui-fixed'
-            ref={ navRef }
         >
             <Toolbar>
                 <Grid
@@ -49,7 +50,7 @@ export default forwardRef((props, navRef) => {
                     </Grid>
 
                     <Grid item xs={6}>
-                        <Typography variant='h4' align='center'>
+                        <Typography variant={(isLargeScreen) ? 'h4' : 'h5'} align='center'>
                             Welcome to Magensa Bluetooth Playground
                         </Typography>
                     </Grid>
@@ -71,4 +72,4 @@ export default forwardRef((props, navRef) => {
             </Toolbar>
         </AppBar>
     );
-});
+};

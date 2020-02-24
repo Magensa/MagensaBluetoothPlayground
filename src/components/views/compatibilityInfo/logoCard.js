@@ -7,16 +7,16 @@ import {
     CardContent,
     CardMedia,
     makeStyles,
-    Button
+    Grid
 } from '@material-ui/core';
+import OsInfoPanel from './osInfoPanel';
 import { flexBase } from '../../../constants/styleConstants';
 
 
 const logoCardStyles = makeStyles(({ spacing }) => ({
     cardWrapper: {
         width: spacing(30),
-        padding: spacing(1),
-        margin: spacing(2)
+        padding: spacing(1)
     },
     cardImg: {
         minHeight: 150,
@@ -28,7 +28,7 @@ const logoCardStyles = makeStyles(({ spacing }) => ({
 
 
 export default ({ cardContent: 
-    { title, LogoComponent, versionText, osSupport, keyId }
+    { title, LogoComponent, versionText, osSupport }
 }) => {
     const { cardWrapper, cardImg, cardMediaStyle, cardBtn } = logoCardStyles();
 
@@ -37,22 +37,24 @@ export default ({ cardContent:
             <CardActionArea>
                 <CardMedia className={ cardMediaStyle }>
                     <div className={ cardImg }>
-                        <LogoComponent keyId={ keyId } />
+                        <LogoComponent />
                     </div>
                 </CardMedia>
                 <CardContent>
-                <Typography gutterBottom variant="h5" component="h2" align='center'>
-                    {title}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    {`Web Bluetooth supported with version: ${versionText}`}
-                </Typography>
+                    <Typography gutterBottom variant="h5" component="h2" align='center'>
+                        {title}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        {`Web Bluetooth supported as of version: ${versionText}`}
+                    </Typography>
                 </CardContent>
             </CardActionArea>
             <CardActions className={ cardBtn }>
-                <Button>
-                    Click for details
-                </Button>
+                <Grid container direction='column'>
+                    {osSupport.map( eachOs => (
+                        <OsInfoPanel osInfo={ eachOs } key={ eachOs.osId } />
+                    ))}
+                </Grid>
             </CardActions>
         </Card>
     );
