@@ -4,7 +4,8 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 export default _ => {
     const { spacing, breakpoints } = useTheme();
-    const isLargeAndBelow = useMediaQuery( breakpoints.down('lg') );
+    const isExtraLarge = useMediaQuery( breakpoints.up('xl') );
+    const isSmallScreen = useMediaQuery( breakpoints.down('sm') );
 
-    return { isLargeScreen: !isLargeAndBelow, spacing };
+    return { isSmallScreen, isExtraLarge, spacing };
 }

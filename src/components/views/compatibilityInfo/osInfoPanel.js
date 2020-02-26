@@ -3,30 +3,63 @@ import {
     ExpansionPanel,
     ExpansionPanelSummary,
     ExpansionPanelDetails,
-    Typography
+    Typography,
+    Avatar,
+    makeStyles
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import OsInfoList from './osInfoList';
 
-export default ({ osInfo }) => {
+const useOsInfoPanelStyles = makeStyles({
+    expansionDetailsWrapper: {
+        padding: 0
+    },
+    panelTextImg: {
+        display: 'flex',
+        justifyContent: 'flex-start',
+        alignItems: 'center'
+    },
+    trimProps: {
+        width: props => (!props) ? "100%" : (props === 1) ? "86%" : "66%",
+        height: props => (!props || props === 1) ? "100%" : '80%'
+    },
+    osText: {
+        width: '100%'
+    }
+});
 
+export default ({ osInfo }) => {
+    const { osId, osLogo, logoAlt, trim, osName } = osInfo;
+    const { expansionDetailsWrapper, panelTextImg, trimProps, osText } = useOsInfoPanelStyles(trim);
+    
     return (
         <ExpansionPanel>
             <ExpansionPanelSummary
                 expandIcon={ <ExpandMoreIcon /> }
-                aria-controls={`${osInfo.osId}-os-info-content`}
-                id={`${osInfo.osId}-os-info-header`}
+                aria-controls={`${osId}-os-info-content`}
+                id={`${osId}-os-info-header`}
+                classes={{
+                    content: panelTextImg
+                }}
             >
-                <Typography gutterBottom variant="subtitle1" align='center'>
-                    {osInfo.osName}
+                <Avatar 
+                    alt={ logoAlt } 
+                    src={ osLogo } 
+                    classes={ (trim) ? 
+                        { img: trimProps} : {}
+                    }
+                />
+
+                <Typography gutterBottom variant="subtitle1" align='center' className={ osText }>
+                    <strong>{osName}</strong>
                 </Typography>
+
             </ExpansionPanelSummary>
             <ExpansionPanelDetails
-                id={`${osInfo.osId}-os-info-content`}
+                id={`${osId}-os-info-content`}
+                className={ expansionDetailsWrapper }
             >
-                <Typography variant='subtitle2'>
-                    <OsInfoList osDetails={ osInfo }  />
-                </Typography>
+                <OsInfoList osDetails={ osInfo }  />
             </ExpansionPanelDetails>
         </ExpansionPanel>
     );

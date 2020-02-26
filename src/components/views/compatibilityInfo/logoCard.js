@@ -15,7 +15,7 @@ import { flexBase } from '../../../constants/styleConstants';
 
 const logoCardStyles = makeStyles(({ spacing }) => ({
     cardWrapper: {
-        width: spacing(30),
+        width: spacing(35),
         padding: spacing(1)
     },
     cardImg: {
@@ -23,18 +23,22 @@ const logoCardStyles = makeStyles(({ spacing }) => ({
         minWidth: 150
     },
     cardMediaStyle: flexBase,
-    cardBtn: flexBase
-}))
+    cardBtn: {
+        ...flexBase,
+        padding: 0
+    }
+}));
 
 
 export default ({ cardContent: 
     { title, LogoComponent, versionText, osSupport }
 }) => {
+
     const { cardWrapper, cardImg, cardMediaStyle, cardBtn } = logoCardStyles();
 
     return (
         <Card className={ cardWrapper }>
-            <CardActionArea>
+            <CardActionArea disableRipple disableTouchRipple>
                 <CardMedia className={ cardMediaStyle }>
                     <div className={ cardImg }>
                         <LogoComponent />
@@ -44,12 +48,17 @@ export default ({ cardContent:
                     <Typography gutterBottom variant="h5" component="h2" align='center'>
                         {title}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
+                    <Typography 
+                        variant="body2" 
+                        color="textSecondary" 
+                        component="p" 
+                        align='center'
+                    >
                         {`Web Bluetooth supported as of version: ${versionText}`}
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions className={ cardBtn }>
+            <CardActions className={ cardBtn } disableSpacing>
                 <Grid container direction='column'>
                     {osSupport.map( eachOs => (
                         <OsInfoPanel osInfo={ eachOs } key={ eachOs.osId } />
