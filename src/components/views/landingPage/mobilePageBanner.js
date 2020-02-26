@@ -27,7 +27,6 @@ const mobileAppBarStyles = makeStyles(({ spacing, mixins: { toolbar } }) => ({
     }
 }));
 
-
 export default memo(_ => {
     const { iconHeader } = mobileAppBarStyles();
     const [ isOpen, setIsOpen ] = useState(() => false);

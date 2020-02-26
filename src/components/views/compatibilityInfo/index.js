@@ -9,9 +9,6 @@ import InfoPanels from './infoPanels';
 import useScreenSize from '../../customHooks/useScreenSize';
 
 const useStyles = makeStyles(({ spacing, shadows, shape: { borderRadius } }) => ({
-    gridWrapper: {
-        marginTop: spacing(8)
-    },
     topSpace: {
         marginBottom: spacing(2)
     },
@@ -27,10 +24,10 @@ const useStyles = makeStyles(({ spacing, shadows, shape: { borderRadius } }) => 
 
 export default _ => {
     const { isSmallScreen } = useScreenSize();
-    const { gridWrapper, topSpace, infoBanner } = useStyles();
+    const { topSpace, infoBanner } = useStyles();
 
     return (
-        <Grid container className={ gridWrapper }>
+        <>
             <Grid item xs={12}>
                 <Grid container justify='center' alignItems='center'>
                     <Grid item xs={12} sm={12} lg={10} xl={8} className={ infoBanner }>
@@ -53,6 +50,6 @@ export default _ => {
             <Grid item xs={12} >
                 <InfoPanels />
             </Grid>
-        </Grid>
+        </>
     );
 }
