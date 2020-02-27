@@ -11,7 +11,7 @@ const osInfoListStyles = makeStyles(({ spacing }) => ({
 }));
 
 export default ({ osDetails: 
-    { osId, osName, minBrowserVersion, minOsVersion, behindFlag } 
+    { osName, minBrowserVersion, minOsVersion, behindFlag } 
 }) => {
 
     const { listWrapper, liText } = osInfoListStyles();

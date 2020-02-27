@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Snackbar from '@material-ui/core/Snackbar';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import { clearToastInfo } from '../../../redux/actions';
+import { capitalizeFirstLetter } from '../../../utils/helperFunctions';
 
 
 export default _ => {
@@ -25,7 +26,7 @@ export default _ => {
     return (toastInfo) ? (
         <Snackbar 
             open={ displayAlert } 
-            autoHideDuration={5000} 
+            autoHideDuration={4000} 
             onClose={ closeAlert }
             anchorOrigin={{ 
                 vertical: "top",
@@ -38,10 +39,7 @@ export default _ => {
                 onClose={ closeAlert }
             >
                 <AlertTitle>
-                    { (toastInfo.toastType) ? 
-                        `${toastInfo.toastType.charAt(0).toUpperCase()}${toastInfo.toastType.substring(1)}` 
-                        : ""
-                    }
+                    { (toastInfo.toastType) ? capitalizeFirstLetter(toastInfo.toastType) : "" }
                 </AlertTitle>
                 {toastInfo.toastMsg}
             </Alert>

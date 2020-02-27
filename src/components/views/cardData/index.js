@@ -1,11 +1,11 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { scanForDevices } from 'magensa-bluetooth';
 
 import CardDataDisplay from './cardDataDisplay';
 import NoPairedDevice from './noPairedDevice';
-import { useSelector, useDispatch } from 'react-redux';
-import { scanForDevices } from 'magensa-bluetooth';
-import { catchAndDisplay } from '../../../utils/helperFunctions';
 import { selectDevice } from '../../../redux/actions';
+import { catchAndDisplay } from '../../../utils/helperFunctions';
 
 
 export default ({ trxHandler }) => {
@@ -14,9 +14,10 @@ export default ({ trxHandler }) => {
     const catchDisplayToUser = catchAndDisplay(cardDataDispatch);
     
 
-    const pairDevice = async() => {
+    const pairDevice = devicePrefix => async(e) => {
         try {
-            const device = await scanForDevices(trxHandler);
+            const device = (!devicePrefix) ? await scanForDevices(trxHandler) 
+                : await scanForDevices(trxHandler, devicePrefix);
 
             if (device) {
                 console.log('paired device - send to store', device);
@@ -37,7 +38,7 @@ export default ({ trxHandler }) => {
     return (
         <>
             {(selectedDevice) ?
-                <CardDataDisplay selectedDevice={ selectedDevice } />
+                <CardDataDisplay selectedDevice={ selectedDevice } pairDevice={ pairDevice } />
                 :
                 <NoPairedDevice pairDevice={ pairDevice } />
             }

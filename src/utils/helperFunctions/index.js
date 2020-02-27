@@ -11,6 +11,10 @@ const catchAndDisplay = dispatcher => err => {
     )
 }
 
+const capitalizeFirstLetter = str => 
+    str.charAt(0).toUpperCase() + str.slice(1);
+
 export {
-    catchAndDisplay
+    catchAndDisplay,
+    capitalizeFirstLetter
 }

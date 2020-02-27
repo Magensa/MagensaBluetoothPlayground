@@ -6,24 +6,33 @@ import {
 } from '@material-ui/core';
 
 
-const deviceConnectionStyles = makeStyles(({ spacing }) => ({
-    chipStyles: {
-        minWidth: spacing(50),
-        background: "rgba(1, 82, 111, 0.8)",
-        color: 'white',
-        '&:hover': {
-            background: "rgba(1, 82, 111, .50)",
-            border: "1px solid #01526f",
-            color: "white"
-        },
-        '&:focus': {
-            background: "rgba(1, 82, 111, 0.8)",
-            border: "1px solid #01526f",
-            color: "white"
+const deviceConnectionStyles = makeStyles(({ spacing, breakpoints }) => {
+    let blueGrey = "#607d8b";
+    let blueGreyBorder = "1px solid #455a64";
+    let white = "white";
+
+    return {
+        chipStyles: {
+            flex: '0 1 auto',
+            minWidth: spacing(50),
+            background: blueGrey,
+            color: white,
+            '&:hover': {
+                background: "#90a4ae",
+                border: blueGreyBorder,
+                color: white
+            },
+            '&:focus': {
+                background: blueGrey,
+                border: blueGreyBorder,
+                color: white
+            },
+            [breakpoints.down('sm')]: {
+                minWidth: spacing(18)
+            }
         }
     }
-}))
-
+});
 
 export default ({ selectedDevice }) => {
     const [ isOpen, setIsOpen ] = useState(() => false);
@@ -60,9 +69,8 @@ export default ({ selectedDevice }) => {
             if (selectedDevice.hasOwnProperty('deviceInterface')) {
                 let currentConnection = selectedDevice.deviceInterface.isDeviceOpen();
     
-                if (isOpen !== currentConnection) {
-                    setIsOpen(currentConnection)
-                }
+                if (isOpen !== currentConnection)
+                    setIsOpen(currentConnection);
             }
         }
     }, [selectedDevice, isOpen, setIsOpen]);
@@ -70,9 +78,9 @@ export default ({ selectedDevice }) => {
     return (selectedDevice) ? 
         <Chip 
             label={
-                <Typography variant='body2' color='textPrimary'>
-                    { (changingDeviceState) ? `${(isOpen ? 'Disconnecting....' : 'Connecting....')}` : 
-                        `Selected Device: ${selectedDevice.name} is ${(isOpen ? 'Connected' : 'Disconnected')}` 
+                <Typography variant='body2' color='inherit'>
+                    { (changingDeviceState) ? `${(isOpen ? 'Disconnecting...' : 'Connecting...')}` : 
+                        `Device: ${selectedDevice.name} is ${(isOpen ? 'Connected' : 'Disconnected')}` 
                     }
                 </Typography>
             }
