@@ -31,7 +31,7 @@ export default ({ trxHandler }) => {
                 console.log('device failed check:', device);
         }
         catch(err) {
-            catchDisplayToUser(err)
+            catchDisplayToUser(err);
         }
     }
 

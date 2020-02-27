@@ -1,5 +1,11 @@
 import React from 'react';
-import { Paper, makeStyles, Typography, Grid } from '@material-ui/core';
+import { 
+    Paper, 
+    makeStyles, 
+    Typography, 
+    Grid, 
+    Divider 
+} from '@material-ui/core';
 import PairButton from '../../sharedComponents/pairButton';
 import DeviceCard from './deviceCard';
 import { flexBase } from '../../../constants/styleConstants';
@@ -21,11 +27,19 @@ const noPairedDeviceStyles = makeStyles(({ spacing }) => ({
         marginBottom: spacing(3),
         marginTop: -spacing(1),
         padding: spacing(1)
+    },
+    dividerStyles: {
+        height: spacing(1),
+        paddingTop: spacing(1),
+        paddingLeft: '15%',
+        '& hr': {
+            width:'85%'
+        }
     }
 }));
 
 export default ({ pairDevice }) => {
-const { noDeviceWrapper, noDevicePaper, supportedBanner } = noPairedDeviceStyles();
+const { noDeviceWrapper, noDevicePaper, supportedBanner, dividerStyles } = noPairedDeviceStyles();
     return (
         <Grid 
             container 
@@ -56,6 +70,12 @@ const { noDeviceWrapper, noDevicePaper, supportedBanner } = noPairedDeviceStyles
                     <Paper className={ supportedBanner }>
                         <Typography variant='h5' align="center">
                             <em>Currently Supported Devices</em>
+                        </Typography>
+                        <div className={ dividerStyles }>
+                            <Divider />
+                        </div>
+                        <Typography align="center">
+                            You may click a device to scan for that device type only
                         </Typography>
                     </Paper>
                     

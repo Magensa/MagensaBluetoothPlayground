@@ -41,7 +41,9 @@ export default _ => {
                                 href="https://www.w3.org/community/web-bluetooth/"
                                 onClick={e => e.preventDefault()}
                                 color="textSecondary"
-                            >WebBluetooth API</Link>
+                            >
+                                WebBluetooth API
+                            </Link>
                             . Below you will find information about which browsers, and operating systems, are compatible with this API.
                         </Typography>
                     </Grid>

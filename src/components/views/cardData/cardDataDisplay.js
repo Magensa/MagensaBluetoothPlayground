@@ -3,19 +3,23 @@ import { Paper, makeStyles, Typography, Grid } from '@material-ui/core';
 import DeviceConnection from './deviceConnection';
 import PairButton from '../../sharedComponents/pairButton';
 import RemoveDeviceBtn from './removeDeviceBtn';
-import { flexBase } from '../../../constants/styleConstants';
+import {
+    SwipePanel,
+    InitializationPanel
+} from './operationPanels';
 
 
-const cardDataDisplayStyles = makeStyles(({ spacing, breakpoints }) => ({
+const cardDataDisplayStyles = makeStyles(({ spacing, breakpoints: { only } }) => ({
     cardDataBtnWrapper: {
-        ...flexBase,
+        display: 'flex',
+        alignItems: 'center',
         justifyContent: 'space-between',
         flexDirection: "row",
         flexWrap: 'wrap',
         width: '100%',
         margin: spacing(1),
         padding: spacing(1),
-        [breakpoints.only('xs')]: {
+        [only('xs')]: {
             padding: 0,
             flexDirection: 'column-reverse',
             alignItems: 'center',
@@ -23,7 +27,7 @@ const cardDataDisplayStyles = makeStyles(({ spacing, breakpoints }) => ({
             justifyContent: 'space-around',
             marginBottom: spacing(2)
         },
-        [breakpoints.only('sm')]: {
+        [only('sm')]: {
             padding: 0,
             flexDirection: "row",
             height: spacing(11),
@@ -48,12 +52,17 @@ export default memo(({ selectedDevice, pairDevice }) => {
                 <DeviceConnection selectedDevice={ selectedDevice } />
                 <RemoveDeviceBtn />
             </div>
+
             <Grid container justify='center'>
                 <Grid item xs={11}>
                     <Paper className={ operationsWrapper }>
                         <Typography>
                             Please expand a device operation for details
                         </Typography>
+                        <InitializationPanel />
+                        <SwipePanel />
+
+
                     </Paper>
                 </Grid>
             </Grid>
