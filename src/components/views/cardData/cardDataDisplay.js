@@ -21,6 +21,7 @@ const cardDataDisplayStyles = makeStyles(({ spacing, breakpoints: { only } }) =>
         padding: spacing(1),
         [only('xs')]: {
             padding: 0,
+            margin: 0,
             flexDirection: 'column-reverse',
             alignItems: 'center',
             height: spacing(18),
@@ -29,6 +30,7 @@ const cardDataDisplayStyles = makeStyles(({ spacing, breakpoints: { only } }) =>
         },
         [only('sm')]: {
             padding: 0,
+            margin: 0,
             flexDirection: "row",
             height: spacing(11),
             justifyContent: 'space-around',
@@ -37,13 +39,22 @@ const cardDataDisplayStyles = makeStyles(({ spacing, breakpoints: { only } }) =>
     },
     operationsWrapper: {
         padding: spacing(2),
-        margin: spacing(2)
+        margin: spacing(2),
+        [only('xs')]: {
+            padding: spacing(1),
+            margin: spacing(1)
+        }
     }
 }));
 
 
 export default memo(({ selectedDevice, pairDevice }) => {
     const { cardDataBtnWrapper, operationsWrapper } = cardDataDisplayStyles();
+
+    console.log(
+        '%c Tip: You may access your paired `MagTekDevice` directly in this console. Be sure to prefix all function invocations with `await`', 
+        'background: #78909c; color: #e1f5fe'
+    );
 
     return (
         <>
@@ -54,14 +65,14 @@ export default memo(({ selectedDevice, pairDevice }) => {
             </div>
 
             <Grid container justify='center'>
-                <Grid item xs={11}>
+                <Grid item xs={12} lg={11} xl={11}>
                     <Paper className={ operationsWrapper }>
-                        <Typography>
+                        <Typography variant='h4' align='center'>
                             Please expand a device operation for details
                         </Typography>
+
                         <InitializationPanel />
                         <SwipePanel />
-
 
                     </Paper>
                 </Grid>

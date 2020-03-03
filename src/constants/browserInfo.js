@@ -25,7 +25,8 @@ const displayItems = [
                 minOsVersion: "10 1703",
                 osLogo: "/images/windows_logo.png",
                 logoAlt: "windows-logo",
-                trim: 2
+                trim: 2,
+                specialInstructions: "Must pair device with OS Bluetooth prior to using WebBluetooth"
             },
             {
                 osId: 3,
@@ -68,7 +69,8 @@ const displayItems = [
                 minOsVersion: "10 1703",
                 osLogo: "/images/windows_logo.png",
                 logoAlt: "windows-logo1",
-                trim: 2
+                trim: 2,
+                specialInstructions: "Must pair device with OS Bluetooth prior to using WebBluetooth"
             },
             {
                 osId: 7,
@@ -111,7 +113,8 @@ const displayItems = [
                 minOsVersion: "10 1703",
                 osLogo: "/images/windows_logo.png",
                 logoAlt: "windows-logo2",
-                trim: 2
+                trim: 2,
+                specialInstructions: "Must pair device with OS Bluetooth prior to using WebBluetooth"
             },
             {
                 osId: 11,

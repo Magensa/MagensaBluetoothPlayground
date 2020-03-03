@@ -11,17 +11,33 @@ import DeviceCard from './deviceCard';
 import { flexBase } from '../../../constants/styleConstants';
 import { deviceImages } from '../../../constants';
 
-const noPairedDeviceStyles = makeStyles(({ spacing }) => ({
+const noPairedDeviceStyles = makeStyles(({ spacing, breakpoints: { only, down } }) => ({
     noDeviceWrapper: {
         margin: spacing(2),
-        padding: spacing(1)
+        padding: spacing(1),
+        [only('xs')]: {
+            margin: 0,
+            padding: 0
+        },
+        [down('md')]: {
+            margin: spacing(1),
+            padding: spacing(1)
+        }
     },
     noDevicePaper: {
         padding: spacing(4),
         margin: spacing(2),
         backgroundColor: '#eceff1',
         ...flexBase,
-        flexDirection: 'column'
+        flexDirection: 'column',
+        [only('xs')]: {
+            margin: 0,
+            spacing: 0
+        },
+        [down('md')]: {
+            margin: spacing(1),
+            padding: spacing(2)
+        }
     },
     supportedBanner: {
         marginBottom: spacing(3),

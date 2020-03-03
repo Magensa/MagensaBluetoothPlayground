@@ -11,7 +11,7 @@ const osInfoListStyles = makeStyles(({ spacing }) => ({
 }));
 
 export default ({ osDetails: 
-    { osName, minBrowserVersion, minOsVersion, behindFlag } 
+    { osName, minBrowserVersion, minOsVersion, behindFlag, specialInstructions } 
 }) => {
 
     const { listWrapper, liText } = osInfoListStyles();
@@ -52,6 +52,20 @@ export default ({ osDetails:
                         className={ liText }
                     >
                         <em>WebBluetooth is behind flag: </em>{`${behindFlag}`}
+                    </Typography>
+                </ListItem>
+            }
+
+            {specialInstructions &&
+                <ListItem divider disableGutters>
+                    <Typography 
+                        variant='body1' 
+                        component='p' 
+                        color='textSecondary' 
+                        align='center'
+                        className={ liText }
+                    >
+                        {specialInstructions}
                     </Typography>
                 </ListItem>
             }

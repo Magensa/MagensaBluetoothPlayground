@@ -23,6 +23,8 @@ export default ({ trxHandler }) => {
                 console.log('paired device - send to store', device);
                 await device.deviceInterface.openDevice();
 
+                window.MagTekDevice = device;
+
                 cardDataDispatch(
                     selectDevice( device )
                 );

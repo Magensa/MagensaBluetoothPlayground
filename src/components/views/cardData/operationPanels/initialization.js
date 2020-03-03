@@ -1,88 +1,58 @@
-import React from 'react';
-import {
-    ExpansionPanel,
-    ExpansionPanelSummary,
-    ExpansionPanelDetails,
-    ExpansionPanelActions,
-    Typography,
-    Grid,
-    Button,
-    Link,
-    makeStyles
-} from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { scanForDevices } from 'magensa-bluetooth';
 
-const initializeLibraryStyles = makeStyles(({ breakpoints: { down } }) => ({
-    initialDetails: {
-        flexDirection: 'column',
-        justifyContent: 'space-evenly',
-        alignItems: 'center'
-    },
-    codeBlock: {
-        backgroundColor: '#455a64',
-        color: '#b3e5fc',
-        width: '66%',
-        [down('md')]: {
-            width: '100%'
-        }
-    },
-    preTagStyle: {
-        padding: 0,
-        margin: 0,
-        fontSize: "100%",
-        background: '0 0',
-        border: 0,
-        whiteSpace: 'pre-wrap',
-        overflow: 'auto'
-    }
-}));
+import InitializationDisplay from './initializationDisplay';
+import { catchAndDisplay, deviceInterfaceReplacer } from '../../../../utils/helperFunctions';
 
+
+let initialIsMounted = true;
 
 export default _ => {
-    const { initialDetails, codeBlock, preTagStyle } = initializeLibraryStyles();
+    const [ result, setResult ] = useState("");
+    const [ isLoading, setIsLoading ] = useState(() => false);
+    const initialDispatcher = useDispatch();
 
-    return (
-        <ExpansionPanel defaultExpanded>
-            <ExpansionPanelSummary
-                expandIcon={ <ExpandMoreIcon /> }
-                aria-controls="initialization-details"
-                id="initialization-summary"
-            >
-                Initialize &nbsp; <code>{`magensa-bluetooth`}</code> &nbsp; library
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails className={ initialDetails }>
-                <Typography gutterBottom>
-                    There is an initialization process that must be performed to utilize this library.
-                    Below is a simple initialization used for demonstration purposes.
-                    You can view the full API <Link color="textSecondary" href="https://github.com/Magensa">here</Link> for more options.
-                </Typography>
-                <div className={ codeBlock }>
-                    <pre className={ preTagStyle }>
-                        <code>{`
-    import { scanForDevices } from 'magensa-bluetooth';
-
-    const mainCallback = (callbackData) => void console.log("Callback Data: ", callbackData);
-
+    const messageDispatcher = catchAndDisplay(initialDispatcher);
+    const mainCallback = callbackData => console.log("Callback Data: ", callbackData);
+    
     const pairDevice = async() => {
+        setResult("");
+        setIsLoading(true);
+
         try {
             const device = await scanForDevices(mainCallback);
-
-            //After user selects device from pair window the 'device' variable contains the interface needed to interact with the device.
-
-            //Store this variable wherever makes sense for your application.
+                
+            await device.deviceInterface.openDevice();
             
-            //For demonstration purposes, this playground will store device to a global namespace.
+            console.log("Selected Device: ", device);
 
-            window.MagTekDevice = device;
+            if (initialIsMounted) {
+                setResult(
+                    JSON.stringify(device, deviceInterfaceReplacer, 4)
+                );
+    
+                window.MagTekDevice = (device || window.MagTekDevice);
+            }
         }
         catch(err) {
-            console.error(err);
+            messageDispatcher(err);
         }
+
+        if (initialIsMounted)
+            setIsLoading(false);
     }
-                        `}</code>
-                    </pre>
-                </div>
-            </ExpansionPanelDetails>
-        </ExpansionPanel>
+
+    useEffect(() => {
+        initialIsMounted = true;
+        return () => initialIsMounted = false;
+    }, []);
+
+    return (
+        <InitializationDisplay 
+            pairDevice={ pairDevice } 
+            isLoading={ isLoading } 
+            outputResult={ result } 
+        />
     );
 }

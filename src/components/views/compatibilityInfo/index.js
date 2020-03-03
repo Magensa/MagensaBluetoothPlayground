@@ -46,6 +46,13 @@ export default _ => {
                             </Link>
                             . Below you will find information about which browsers, and operating systems, are compatible with this API.
                         </Typography>
+                        <Typography 
+                            variant={(!isSmallScreen) ? 'h5' : 'h6'} 
+                            align='center'
+                            className={ topSpace }
+                        >
+                            All MagTek® devices use pairing code: <code>000000</code>
+                        </Typography>
                     </Grid>
                 </Grid>
             </Grid>
