@@ -9,9 +9,9 @@ import { preStyling } from '../../../constants/styleConstants';
 import LoadingWidget from './loadingWidget';
 
 const outputStyles = makeStyles({
-    outputBlock: ({ fullWidth, spacing, down, resultFullWidth }) => ({
+    outputBlock: ({ spacing, down, resultFullWidth }) => ({
         minHeight: (!resultFullWidth) ? spacing(38) : 0,
-        width: fullWidth,
+        width: '100%',
         paddingLeft: '0 !important',
         paddingRight: '0 !important',
         marginLeft: (!resultFullWidth) ? spacing(1) : 0,
@@ -41,7 +41,6 @@ const outputStyles = makeStyles({
 export default ({ outputVal, resultFullWidth, isLoading, loadingText }) => {
     const { spacing, breakpoints: { down } } = useTheme();
     const { loadingStyles, outputPre, outputPaper, outputBlock } = outputStyles({
-        fullWidth: '100%',
         resultFullWidth,
         spacing,
         down,
