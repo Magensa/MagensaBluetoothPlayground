@@ -3,13 +3,13 @@ import { useDispatch } from 'react-redux';
 import { scanForDevices } from 'magensa-bluetooth';
 
 import InitializationDisplay from './initializationDisplay';
-import { catchAndDisplay, deviceInterfaceReplacer } from '../../../../utils/helperFunctions';
+import { catchAndDisplay, deviceInterfaceReplacer } from '../../../../../utils/helperFunctions';
 
 
 let initialIsMounted = true;
 
 export default _ => {
-    const [ result, setResult ] = useState("");
+    const [ result, setResult ] = useState(() => "");
     const [ isLoading, setIsLoading ] = useState(() => false);
     const initialDispatcher = useDispatch();
 

@@ -1,5 +1,5 @@
 import InitializationPanel from './initialization';
-import SwipePanel from './swipePanel';
+import SwipePanel from './swipe';
 
 export {
     InitializationPanel,

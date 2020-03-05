@@ -48,13 +48,13 @@ const codePanelStyles = makeStyles({
             marginTop: spacing(1)
         }
     }),
-    outputBlock: ({ fullWidth, spacing, down }) => ({
-        minHeight: spacing(38),
+    outputBlock: ({ fullWidth, spacing, down, outputVal }) => ({
+        minHeight: (outputVal) ? spacing(38) : 0,
         width: fullWidth,
+        paddingLeft: '0 !important',
+        paddingRight: '0 !important',
         [down('sm')]: {
-            minHeight: 0,
-            paddingLeft: '0 !important',
-            paddingRight: '0 !important'
+            minHeight: 0
         }
     }),
     outputPaper: {
@@ -63,7 +63,8 @@ const codePanelStyles = makeStyles({
     },
     outputPre: ({ preStyling, spacing, outputVal }) => ({
         ...preStyling,
-        padding: (outputVal) ? spacing(1) : 0
+        padding: (outputVal) ? spacing(1) : 0,
+        cursor: 'text'
     }),
     codeBlocksWrapper: { 
         flexBasis: 0,
@@ -86,7 +87,8 @@ const CodePanel = ({
     btnText, 
     btnDisclaimer, 
     isLoading, 
-    loadingText 
+    loadingText,
+    resultFullWidth
 }) => {
     const { spacing, typography: { pxToRem }, breakpoints: { down } } = useTheme();
     /* 
@@ -137,10 +139,10 @@ const CodePanel = ({
                 >
                     <Grid item xs={11} lg={12} className={ codeBlocksWrapper }>
                         <Grid container direction="row" justify="center" spacing={3}>
-                            <Grid item xl={8} className={ codeBlock }>
+                            <Grid item xl={(resultFullWidth) ? 10 : 8} className={ codeBlock }>
                                 { children }
                             </Grid>
-                            <Grid item xl={4} className={ outputBlock }>
+                            <Grid item xl={(resultFullWidth) ? 12 : 4} className={ outputBlock }>
                                 {(!isLoading) ? 
                                     <Paper className={ outputPaper }>
                                         <pre className={ outputPre }>

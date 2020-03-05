@@ -16,3 +16,7 @@ export const preStyling = {
     wordWrap: 'break-word',
     pageBreakInside: 'avoid'
 };
+
+export const whiteColor = { color: '#ffffff' };
+
+export const constBlue = {color: '#1e88e5'};

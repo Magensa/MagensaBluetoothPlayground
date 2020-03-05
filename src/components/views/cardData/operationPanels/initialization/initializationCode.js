@@ -1,12 +1,12 @@
 import React, { memo } from 'react';
+import PreWrapper from '../../../../sharedComponents/preWrapper';
 import { 
     FuncYellow, 
     CommentGreen, 
     KeywordPurple, 
     ConstBlue,
     StringOrange
-} from '../../../sharedComponents/styledCodeSpans';
-
+} from '../../../../sharedComponents/styledCodeSpans';
 import { 
     initializeComment, 
     magensaBt, 
@@ -20,8 +20,7 @@ import {
     initializeDeclaration7,
     initializeSuffix,
     initializeSuffix1
-} from '../../../../constants/messageTemplates'
-import PreWrapper from '../../../sharedComponents/preWrapper';
+} from '../../../../../constants/messageTemplates/initializationTemplates'
 
 
 export default memo(_ =>

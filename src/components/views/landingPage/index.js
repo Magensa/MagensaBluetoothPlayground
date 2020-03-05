@@ -1,22 +1,29 @@
 import React, { memo, useCallback, useEffect } from 'react';
+
 import ToastMsg from '../../helperComponents/toastMsg';
 import RootRouter from './rootRouter';
 import LandingPageBanner from './landingPageBanner';
+
+import useDisplayMessage from '../../customHooks/useDisplayMessage';
+import useSwipeHandler from '../../customHooks/useSwipeHandler';
 
 //TODO: Remove debug Event Listener when ready to deploy.
 const debugFunc = logInfo => console.log(logInfo.detail);
 
 export default memo(_ => {
-
+    const { clearDisplayMessage, setDisplayMessage } = useDisplayMessage();
+    const { setSwipeData } = useSwipeHandler();
     const trxCallback = (function() {
 
         const mainCallback = deviceData => {
             switch(true) {
                 case ("displayMessage" in deviceData):
                     console.log('displayMessage Handler: ', deviceData);
+                    setDisplayMessage(deviceData.displayMessage);
                     break;
                 case ("swipeData" in deviceData):
                     console.log('swipeData Handler: ', deviceData);
+                    setSwipeData(deviceData.swipeData);
                     break;
                 case ("batchData" in deviceData):
                     console.log('batchData Handler: ', deviceData);
@@ -26,11 +33,11 @@ export default memo(_ => {
                     break;
                 case ("transactionStatus" in deviceData):
                     if (deviceData.transactionStatus.statusCode === 8) {
-                        console.log('clear Display Message Handler: ', deviceData);
+                        clearDisplayMessage();
                     }
                     else if (deviceData.transactionStatus.statusCode === 3) {
                         if (deviceData.transactionStatus.progressCode === 44) {
-                            console.log('clear Display Message Handler: ', deviceData);
+                            clearDisplayMessage();
                         }
                     }
                     break;
