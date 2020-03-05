@@ -27,7 +27,6 @@ export default _ => {
     }, [setLoadingText, setIsLoading]);
 
     const cardSwipe = async() => {
-        setSwipeResult("");
         setLoadingText("Requesting swipe from device");
         clearSwipeData();
         setIsLoading(true);
@@ -35,6 +34,8 @@ export default _ => {
         try {
             const swipeResp = await selectedDevice.deviceInterface.requestCardSwipe();
             console.log("Request Swipe Response: ", swipeResp);
+            const stringResp = JSON.stringify(swipeResp, null, 4);
+            setSwipeResult([stringResp]);
 
             if (swipeResp.code === 0 && swipeIsMounted) {
                 setLoadingText("Please swipe your card");
@@ -43,11 +44,13 @@ export default _ => {
             else {
                 cleanUp();
                 messageDispatcher(swipeResp);
+                setSwipeResult("");
             }
         }
         catch(err) {
             cleanUp();
             messageDispatcher(err);
+            setSwipeResult("");
         }
     }
 
@@ -57,9 +60,10 @@ export default _ => {
         console.log('cardData: ', cardData);
 
         if (awaitingSwipeData && "swipeData" in cardData) {
-            setSwipeResult(
-                JSON.stringify(cardData.swipeData, null, 4)
-            );
+            setSwipeResult(prevState => {
+                prevState[1] = JSON.stringify(cardData.swipeData, null, 4);
+                return prevState;
+            });
 
             cleanUp();
         }
@@ -67,15 +71,19 @@ export default _ => {
         return () => swipeIsMounted = false;
     }, [cardData, awaitingSwipeData, cleanUp]);
 
+    useEffect(() => {
+        console.log("swipeResult", swipeResult, typeof(swipeResult));
+    }, [swipeResult]);
+
     return (
         <OperationPanel 
             providedFunc={ cardSwipe } 
-            btnText="cardSwipe();" 
+            btnText="cardSwipe()" 
             outputVal={ swipeResult } 
             isLoading={ isLoading } 
             loadingText={ loadingText }
             codeComponent={ SwipeCode }
-            resultFullWidth={ true }
+            resultFullWidth
             operationTitle={
                 <strong>
                     Request Card Swipe

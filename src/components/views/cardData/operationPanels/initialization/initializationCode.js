@@ -1,52 +1,102 @@
 import React, { memo } from 'react';
+
 import PreWrapper from '../../../../sharedComponents/preWrapper';
 import { 
     FuncYellow, 
     CommentGreen, 
     KeywordPurple, 
     ConstBlue,
-    StringOrange
+    StringOrange,
+    Equals,
+    OpenCurly,
+    CloseCurly,
+    FuncArrow,
+    Tab,
+    NewLine,
+    ConsoleLog,
+    CatchError,
+    ParenParam,
+    SemiColon
 } from '../../../../sharedComponents/styledCodeSpans';
 import { 
-    initializeComment, 
-    magensaBt, 
-    initializeDeclaration, 
-    initializeDeclaration1, 
-    initializeDeclaration2, 
-    initializeDeclaration3, 
-    initializeDeclaration4, 
-    initializeDeclaration5,
-    initializeDeclaration6,
-    initializeDeclaration7,
-    initializeSuffix,
-    initializeSuffix1
-} from '../../../../../constants/messageTemplates/initializationTemplates'
+    initializeComment,
+    magensaBt,
+    deviceInterface,
+    assingNamespace,
+    callBackData,
+    scanDevicesName,
+    space,
+    mainCallback,
+    device,
+    deviceNamespace
+} from '../../../../../constants/messageTemplates/initializationTemplates';
 
 
 export default memo(_ =>
     <PreWrapper>
-            <KeywordPurple>import</KeywordPurple>{` { scanForDevices } `}<KeywordPurple>from</KeywordPurple>
-            <StringOrange>{magensaBt}</StringOrange>
-            <ConstBlue>const </ConstBlue>
-            <FuncYellow>mainCallback</FuncYellow>
-            {initializeDeclaration}
-            <StringOrange>"Callback Data: "</StringOrange>
-            {initializeDeclaration1}
-            <ConstBlue>const </ConstBlue>
-            <FuncYellow>pairDevice</FuncYellow>
-            {initializeDeclaration2}
-            <ConstBlue>async</ConstBlue>
-            {initializeDeclaration3}
-            <KeywordPurple>try </KeywordPurple>
-            {initializeDeclaration4}
-            <ConstBlue>const </ConstBlue>
-            {initializeDeclaration5}
-            <KeywordPurple>await </KeywordPurple>
-            {initializeDeclaration6}
-            <KeywordPurple>await </KeywordPurple>
-            {initializeDeclaration7}
-            <CommentGreen>{initializeComment}</CommentGreen>
-            {initializeSuffix}
-            <KeywordPurple>catch</KeywordPurple>
-            {initializeSuffix1}
+        <KeywordPurple>import </KeywordPurple>
+        <OpenCurly end />
+        {space}
+        {scanDevicesName}
+        <CloseCurly begin />
+        <KeywordPurple> from </KeywordPurple>
+        <StringOrange>{magensaBt}</StringOrange>
+        <SemiColon />
+        <NewLine repititions={2} />
+        <ConstBlue>const </ConstBlue>
+        <FuncYellow>{mainCallback}</FuncYellow>
+        {space}
+        <Equals end />
+        <ParenParam>
+            {callBackData}
+        </ParenParam>
+        <FuncArrow begin />
+        {space}
+        <ConsoleLog 
+            logString="Callback Data: "
+            logVar={callBackData}
+        />
+        <NewLine repititions={2} />
+        <ConstBlue>const </ConstBlue>
+        <FuncYellow>pairDevice </FuncYellow>
+        <Equals end />
+        <ConstBlue>async</ConstBlue>
+        <ParenParam />
+        {space}
+        <FuncArrow end />
+        <OpenCurly newLine />
+        <KeywordPurple>try </KeywordPurple>
+        <OpenCurly newLine />
+        <Tab />
+        <ConstBlue>const </ConstBlue>
+        {device}
+        <Equals begin />
+        <KeywordPurple> await </KeywordPurple>
+        <FuncYellow>{scanDevicesName}</FuncYellow>
+        <ParenParam semicolon>
+            {mainCallback}
+        </ParenParam>
+        <NewLine repititions={2} />
+        <Tab repitions={2} />
+        <KeywordPurple>await </KeywordPurple>
+        {deviceInterface}
+        <FuncYellow>openDevice</FuncYellow>
+        <ParenParam semicolon />
+        <NewLine />
+        <CommentGreen>{initializeComment}</CommentGreen>
+        <NewLine />
+        <Tab repitions={2} />
+        {deviceNamespace}
+        {space}
+        <Equals end />
+        {assingNamespace}
+        <SemiColon />
+        <NewLine />
+        <Tab />
+        <CloseCurly />
+        <NewLine />
+        <Tab />
+        <CatchError />
+        <NewLine />
+        <CloseCurly />
     </PreWrapper>);

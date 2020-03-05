@@ -18,16 +18,17 @@ import {
     CatchError,
     ParenParam
 } from '../../../../sharedComponents/styledCodeSpans';
-import { swipeComment, callBackData } from '../../../../../constants/messageTemplates/swipeTemplates';
+import { swipeComment, callBackData, mainCallback, space } from '../../../../../constants/messageTemplates';
 
 
 export default memo(_ => 
     <PreWrapper>
         <ConstBlue>const </ConstBlue>
-        <FuncYellow>mainCallback </FuncYellow>
+        <FuncYellow>{mainCallback}</FuncYellow>
+        {space}
         <Equals end={true}/>
         <ParenParam>
-            {callBackData}
+        {callBackData}
         </ParenParam>
         <FuncArrow begin={true} />
         <OpenCurly begin={true} />

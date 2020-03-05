@@ -21,7 +21,7 @@ const ConsoleLog = ({ logString, logVar, isError }) => (
         }
         
         <span>{logVar}</span>
-        <CloseParen semicolon={true} />
+        <CloseParen semicolon />
     </>
 );
 

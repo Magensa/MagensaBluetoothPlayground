@@ -70,7 +70,7 @@ OperationPanel.propTypes = {
     operationTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired, 
     providedFunc: PropTypes.func.isRequired, 
     btnText: PropTypes.string.isRequired, 
-    outputVal: PropTypes.string.isRequired, 
+    outputVal: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired, 
     isLoading: PropTypes.bool.isRequired, 
     loadingText: PropTypes.string.isRequired, 
     btnDisclaimer: PropTypes.string, 

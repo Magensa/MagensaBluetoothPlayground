@@ -14,6 +14,7 @@ import { NewLine } from './newLine';
 import { ConsoleLog } from './consoleLog';
 import { ParenParam } from './parenParam';
 import { CatchError } from './catchError';
+import { SemiColon } from './semiColon';
 
 export {
     FuncYellow,
@@ -31,5 +32,6 @@ export {
     NewLine,
     ConsoleLog,
     ParenParam,
-    CatchError
+    CatchError,
+    SemiColon
 }

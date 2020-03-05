@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import {
     Chip,
     Typography,
@@ -37,6 +38,7 @@ const deviceConnectionStyles = makeStyles(({ spacing, breakpoints }) => {
 export default ({ selectedDevice }) => {
     const [ isOpen, setIsOpen ] = useState(() => false);
     const [ changingDeviceState, setChangingDeviceState ] = useState(() => false);
+    const cardData = useSelector(state => state.cardData);
     const { chipStyles } = deviceConnectionStyles();
 
     const toggleConnection = async _ => {
@@ -73,7 +75,7 @@ export default ({ selectedDevice }) => {
                     setIsOpen(currentConnection);
             }
         }
-    }, [selectedDevice, isOpen, setIsOpen]);
+    }, [selectedDevice, isOpen, setIsOpen, cardData]);
 
     return (selectedDevice) ? 
         <Chip 
