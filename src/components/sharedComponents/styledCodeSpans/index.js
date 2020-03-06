@@ -15,6 +15,9 @@ import { ConsoleLog } from './consoleLog';
 import { ParenParam } from './parenParam';
 import { CatchError } from './catchError';
 import { SemiColon } from './semiColon';
+import { FuncDeclare } from './funcDeclare';
+import { Colon } from './colon';
+import { Comma } from './comma';
 
 export {
     FuncYellow,
@@ -33,5 +36,8 @@ export {
     ConsoleLog,
     ParenParam,
     CatchError,
-    SemiColon
+    SemiColon,
+    FuncDeclare,
+    Colon,
+    Comma
 }

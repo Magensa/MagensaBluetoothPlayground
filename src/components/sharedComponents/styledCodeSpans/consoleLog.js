@@ -15,7 +15,7 @@ const ConsoleLog = ({ logString, logVar, isError }) => (
 
         {logString &&
             <>
-                <StringOrange>{`"${logString}"`}</StringOrange>
+                <StringOrange>{logString}</StringOrange>
                 <span style={ whiteColor }>{`, `}</span>
             </>
         }
@@ -27,7 +27,7 @@ const ConsoleLog = ({ logString, logVar, isError }) => (
 
 ConsoleLog.propTypes = {
     logString: PropTypes.string,
-    logVar: PropTypes.string.isRequired,
+    logVar: PropTypes.string,
     isError: PropTypes.bool
 }
 

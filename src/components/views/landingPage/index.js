@@ -3,9 +3,11 @@ import React, { memo, useCallback, useEffect } from 'react';
 import ToastMsg from '../../helperComponents/toastMsg';
 import RootRouter from './rootRouter';
 import LandingPageBanner from './landingPageBanner';
+import DisplayMsg from '../../helperComponents/displayMsg';
 
 import useDisplayMessage from '../../customHooks/useDisplayMessage';
 import useSwipeHandler from '../../customHooks/useSwipeHandler';
+import useEmvHandler from '../../customHooks/useEmvHandler';
 
 //TODO: Remove debug Event Listener when ready to deploy.
 const debugFunc = logInfo => console.log(logInfo.detail);
@@ -13,33 +15,17 @@ const debugFunc = logInfo => console.log(logInfo.detail);
 export default memo(_ => {
     const { clearDisplayMessage, setDisplayMessage } = useDisplayMessage();
     const { setSwipeData } = useSwipeHandler();
+    const { setEmvData } = useEmvHandler();
     const trxCallback = (function() {
 
         const mainCallback = deviceData => {
             switch(true) {
-                case ("displayMessage" in deviceData):
-                    console.log('displayMessage Handler: ', deviceData);
-                    setDisplayMessage(deviceData.displayMessage);
-                    break;
                 case ("swipeData" in deviceData):
-                    console.log('swipeData Handler: ', deviceData);
                     setSwipeData(deviceData.swipeData);
                     break;
                 case ("batchData" in deviceData):
-                    console.log('batchData Handler: ', deviceData);
-                    break;
                 case ("arqcData" in deviceData):
-                    console.log('arqcData Handler: ', deviceData);
-                    break;
-                case ("transactionStatus" in deviceData):
-                    if (deviceData.transactionStatus.statusCode === 8) {
-                        clearDisplayMessage();
-                    }
-                    else if (deviceData.transactionStatus.statusCode === 3) {
-                        if (deviceData.transactionStatus.progressCode === 44) {
-                            clearDisplayMessage();
-                        }
-                    }
+                    setEmvData(deviceData);
                     break;
                 default:
                     console.log('fell out of case/switch: ', deviceData);
@@ -48,6 +34,21 @@ export default memo(_ => {
         }
         
         mainCallback.disconnectHandler = event => void console.log('[Disconnect Event]', event);
+
+        mainCallback.displayCallback = ({ displayMessage }) => {
+            setDisplayMessage(displayMessage);
+        }
+
+        mainCallback.transactionStatusCallback = statusObj => {
+            if (statusObj.transactionStatus.statusCode === 8) {
+                clearDisplayMessage();
+            }
+            else if (statusObj.transactionStatus.statusCode === 3) {
+                if (statusObj.transactionStatus.progressCode === 44) {
+                    clearDisplayMessage();
+                }
+            }
+        }
         
         return mainCallback;
     })();
@@ -63,6 +64,7 @@ export default memo(_ => {
         <>
             <ToastMsg />
             <LandingPageBanner />
+            <DisplayMsg />
             <RootRouter trxHandler={ trxHandler } />
         </>
     );

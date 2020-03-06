@@ -5,7 +5,8 @@ import PairButton from '../../sharedComponents/pairButton';
 import RemoveDeviceBtn from './removeDeviceBtn';
 import {
     SwipePanel,
-    InitializationPanel
+    InitializationPanel,
+    EmvPanel
 } from './operationPanels';
 
 
@@ -73,6 +74,7 @@ export default memo(({ selectedDevice, pairDevice }) => {
 
                         <InitializationPanel />
                         <SwipePanel />
+                        <EmvPanel />
 
                     </Paper>
                 </Grid>

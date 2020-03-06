@@ -11,7 +11,7 @@ const ParenParam = ({ children = "", semicolon }) =>
     </>
 
 ParenParam.propTypes = {
-    children: PropTypes.string,
+    children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     semicolon: PropTypes.bool
 }
 

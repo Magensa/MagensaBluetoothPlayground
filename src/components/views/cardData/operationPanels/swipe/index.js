@@ -9,6 +9,7 @@ import useSwipeHandler from '../../../../customHooks/useSwipeHandler';
 
 let swipeIsMounted = true;
 
+
 export default _ => {
     const [ swipeResult, setSwipeResult ] = useState(() => "");
     const [ awaitingSwipeData, setIsAwaitingSwipeData ] = useState(() => false);
@@ -33,9 +34,8 @@ export default _ => {
 
         try {
             const swipeResp = await selectedDevice.deviceInterface.requestCardSwipe();
-            console.log("Request Swipe Response: ", swipeResp);
             const stringResp = JSON.stringify(swipeResp, null, 4);
-            setSwipeResult([stringResp]);
+            setSwipeResult([ stringResp ]);
 
             if (swipeResp.code === 0 && swipeIsMounted) {
                 setLoadingText("Please swipe your card");
@@ -54,10 +54,14 @@ export default _ => {
         }
     }
 
+    const cancelSwipe = async() => {
+        await selectedDevice.deviceInterface.cancelTransaction();
+        cleanUp();
+        setSwipeResult("");
+    }
+
     useEffect(() => {
         swipeIsMounted = true;
-        console.log("awaitingSwipeData: ", awaitingSwipeData);
-        console.log('cardData: ', cardData);
 
         if (awaitingSwipeData && "swipeData" in cardData) {
             setSwipeResult(prevState => {
@@ -68,28 +72,25 @@ export default _ => {
             cleanUp();
         }
 
-        return () => swipeIsMounted = false;
+        return () => (swipeIsMounted = false);
     }, [cardData, awaitingSwipeData, cleanUp]);
+    
 
-    useEffect(() => {
-        console.log("swipeResult", swipeResult, typeof(swipeResult));
-    }, [swipeResult]);
+    const panelProps = {
+        providedFunc: cardSwipe,
+        btnText: "cardSwipe()",
+        outputVal: swipeResult,
+        isLoading: isLoading,
+        loadingText: loadingText,
+        codeComponent: SwipeCode,
+        cancelText: "Cancel Swipe",
+        cancelFunc: cancelSwipe ,
+        resultFullWidth: true,
+        operationTitle: <strong> Request Card Swipe </strong>
+    }
 
     return (
-        <OperationPanel 
-            providedFunc={ cardSwipe } 
-            btnText="cardSwipe()" 
-            outputVal={ swipeResult } 
-            isLoading={ isLoading } 
-            loadingText={ loadingText }
-            codeComponent={ SwipeCode }
-            resultFullWidth
-            operationTitle={
-                <strong>
-                    Request Card Swipe
-                </strong>
-            }
-        >
+        <OperationPanel  {...panelProps} >
             <Typography gutterBottom variant='subtitle1'>
                 When&nbsp;<code>requestCardSwipe</code>&nbsp;is called, the device will respond with a status to confirm that it has received the operation request.
                 Once a card is swiped - the output from the device will be fed to the callback function that was provided to the <code>{`{ scanForDevices }`}</code> function.

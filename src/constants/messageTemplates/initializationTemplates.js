@@ -1,7 +1,7 @@
 //#region InitializationTemplates
 import { callBackData, scanDevicesName, space, mainCallback, dotInterface, deviceNamespace } from './index';
 export { callBackData, scanDevicesName, space, mainCallback, deviceNamespace };
-export const magensaBt = `"magensa-bluetooth"`;
+export const magensaBt = `magensa-bluetooth`;
 export const device = `device`;
 export const deviceInterface = `${device}${dotInterface}`;
 export const initializeComment = `

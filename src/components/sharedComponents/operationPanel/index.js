@@ -39,10 +39,10 @@ const initializeLibraryStyles = makeStyles(({ spacing, breakpoints: { down }, ty
 
 const OperationPanel = props => {
     const { initialDetails, initializeHeader, smMargin } = initializeLibraryStyles();
-    const { codeComponent: CodeComponent, operationTitle, children, ...rest } = props;
+    const { codeComponent: CodeComponent, operationTitle, children, mountExpand, ...rest } = props;
 
     return (
-        <ExpansionPanel defaultExpanded>
+        <ExpansionPanel defaultExpanded={ mountExpand }>
             <ExpansionPanelSummary
                 expandIcon={ <ExpandMoreIcon /> }
                 aria-controls="initialization-details"
@@ -52,7 +52,7 @@ const OperationPanel = props => {
                 }}
             >
                 <Typography variant='subtitle1' className={ initializeHeader } component='p'>
-                    {operationTitle}
+                    <strong>{operationTitle}</strong>
                 </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails className={ initialDetails }>

@@ -16,27 +16,22 @@ import {
     NewLine,
     ConsoleLog,
     CatchError,
-    ParenParam
+    ParenParam,
+    FuncDeclare
 } from '../../../../sharedComponents/styledCodeSpans';
-import { swipeComment, callBackData, mainCallback, space } from '../../../../../constants/messageTemplates';
+import { feedToFunctionComment, callBackData, space  } from '../../../../../constants/messageTemplates';
 
 
 export default memo(_ => 
     <PreWrapper>
-        <ConstBlue>const </ConstBlue>
-        <FuncYellow>{mainCallback}</FuncYellow>
-        {space}
-        <Equals end={true}/>
-        <ParenParam>
-        {callBackData}
-        </ParenParam>
-        <FuncArrow begin={true} />
+        <FuncDeclare />
         <OpenCurly begin={true} />
         <NewLine />
         <Tab />
         <KeywordPurple>if </KeywordPurple>
         <OpenParen />
-        <StringOrange>"swipeData" </StringOrange>
+        <StringOrange>swipeData</StringOrange>
+        {space}
         <KeywordPurple>in </KeywordPurple>
         {callBackData}
         <CloseParen end={true} />
@@ -52,7 +47,7 @@ export default memo(_ =>
         <NewLine />
         <CloseCurly />
         <NewLine />
-        <CommentGreen>{swipeComment}</CommentGreen>
+        <CommentGreen>{feedToFunctionComment}</CommentGreen>
         <NewLine />
         <ConstBlue>const </ConstBlue>
         <FuncYellow>cardSwipe </FuncYellow>

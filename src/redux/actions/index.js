@@ -6,7 +6,9 @@ import {
     LOAD_DISPLAY_MESSAGE,
     CLEAR_DISPLAY_MESSAGE,
     LOAD_SWIPE_DATA,
-    CLEAR_SWIPE_DATA
+    CLEAR_SWIPE_DATA,
+    LOAD_EMV_DATA,
+    CLEAR_EMV_DATA
 } from './actionTypes';
 
 export const loadToastInfo = toastObj => ({
@@ -38,3 +40,10 @@ export const loadSwipeData = swipeData => ({
 });
 
 export const clearSwipeData = _ => ({ type: CLEAR_SWIPE_DATA });
+
+export const loadEmvData = emvData => ({
+    type: LOAD_EMV_DATA,
+    payload: emvData
+});
+
+export const clearEmvData = _ => ({ type: CLEAR_EMV_DATA });

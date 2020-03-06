@@ -22,9 +22,18 @@ const deviceImages = [
     }
 ]
 
+const emvKeys = [
+    "arqcData",
+    "arqcDataParsed",
+    "batchData",
+    "batchDataParsed"
+];
+
+
 export {
     manageDevicePath,
     compatabilityPath,
     displayItems,
-    deviceImages
+    deviceImages,
+    emvKeys
 }

@@ -27,11 +27,10 @@ export default ({ pairDevice, isLoading, outputResult }) => {
             loadingText="Initializing Device"
             btnDisclaimer={ pairDisclaimer }
             codeComponent={ InitializationCode }
-            operationTitle={
-                <strong>
-                    Initialize&nbsp;<code className={ purpleCodeTitle }>{`magensa-bluetooth`}</code>&nbsp;library
-                </strong>
+            operationTitle={ 
+                <>Initialize&nbsp;<code className={ purpleCodeTitle }>{`magensa-bluetooth`}</code>&nbsp;library</>
             }
+            mountExpand
         >
             <Typography gutterBottom variant='subtitle1'>
                 There is an initialization process that must be performed to utilize this library.

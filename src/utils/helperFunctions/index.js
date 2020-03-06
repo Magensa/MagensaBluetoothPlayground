@@ -1,7 +1,7 @@
 import { loadToastInfo } from '../../redux/actions';
 
 const catchAndDisplay = dispatcher => err => {
-    console.log(err);
+    console.error(err);
     
     if (err.code !== 8 || err.name !== "NotFoundError" || !err.message.includes("requestDevice()"))
         dispatcher(
@@ -27,7 +27,8 @@ const deviceInterfaceRender = {
     isDeviceOpen: "ƒ",
 };
 
-const deviceInterfaceReplacer = (key, val) => (key !== 'deviceInterface') ? val : deviceInterfaceRender;
+const deviceInterfaceReplacer = (key, val) => 
+    (key !== 'deviceInterface') ? val : deviceInterfaceRender;
 
 export {
     catchAndDisplay,

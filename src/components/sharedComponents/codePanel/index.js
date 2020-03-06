@@ -48,6 +48,7 @@ const codePanelStyles = makeStyles(({
             textAlign: 'center',
             marginTop:  spacing(2),
             marginBottom: spacing(1),
+            width: fullWidth,
             [down('sm')]: {
                 marginTop: spacing(1)
             }
@@ -55,6 +56,13 @@ const codePanelStyles = makeStyles(({
         codeBlocksWrapper: { 
             flexBasis: 0,
             width: fullWidth
+        },
+        cancelButton: {
+            backgroundColor: "#ffea00",
+            marginLeft: spacing(2),
+            '&:hover': {
+                backgroundColor: "#ffd600"
+            }
         }
     })
 });
@@ -67,6 +75,8 @@ const CodePanel = props => {
         btnText, 
         btnDisclaimer,
         resultFullWidth,
+        cancelText,
+        cancelFunc,
         ...outputProps
     } = props;
 
@@ -77,6 +87,7 @@ const CodePanel = props => {
         codeBlock,
         btnJuxtapose,
         codeBlocksWrapper,
+        cancelButton
     } = codePanelStyles();
 
     return (
@@ -121,13 +132,31 @@ const CodePanel = props => {
                                 <em>{btnDisclaimer}</em>
                             </Typography>
                         }
-                        <Button 
-                            onClick={ providedFunc } 
-                            variant='outlined' 
-                            color="primary"
-                        >
-                            {btnText}
-                        </Button>
+                        <Grid container justify="center">
+                            <Grid item>
+                                <Button 
+                                    onClick={ providedFunc } 
+                                    variant='outlined' 
+                                    color="primary"
+                                >
+                                    {btnText}
+                                </Button>
+                            </Grid>
+                            {(props.isLoading && cancelText) &&
+                                <Grid item >
+                                    <Button 
+                                        variant='contained'
+                                        onClick={ cancelFunc }
+                                        classes={{
+                                            contained: cancelButton
+                                        }}
+                                    >
+                                        {cancelText}
+                                    </Button>
+                                </Grid>
+                            }
+                        </Grid>
+                        
                     </Grid>
                 </Grid>
             </ExpansionPanelDetails>

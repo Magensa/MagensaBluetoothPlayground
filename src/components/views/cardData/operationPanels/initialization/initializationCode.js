@@ -16,7 +16,8 @@ import {
     ConsoleLog,
     CatchError,
     ParenParam,
-    SemiColon
+    SemiColon,
+    FuncDeclare
 } from '../../../../sharedComponents/styledCodeSpans';
 import { 
     initializeComment,
@@ -43,14 +44,7 @@ export default memo(_ =>
         <StringOrange>{magensaBt}</StringOrange>
         <SemiColon />
         <NewLine repititions={2} />
-        <ConstBlue>const </ConstBlue>
-        <FuncYellow>{mainCallback}</FuncYellow>
-        {space}
-        <Equals end />
-        <ParenParam>
-            {callBackData}
-        </ParenParam>
-        <FuncArrow begin />
+        <FuncDeclare />
         {space}
         <ConsoleLog 
             logString="Callback Data: "

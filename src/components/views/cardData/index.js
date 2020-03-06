@@ -20,7 +20,6 @@ export default ({ trxHandler }) => {
                 : await scanForDevices(trxHandler, devicePrefix);
 
             if (device) {
-                console.log('paired device - send to store', device);
                 await device.deviceInterface.openDevice();
 
                 window.MagTekDevice = device;
@@ -29,8 +28,6 @@ export default ({ trxHandler }) => {
                     selectDevice( device )
                 );
             }
-            else
-                console.log('device failed check:', device);
         }
         catch(err) {
             catchDisplayToUser(err);
