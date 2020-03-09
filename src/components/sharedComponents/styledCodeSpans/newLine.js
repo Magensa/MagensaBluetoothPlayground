@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const NewLine = ({ repititions = 1 }) => {
+const NewLine = ({ repetitions = 1 }) => {
     const newLine = `
 `;
 
     return (
-        <span>{newLine.repeat(repititions)}</span>
+        <span>{newLine.repeat(repetitions)}</span>
     );
 }
 
 NewLine.propTypes = {
-    repititions: PropTypes.number
+    repetitions: PropTypes.number
 }
 
 export { NewLine };

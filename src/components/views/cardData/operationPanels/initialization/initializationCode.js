@@ -43,14 +43,14 @@ export default memo(_ =>
         <KeywordPurple> from </KeywordPurple>
         <StringOrange>{magensaBt}</StringOrange>
         <SemiColon />
-        <NewLine repititions={2} />
+        <NewLine repetitions={2} />
         <FuncDeclare />
         {space}
         <ConsoleLog 
             logString="Callback Data: "
             logVar={callBackData}
         />
-        <NewLine repititions={2} />
+        <NewLine repetitions={2} />
         <ConstBlue>const </ConstBlue>
         <FuncYellow>pairDevice </FuncYellow>
         <Equals end />
@@ -70,8 +70,8 @@ export default memo(_ =>
         <ParenParam semicolon>
             {mainCallback}
         </ParenParam>
-        <NewLine repititions={2} />
-        <Tab repitions={2} />
+        <NewLine repetitions={2} />
+        <Tab repetitions={2} />
         <KeywordPurple>await </KeywordPurple>
         {deviceInterface}
         <FuncYellow>openDevice</FuncYellow>
@@ -79,7 +79,7 @@ export default memo(_ =>
         <NewLine />
         <CommentGreen>{initializeComment}</CommentGreen>
         <NewLine />
-        <Tab repitions={2} />
+        <Tab repetitions={2} />
         {deviceNamespace}
         {space}
         <Equals end />

@@ -18,6 +18,8 @@ import { SemiColon } from './semiColon';
 import { FuncDeclare } from './funcDeclare';
 import { Colon } from './colon';
 import { Comma } from './comma';
+import { Num } from './number';
+
 
 export {
     FuncYellow,
@@ -39,5 +41,6 @@ export {
     SemiColon,
     FuncDeclare,
     Colon,
-    Comma
+    Comma,
+    Num
 }

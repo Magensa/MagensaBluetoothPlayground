@@ -1,47 +1,47 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { useDispatch, useSelector } from 'react-redux';
-import OperationPanel from '../../../../sharedComponents/operationPanel';
-import StartTrxCode from './startTrxCode';
 
-import { catchAndDisplay } from '../../../../../utils/helperFunctions';
+import StartTrxCode from './startTrxCode';
+import {
+    LinkToApi,
+    OperationPanel,
+    ColoredCode
+} from '../../../../sharedComponents';
 import useEmvHandler from '../../../../customHooks/useEmvHandler';
-import { emvKeys } from '../../../../../constants';
+import { catchAndDisplay } from '../../../../../utils/helperFunctions';
+import { emvKeys, startTransactionOptions } from '../../../../../constants';
+import { clearDisplayMsg as clearMsg } from '../../../../../redux/actions';
 
 let emvIsMounted = true;
+
 
 export default _ => {
     const selectedDevice = useSelector(state => state.selectedDevice);
     const cardData = useSelector(state => state.cardData);
 
     const [ emvResult, setEmvResult ] = useState(() => "");
+    const [ loadingDisplay, setLoadingDisplay ] = useState(() => "");
     const [ awaitingEmvData, setAwaitingEmvData ] = useState(() => false);
     const [ isLoading, setIsLoading ] = useState(() => false);
-    const [ loadingDisplay, setLoadingDisplay ] = useState(() => "");
     
     const emvDispatcher = useDispatch();
     const { clearEmvData } = useEmvHandler();
-
     const messageDispatcher = catchAndDisplay(emvDispatcher);
+
+    const clearDisplayMsg = useCallback(_ => emvDispatcher( clearMsg() ), [emvDispatcher]);
 
     const emvCleanUp = useCallback(() => {
         setIsLoading(false);
+        setAwaitingEmvData(false);
         setLoadingDisplay("");
+        setEmvResult("");
     }, [setLoadingDisplay, setIsLoading]);
 
     const requestEmv = async() => {
         setLoadingDisplay("Requesting EMV transaction from device");
         clearEmvData();
         setIsLoading(true);
-
-        const startTransactionOptions = {
-            reportVerbosity: "verbose",
-            cardType: "all",
-            timeout: 30,
-            currencyCode: "dollar",
-            authorizedAmount: 1000,
-            transactionType: "purchase"
-        };
 
         try {
             const emvResp = await selectedDevice.deviceInterface.startTransaction(startTransactionOptions);
@@ -56,13 +56,11 @@ export default _ => {
             else {
                 emvCleanUp();
                 messageDispatcher(emvJsonResp);
-                setEmvResult("");
             }
         }
         catch(err) {
             emvCleanUp();
             messageDispatcher(err);
-            setEmvResult("");
         }
     }
 
@@ -76,20 +74,32 @@ export default _ => {
                     returnObj[emvKey] = cardData[emvKey];
             });
 
-            if (Object.keys(returnObj).length)
+            if (Object.keys(returnObj).length && emvIsMounted) {
                 setEmvResult(prevState => {
                     prevState[1] = JSON.stringify(returnObj, null, 4);
                     return prevState;
                 });
+
+                if (("batchData" in returnObj) && emvIsMounted) {
+                    setAwaitingEmvData(false);
+                    setIsLoading(false);
+
+                    if (returnObj.hasOwnProperty('batchDataParsed')) {
+                        //Find trxStatus tag and manually clear display msg - if timeout is encountered.
+                        let trxStatus = returnObj.batchDataParsed.find(({ tag }) => tag === 'DFDF1A');
+                        if (trxStatus  && trxStatus.tagValue === "22 Waiting for Card Timeout")
+                            clearDisplayMsg()
+                    }
+                }
+            }
         }
 
         return () => (emvIsMounted = false);
-    }, [cardData, awaitingEmvData]);
+    }, [cardData, awaitingEmvData, clearDisplayMsg]);
 
     const cancelTrx = async() => {
         await selectedDevice.deviceInterface.cancelTransaction();
         emvCleanUp();
-        setEmvResult("");
     }
 
     const operationProps = {
@@ -108,14 +118,19 @@ export default _ => {
     return (
         <OperationPanel { ...operationProps }>
             <Typography gutterBottom variant='subtitle1'>
-                When&nbsp;<code>startTransaction</code>&nbsp;is called, the device will respond with a status to confirm that it has received the operation request.
-                Once a card is swiped - the output from the device will be fed to the callback function that was provided to the <code>{`{ scanForDevices }`}</code> function.
+                When <ColoredCode>startTransaction</ColoredCode> is called, the device will respond with a status to confirm that it has received the operation request.
+                Once a card is inserted (or tapped for contactless) - the output from the device will be fed to the callback function that was provided to the <ColoredCode /> function.
             </Typography>
             <Typography gutterBottom variant='subtitle2'>
-                The callback function provided is the only way the device can transmit data to the application.
-                It is recommended to define handlers based on object property checks and / or destructuring of the object that is received from the device. 
-                A simple implementation is demonstrated below.
+                In the example below, the mainCallback function that will be fed to the <ColoredCode /> function is defined. In the mainCallback, a switch/case based on
+                object properties is defined. This is to capture and filter the data returned from the device (after a card interaction). Next, a <ColoredCode>displayCallback</ColoredCode>
+                property is assigned to the mainCallback. This function will only receive an object with a single property: `displayMessage` which is a string. For PinPad devices, this function will never be called 
+                (display messages will appear on the device's screen). However, for devices without a screen - this function will capture the display messages sent from the device 
+                (it is EMV standard to display these messages directly to end user without modification). Customizing your callbacks can be done in a variety of ways - this is one example implementation. 
+                Next, the transaction configuration is defined as `startTransactionOptions`. Keep in mind this object is optional, and every property will have default values. 
+                Whatever object property you supply to this function will override the default value. We then invoke the `startTransaction` function with the configuration that has been defined.
             </Typography>
+           <LinkToApi />
         </OperationPanel>
     );
 }

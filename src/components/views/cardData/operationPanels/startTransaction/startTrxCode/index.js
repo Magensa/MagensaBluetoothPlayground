@@ -30,12 +30,13 @@ import {
     space, 
     feedToFunctionComment, 
     emvSwitchCases,
-    dotInterface
-} from '../../../../../../constants/messageTemplates';
+    dotInterface,
+    displayMessage,
+    startTransactionOptions,
+    startTransactionResp
 
-const displayMessage = `displayMessage`;
-const startTransactionOptions = `startTransactionOptions`;
-const startTransactionResp = `startTransactionResp`;
+} from '../../../../../../constants/messageTemplates/startTransactionTemplates';
+
 
 export default memo(_ =>
     <PreWrapper>
@@ -44,20 +45,20 @@ export default memo(_ =>
         <Equals begin />
         <OpenParen begin />
         <ConstBlue>function</ConstBlue>
-        <OpenParen />
+        <ParenParam />
+        {space}
+        <OpenCurly newLine />
+        <FuncDeclare  />
         {space}
         <OpenCurly newLine />
         <Tab />
-        <FuncDeclare  />
-        <OpenCurly newLine />
-        <Tab repitions={2} />
         <KeywordPurple>switch</KeywordPurple>
         <ParenParam>
             <ConstBlue>true</ConstBlue>
         </ParenParam>
         {space}
         <OpenCurly newLine />
-        <Tab repitions={3} />
+        <Tab repetitions={2} />
 
         {emvSwitchCases.map(({ str, consoleStr }) => 
             <Fragment key={str}> 
@@ -65,20 +66,21 @@ export default memo(_ =>
                     propString={str}
                     consoleString={consoleStr}
                 />
-                <Tab repitions={3} />
+                <Tab repetitions={3} />
             </Fragment>
         )}
 
         <KeywordPurple>default</KeywordPurple>
         <Colon />
         <NewLine />
-        <Tab repitions={4} />
+        <Tab repetitions={4} />
         <ConsoleLog 
             logString="No EMV data returned"
         />
         <NewLine />
-        <Tab repitions={2} />
-        <CloseCurly newLine />
+        <Tab repetitions={2} />
+        <CloseCurly />
+        <NewLine />
         <Tab />
         <CloseCurly newLine />
         <NewLine />
@@ -93,18 +95,18 @@ export default memo(_ =>
         <CloseParen end />
         <FuncArrow end />
         <OpenCurly newLine />
-        <Tab repitions={2} />
+        <Tab />
         <CommentGreen>
             {`//Display device message directly to end user.`}
         </CommentGreen>
         <NewLine />
-        <Tab repitions={2} />
+        <Tab repetitions={2} />
         <ConsoleLog 
             logString="Message from device: "
             logVar={displayMessage}
         />
         <NewLine />
-        <Tab repitions={2} />
+        <Tab />
         <CloseCurly newLine />
         <NewLine />
         <Tab />
@@ -122,9 +124,10 @@ export default memo(_ =>
         </CommentGreen>
         <NewLine />
         <ConstBlue>const</ConstBlue>
-        {`${startTransactionOptions} `}
+        {` ${startTransactionOptions} `}
         <Equals end />
-        <OpenCurly newLine />
+        <OpenCurly />
+        <NewLine />
         {emvOptionsObj.map(({ keyName, val }) =>
             <ObjectProps 
                 key={ keyName }
@@ -134,7 +137,7 @@ export default memo(_ =>
         )}
         <CloseCurly />
         <SemiColon />
-        <NewLine repitions={2}/>
+        <NewLine repetitions={2} />
         <FuncDeclare 
             funcName="requestEmv"
             paramName={false}
@@ -145,74 +148,30 @@ export default memo(_ =>
         <KeywordPurple>try</KeywordPurple>
         <OpenCurly begin />
         <NewLine />
-        <Tab repitions={2} />
+        <Tab repetitions={2} />
         <ConstBlue>const</ConstBlue>
-        {`${startTransactionResp} `}
+        {` ${startTransactionResp} `}
         <Equals end />
         <KeywordPurple>await</KeywordPurple>
-        {` ${magTekDevice}${dotInterface}.`}
+        {` ${magTekDevice}${dotInterface}`}
         <FuncYellow>startTransaction</FuncYellow>
         <ParenParam>
             {startTransactionOptions}
         </ParenParam>
         <SemiColon />
         <NewLine />
-        <Tab repitions={2} />
+        <Tab repetitions={2} />
         <ConsoleLog 
             logString="Start Transaction Response: "
             logVar={startTransactionResp}
         />
         <NewLine />
         <Tab />
-        <CloseCurly newLine />
+        <CloseCurly />
+        <NewLine />
         <Tab />
-        <CatchError repitions={2}/>
+        <CatchError />
         <NewLine />
         <CloseCurly />
     </PreWrapper>
 );
-
-// const mainCallback = (function() {
-//     const mainCallback = (callbackData) => {
-//         switch(true) {
-//             case ("arqcData" in callbackData):
-//                 console.log("ArqcData: ", callbackData);
-//                 break;
-//             case ("batchData" in callbackData):
-//                 console.log("Batch Data: ", callbackData);
-//                 break;
-//             default:
-//                 console.log("No EMV data returned");
-//         }
-//     }
-
-//     mainCallback.displayCallback = ({ displayMessage }) => {
-//         //Display device message directly to end user.
-//         console.log("Message from device: ", displayMessage);
-//     }
-
-//     return baseCallback
-// })();
-
-// /*
-//     This callback would be fed to 'scanForDevices' function during initialization
-// */
-
-// const startTransactionOptions = {
-//     reportVerbosity: "verbose",
-//     cardType: "all",
-//     timeout: 30,
-//     currencyCode: "dollar",
-//     authorizedAmount: 1000,
-//     transactionType: "purchase"
-// };
-
-// const requestEmv = () => {
-//     try {
-//         const startTransactionResp = await MagTekDevice.deviceInterface.startTransaction(startTransactionOptions);
-//         console.log("Start Transaction Response: ", startTransactionResp);
-//     }
-//     catch(err) {
-//         console.error(err);
-//     }
-// }

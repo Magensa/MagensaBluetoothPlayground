@@ -28,13 +28,13 @@ const StartTrxCodeCase = ({ propString, consoleString }) =>
         <CloseParen />
         <Colon />
         <NewLine />
-        <Tab repitions={4} />
+        <Tab repetitions={4} />
         <ConsoleLog
             logString={ consoleString }
             logVar={ callBackData }
         />
         <NewLine />
-        <Tab repitions={4} />
+        <Tab repetitions={4} />
         <KeywordPurple>break</KeywordPurple>
         <SemiColon />
         <NewLine />

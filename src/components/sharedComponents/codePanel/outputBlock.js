@@ -10,13 +10,12 @@ import LoadingWidget from './loadingWidget';
 
 const outputStyles = makeStyles({
     outputBlock: ({ spacing, down, resultFullWidth }) => ({
-        minHeight: (!resultFullWidth) ? spacing(38) : 0,
+        minHeight: 0,
         width: '100%',
         paddingLeft: '0 !important',
         paddingRight: '0 !important',
         marginLeft: (!resultFullWidth) ? spacing(1) : 0,
         [down('sm')]: {
-            minHeight: 0,
             marginLeft: 0
         }
     }),

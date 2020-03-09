@@ -5,28 +5,28 @@ import {
     Tab,
     Colon,
     NewLine,
-    Comma
+    Comma,
+    Num
 } from '../../../../../sharedComponents/styledCodeSpans';
 import { space } from '../../../../../../constants/messageTemplates';
 
 
-const ObjectProps = ({ repititions, propName, propVal }) => 
+const ObjectProps = ({ repetitions, propName, propVal }) => 
     <>
-        <Tab repititions={ repititions }/>
+        <Tab repetitions={ repetitions }/>
         {propName}
         <Colon />
         {space}
         {(typeof( propVal ) === 'string') ? 
             <StringOrange>{propVal}</StringOrange>
             :
-            propVal
+            <Num>{propVal}</Num>
         }
         <Comma />
         <NewLine />
     </>;
 
 ObjectProps.propTypes = {
-    propVal: PropTypes.number,
     propName: PropTypes.string.isRequired,
     propVal: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]).isRequired
 }

@@ -10,43 +10,48 @@ import {
 } from './operationPanels';
 
 
-const cardDataDisplayStyles = makeStyles(({ spacing, breakpoints: { only } }) => ({
-    cardDataBtnWrapper: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        flexDirection: "row",
-        flexWrap: 'wrap',
-        width: '100%',
-        margin: spacing(1),
-        padding: spacing(1),
-        [only('xs')]: {
-            padding: 0,
-            margin: 0,
-            flexDirection: 'column-reverse',
+const cardDataDisplayStyles = makeStyles(({ spacing, breakpoints: { only } }) => {
+    const one = spacing(1);
+    const two = spacing(2);
+
+    return ({
+        cardDataBtnWrapper: {
+            display: 'flex',
             alignItems: 'center',
-            height: spacing(18),
-            justifyContent: 'space-around',
-            marginBottom: spacing(2)
-        },
-        [only('sm')]: {
-            padding: 0,
-            margin: 0,
+            justifyContent: 'space-between',
             flexDirection: "row",
-            height: spacing(11),
-            justifyContent: 'space-around',
-            marginBottom: spacing(2)
+            flexWrap: 'wrap',
+            width: '100%',
+            margin: one,
+            padding: one,
+            [only('xs')]: {
+                padding: 0,
+                margin: 0,
+                flexDirection: 'column-reverse',
+                alignItems: 'center',
+                height: spacing(18),
+                justifyContent: 'space-around',
+                marginBottom: two
+            },
+            [only('sm')]: {
+                padding: 0,
+                margin: 0,
+                flexDirection: "row",
+                height: spacing(11),
+                justifyContent: 'space-around',
+                marginBottom: two
+            }
+        },
+        operationsWrapper: {
+            padding: two,
+            margin: two,
+            [only('xs')]: {
+                padding: one,
+                margin: one
+            }
         }
-    },
-    operationsWrapper: {
-        padding: spacing(2),
-        margin: spacing(2),
-        [only('xs')]: {
-            padding: spacing(1),
-            margin: spacing(1)
-        }
-    }
-}));
+    })
+});
 
 
 export default memo(({ selectedDevice, pairDevice }) => {
@@ -68,14 +73,12 @@ export default memo(({ selectedDevice, pairDevice }) => {
             <Grid container justify='center'>
                 <Grid item xs={12} lg={11} xl={11}>
                     <Paper className={ operationsWrapper }>
-                        <Typography variant='h4' align='center'>
+                        <Typography variant='h4' align='center' paragraph>
                             Please expand a device operation for details
                         </Typography>
-
                         <InitializationPanel />
                         <SwipePanel />
                         <EmvPanel />
-
                     </Paper>
                 </Grid>
             </Grid>

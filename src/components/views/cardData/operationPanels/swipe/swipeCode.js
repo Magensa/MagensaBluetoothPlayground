@@ -19,7 +19,7 @@ import {
     ParenParam,
     FuncDeclare
 } from '../../../../sharedComponents/styledCodeSpans';
-import { feedToFunctionComment, callBackData, space  } from '../../../../../constants/messageTemplates';
+import { feedToFunctionComment, callBackData, space } from '../../../../../constants/messageTemplates';
 
 
 export default memo(_ => 
@@ -39,7 +39,7 @@ export default memo(_ =>
         <Tab />
         <CommentGreen>{`//Handle swipe data.`}</CommentGreen>
         <NewLine />
-        <Tab repitions={2} />
+        <Tab repetitions={2} />
         <ConsoleLog logVar={`${callBackData}.swipeData`}/>
         <NewLine />
         <Tab />
@@ -68,7 +68,7 @@ export default memo(_ =>
         <FuncYellow>requestCardSwipe</FuncYellow>
         <ParenParam semicolon={true} />
         <NewLine />
-        <Tab repitions={2} />
+        <Tab repetitions={2} />
         <ConsoleLog 
             logString={`Request Swipe Response: `}
             logVar={`swipeResp`}

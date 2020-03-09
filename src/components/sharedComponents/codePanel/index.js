@@ -41,7 +41,7 @@ const codePanelStyles = makeStyles(({
         codeBlock: {
             backgroundColor: '#455a64',
             color: '#b3e5fc',
-            maxWidth: spacing(94)
+            maxWidth: spacing(105)
         },
         btnJuxtapose: {
             flexBasis: 0,
@@ -62,7 +62,13 @@ const codePanelStyles = makeStyles(({
             marginLeft: spacing(2),
             '&:hover': {
                 backgroundColor: "#ffd600"
+            },
+            [down('sm')]: {
+                marginLeft: 0
             }
+        },
+        btnPadding: {
+            padding: spacing(1)
         }
     })
 });
@@ -87,7 +93,8 @@ const CodePanel = props => {
         codeBlock,
         btnJuxtapose,
         codeBlocksWrapper,
-        cancelButton
+        cancelButton,
+        btnPadding
     } = codePanelStyles();
 
     return (
@@ -113,7 +120,7 @@ const CodePanel = props => {
                 >
                     <Grid item xs={11} lg={12} className={ codeBlocksWrapper }>
                         <Grid container direction="row" justify="center" spacing={3}>
-                            <Grid item xl={(resultFullWidth) ? 10 : 8} className={ codeBlock }>
+                            <Grid item xl={(resultFullWidth) ? 10 : 7} className={ codeBlock }>
                                 { children }
                             </Grid>
                             <OutPutBlock 
@@ -133,7 +140,7 @@ const CodePanel = props => {
                             </Typography>
                         }
                         <Grid container justify="center">
-                            <Grid item>
+                            <Grid item className={btnPadding}>
                                 <Button 
                                     onClick={ providedFunc } 
                                     variant='outlined' 
@@ -143,7 +150,7 @@ const CodePanel = props => {
                                 </Button>
                             </Grid>
                             {(props.isLoading && cancelText) &&
-                                <Grid item >
+                                <Grid item className={ btnPadding }>
                                     <Button 
                                         variant='contained'
                                         onClick={ cancelFunc }

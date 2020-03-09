@@ -31,7 +31,7 @@ const DisplayMsgDisplay = ({ showBackdrop, hideBackdrop, displayMsg }) => {
             <ClickAwayListener onClickAway={ hideBackdrop }>
                 <Paper className={ displayPaperStyles }>
                     <Grid container direction="column" alignItems="flex-end">
-                        <IconButton edge='end'>
+                        <IconButton edge='end' onClick={ hideBackdrop }>
                             <CloseIcon />
                         </IconButton>
                         <Typography variant="h3" align="center">

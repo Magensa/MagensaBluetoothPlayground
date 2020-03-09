@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Tab = ({ repitions = 1 }) => {
+const Tab = ({ repetitions = 1 }) => {
     const tabSpace = `    `;
 
     return (
-        <span>{tabSpace.repeat(repitions)}</span>
+        <span>{tabSpace.repeat(repetitions)}</span>
     );
 }
 
 Tab.propTypes = {
-    repitions: PropTypes.number
+    repetitions: PropTypes.number
 }
 
 export { Tab };

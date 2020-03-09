@@ -7,7 +7,7 @@ import { ConsoleLog } from './consoleLog';
 import { NewLine } from './newLine';
 import { CloseCurly } from './closeCurly';
 
-const CatchError = ({ repitions = 1 }) => {
+const CatchError = ({ repetitions = 1 }) => {
     const err = `err`;
 
     return (
@@ -18,13 +18,13 @@ const CatchError = ({ repitions = 1 }) => {
             </ParenParam>
             {` `}
             <OpenCurly newLine={true} />
-            <Tab repitions={ repitions } />
+            <Tab repetitions={ repetitions } />
             <ConsoleLog 
                 isError={true}
                 logVar={err}
             />
             <NewLine />
-            <Tab repitions={repitions}/>
+            <Tab repetitions={repetitions}/>
             <CloseCurly />
         </> 
     );

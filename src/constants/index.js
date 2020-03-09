@@ -29,6 +29,14 @@ const emvKeys = [
     "batchDataParsed"
 ];
 
+export const startTransactionOptions = {
+    reportVerbosity: "verbose",
+    cardType: "all",
+    timeout: 30,
+    currencyCode: "dollar",
+    authorizedAmount: 1000,
+    transactionType: "purchase"
+};
 
 export {
     manageDevicePath,

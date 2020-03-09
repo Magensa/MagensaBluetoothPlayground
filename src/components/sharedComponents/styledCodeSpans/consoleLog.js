@@ -14,13 +14,17 @@ const ConsoleLog = ({ logString, logVar, isError }) => (
         <OpenParen />
 
         {logString &&
-            <>
-                <StringOrange>{logString}</StringOrange>
-                <span style={ whiteColor }>{`, `}</span>
-            </>
+            <StringOrange>{logString}</StringOrange>
+        }
+
+        {logString && logVar &&
+            <span style={ whiteColor }>{`, `}</span>
         }
         
-        <span>{logVar}</span>
+        {logVar &&
+            <span>{logVar}</span>
+        }
+        
         <CloseParen semicolon />
     </>
 );

@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { useDispatch, useSelector } from 'react-redux';
-import OperationPanel from '../../../../sharedComponents/operationPanel';
-import SwipeCode from './swipeCode';
 
+import {
+    OperationPanel,
+    ColoredCode
+} from '../../../../sharedComponents';
+import SwipeCode from './swipeCode';
 import { catchAndDisplay } from '../../../../../utils/helperFunctions';
 import useSwipeHandler from '../../../../customHooks/useSwipeHandler';
 
@@ -11,21 +14,25 @@ let swipeIsMounted = true;
 
 
 export default _ => {
+    const selectedDevice = useSelector(state => state.selectedDevice);
+    const cardData = useSelector(state => state.cardData);
+
     const [ swipeResult, setSwipeResult ] = useState(() => "");
     const [ awaitingSwipeData, setIsAwaitingSwipeData ] = useState(() => false);
     const [ isLoading, setIsLoading ] = useState(() => false);
     const [ loadingText, setLoadingText ] = useState(() => "");
-    const selectedDevice = useSelector(state => state.selectedDevice);
-    const cardData = useSelector(state => state.cardData);
+    
     const initialDispatcher = useDispatch();
     const { clearSwipeData } = useSwipeHandler();
-
     const messageDispatcher = catchAndDisplay(initialDispatcher);
-
-    const cleanUp = useCallback(() => {
+    const cleanUp = useCallback((clearResult) => {
         setLoadingText("");
         setIsLoading(false);
-    }, [setLoadingText, setIsLoading]);
+        setIsAwaitingSwipeData(false);
+
+        if (clearResult)
+            setSwipeResult("");
+    }, [setLoadingText, setIsLoading, setSwipeResult]);
 
     const cardSwipe = async() => {
         setLoadingText("Requesting swipe from device");
@@ -42,40 +49,38 @@ export default _ => {
                 setIsAwaitingSwipeData(true);
             }
             else {
-                cleanUp();
+                cleanUp(true);
                 messageDispatcher(swipeResp);
-                setSwipeResult("");
             }
         }
         catch(err) {
-            cleanUp();
+            cleanUp(true);
             messageDispatcher(err);
-            setSwipeResult("");
         }
     }
 
     const cancelSwipe = async() => {
         await selectedDevice.deviceInterface.cancelTransaction();
-        cleanUp();
-        setSwipeResult("");
+        cleanUp(true);
     }
 
     useEffect(() => {
         swipeIsMounted = true;
 
-        if (awaitingSwipeData && "swipeData" in cardData) {
-            setSwipeResult(prevState => {
-                prevState[1] = JSON.stringify(cardData.swipeData, null, 4);
-                return prevState;
-            });
-
-            cleanUp();
+        if (awaitingSwipeData && ("swipeData" in cardData)) {
+            if (swipeIsMounted) {
+                setSwipeResult(prevState => {
+                    prevState[1] = JSON.stringify(cardData.swipeData, null, 4);
+                    return prevState;
+                });
+    
+                cleanUp();
+            }
         }
 
         return () => (swipeIsMounted = false);
     }, [cardData, awaitingSwipeData, cleanUp]);
     
-
     const panelProps = {
         providedFunc: cardSwipe,
         btnText: "cardSwipe()",
@@ -92,8 +97,8 @@ export default _ => {
     return (
         <OperationPanel  {...panelProps} >
             <Typography gutterBottom variant='subtitle1'>
-                When&nbsp;<code>requestCardSwipe</code>&nbsp;is called, the device will respond with a status to confirm that it has received the operation request.
-                Once a card is swiped - the output from the device will be fed to the callback function that was provided to the <code>{`{ scanForDevices }`}</code> function.
+                When <ColoredCode>requestCardSwipe</ColoredCode> is called, the device will respond with a status to confirm that it has received the operation request.
+                Once a card is swiped - the output from the device will be fed to the callback function that was provided to the <ColoredCode /> function.
             </Typography>
             <Typography gutterBottom variant='subtitle2'>
                 The callback function provided is the only way the device can transmit data to the application.

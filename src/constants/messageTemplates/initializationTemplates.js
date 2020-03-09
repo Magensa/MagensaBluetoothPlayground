@@ -13,5 +13,5 @@ export const initializeComment = `
         */
 `
 export const assingNamespace = `${device} || ${deviceNamespace}`;
-export const pairDisclaimer = `When pairing a new ${device} using this function, the chosen ${device} will replace the current ${device} in the ${deviceNamespace} namespace.`
+export const pairDisclaimer = `When pairing a new ${device} using this function, the chosen ${device} will replace the current ${device} in the ${deviceNamespace} namespace. This only applies to the JavaScript console interaction`
 //#endregion
