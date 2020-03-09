@@ -56,7 +56,7 @@ export default ({ selectedDevice }) => {
                     }
                 }
                 catch(err) {
-                    console.warn("Error encountered while trying to open device. Error details below:")
+                    console.warn("Error encountered while trying to open device. Error details below");
                     console.error(err);
                     setIsOpen(false);
                 }

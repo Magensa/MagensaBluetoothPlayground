@@ -6,7 +6,7 @@ import { CloseParen } from './closeParen';
 const ParenParam = ({ children = "", semicolon }) => 
     <>
         <OpenParen />
-            {children}
+        {children}
         <CloseParen semicolon={ semicolon } />
     </>
 

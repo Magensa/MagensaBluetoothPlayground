@@ -6,7 +6,8 @@ import RemoveDeviceBtn from './removeDeviceBtn';
 import {
     SwipePanel,
     InitializationPanel,
-    EmvPanel
+    EmvPanel,
+    SendCommandPanel
 } from './operationPanels';
 
 
@@ -79,6 +80,7 @@ export default memo(({ selectedDevice, pairDevice }) => {
                         <InitializationPanel />
                         <SwipePanel />
                         <EmvPanel />
+                        <SendCommandPanel />
                     </Paper>
                 </Grid>
             </Grid>

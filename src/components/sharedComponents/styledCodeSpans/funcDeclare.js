@@ -13,7 +13,7 @@ const FuncDeclare = ({ funcName, paramName }) =>
         <FuncYellow>{(funcName || mainCallback)}</FuncYellow>
         {space}
         <Equals end={true}/>
-        {(typeof( paramName === 'boolean')) ? 
+        {(typeof( paramName ) === 'boolean') ? 
             <ParenParam /> 
             : 
             <ParenParam>
