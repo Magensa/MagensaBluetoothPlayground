@@ -33,8 +33,8 @@ export default memo(_ =>
         />
         {space}
         <OpenCurly newLine />
-        <ConstBlue>const</ConstBlue>
-        {` ${rawCommand} `}
+        <ConstBlue />
+        {rawCommand}
         <Equals end />
         <OpenParen />
         {`${rawCommand} || [`}
@@ -53,8 +53,8 @@ export default memo(_ =>
         <KeywordPurple>try</KeywordPurple>
         <OpenCurly newLine />
         <Tab />
-        <ConstBlue>const</ConstBlue>
-        {` ${commandResp} `}
+        <ConstBlue />
+        {commandResp}
         <Equals end />
         <KeywordPurple>await</KeywordPurple>
         {`${magTekDevice}${dotInterface}`}
@@ -74,15 +74,3 @@ export default memo(_ =>
         <CloseCurly />
     </PreWrapper>    
 );
-
-// const sendDeviceCommand = (rawCommand) => {
-//     const rawCommand = (rawCommand || [0x49, 0x06, 0x00, 0x00, 0x03, 0x0D]);
-
-//     try {
-//         const commandResp = await magTekDevice.deviceInterface.sendCommand(rawCommand);
-//         console.log(commandResp);
-//     }
-//     catch(err) {
-//         console.error(err);
-//     }
-// }

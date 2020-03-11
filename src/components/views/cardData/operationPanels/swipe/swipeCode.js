@@ -49,7 +49,7 @@ export default memo(_ =>
         <NewLine />
         <CommentGreen>{feedToFunctionComment}</CommentGreen>
         <NewLine />
-        <ConstBlue>const </ConstBlue>
+        <ConstBlue />
         <FuncYellow>cardSwipe </FuncYellow>
         <Equals end={true} />
         <ParenParam />
@@ -60,7 +60,7 @@ export default memo(_ =>
         <KeywordPurple>try </KeywordPurple>
         <OpenCurly newLine={true} />
         <Tab />
-        <ConstBlue>const </ConstBlue>
+        <ConstBlue />
         <FuncYellow>swipeResp </FuncYellow>
         <Equals />
         <KeywordPurple> await </KeywordPurple>

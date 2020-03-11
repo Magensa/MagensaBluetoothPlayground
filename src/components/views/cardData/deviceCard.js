@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     Card,
     CardActionArea,
@@ -8,6 +9,7 @@ import {
     Typography,
     makeStyles
 } from '@material-ui/core';
+import usePairDevice from '../../customHooks/usePairDevice';
 
 const deviceCardStyles = makeStyles(({ spacing }) => ({
     imgStyles: {
@@ -19,8 +21,9 @@ const deviceCardStyles = makeStyles(({ spacing }) => ({
     }
 }));
 
-export default ({ pairDevice, deviceImg: { deviceName, imgPath, prefix } }) => {
+const DeviceCard = ({ trxHandler, deviceImg: { deviceName, imgPath, prefix } }) => {
     const { imgStyles, imgArea } = deviceCardStyles();
+    const pairDevice = usePairDevice({ trxHandler })
 
     return (
         <Grid item>
@@ -40,3 +43,10 @@ export default ({ pairDevice, deviceImg: { deviceName, imgPath, prefix } }) => {
         </Grid>
     );
 }
+
+DeviceCard.propTypes = {
+    trxHandler: PropTypes.func.isRequired,
+    deviceImg: PropTypes.object.isRequired
+}
+
+export default DeviceCard;

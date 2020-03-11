@@ -5,10 +5,10 @@ import {
     Typography,
     makeStyles
 } from '@material-ui/core';
+import { blueGrey } from '../../../constants/styleConstants';
 
 
 const deviceConnectionStyles = makeStyles(({ spacing, breakpoints }) => {
-    let blueGrey = "#607d8b";
     let blueGreyBorder = "1px solid #455a64";
     let white = "white";
 
@@ -35,7 +35,8 @@ const deviceConnectionStyles = makeStyles(({ spacing, breakpoints }) => {
     }
 });
 
-export default ({ selectedDevice }) => {
+export default _ => {
+    const selectedDevice = useSelector(state => state.selectedDevice);
     const [ isOpen, setIsOpen ] = useState(() => false);
     const [ changingDeviceState, setChangingDeviceState ] = useState(() => false);
     const cardData = useSelector(state => state.cardData);

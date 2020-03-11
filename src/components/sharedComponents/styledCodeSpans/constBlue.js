@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { constBlue } from '../../../constants/styleConstants';
 
 const ConstBlue = ({ children }) =>
-    <span style={constBlue}>{children}</span>;
+    <span style={constBlue}>{(children || `const `)}</span>;
 
     ConstBlue.propTypes = {
-    children: PropTypes.string.isRequired
+    children: PropTypes.string
 };
 
 export { ConstBlue };

@@ -40,7 +40,7 @@ import {
 
 export default memo(_ =>
     <PreWrapper>
-        <ConstBlue>const </ConstBlue>
+        <ConstBlue />
         {mainCallback}
         <Equals begin />
         <OpenParen begin />
@@ -123,8 +123,8 @@ export default memo(_ =>
             {feedToFunctionComment}
         </CommentGreen>
         <NewLine />
-        <ConstBlue>const</ConstBlue>
-        {` ${startTransactionOptions} `}
+        <ConstBlue />
+        {startTransactionOptions}
         <Equals end />
         <OpenCurly />
         <NewLine />
@@ -149,8 +149,8 @@ export default memo(_ =>
         <OpenCurly begin />
         <NewLine />
         <Tab repetitions={2} />
-        <ConstBlue>const</ConstBlue>
-        {` ${startTransactionResp} `}
+        <ConstBlue />
+        {startTransactionResp}
         <Equals end />
         <KeywordPurple>await</KeywordPurple>
         {` ${magTekDevice}${dotInterface}`}

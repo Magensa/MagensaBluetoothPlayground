@@ -20,3 +20,5 @@ export const preStyling = {
 export const whiteColor = { color: '#ffffff' };
 
 export const constBlue = {color: '#1e88e5'};
+
+export const blueGrey = "#607d8b";

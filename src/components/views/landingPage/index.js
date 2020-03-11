@@ -1,16 +1,16 @@
-import React, { memo, useCallback, useEffect } from 'react';
+import React, { memo, useCallback } from 'react';
 
 import ToastMsg from '../../helperComponents/toastMsg';
+import DisplayMsg from '../../helperComponents/displayMsg';
 import RootRouter from './rootRouter';
 import LandingPageBanner from './landingPageBanner';
-import DisplayMsg from '../../helperComponents/displayMsg';
 
 import useDisplayMessage from '../../customHooks/useDisplayMessage';
 import useSwipeHandler from '../../customHooks/useSwipeHandler';
 import useEmvHandler from '../../customHooks/useEmvHandler';
 
 //TODO: Remove debug Event Listener when ready to deploy.
-const debugFunc = logInfo => console.log(logInfo.detail);
+//const debugFunc = logInfo => console.log(logInfo.detail);
 
 export default memo(_ => {
     const { clearDisplayMessage, setDisplayMessage } = useDisplayMessage();
@@ -55,10 +55,10 @@ export default memo(_ => {
 
     const trxHandler = useCallback(trxCallback, [trxCallback]);
 
-    useEffect(() => {
-        window.addEventListener('deviceLog', debugFunc, { passive: true});
-        return () => window.removeEventListener('deviceLog', debugFunc, { passive: true});
-    }, []);
+    // useEffect(() => {
+    //     window.addEventListener('deviceLog', debugFunc, { passive: true});
+    //     return () => window.removeEventListener('deviceLog', debugFunc, { passive: true});
+    // }, []);
 
     return (
         <>

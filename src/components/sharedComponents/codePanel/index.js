@@ -19,10 +19,12 @@ const codePanelStyles = makeStyles(({
     typography: { pxToRem } 
 }) => {
     const fullWidth = '100%';
+    const one = spacing(1);
+    const two = spacing(2);
 
     return ({
         codeRoot: {
-            marginTop: spacing(2),
+            marginTop: two,
             flex: '1 1 auto',
             width: '80%',
             alignSelf: 'center',
@@ -46,11 +48,11 @@ const codePanelStyles = makeStyles(({
         btnJuxtapose: {
             flexBasis: 0,
             textAlign: 'center',
-            marginTop:  spacing(2),
-            marginBottom: spacing(1),
+            marginTop:  two,
+            marginBottom: one,
             width: fullWidth,
             [down('sm')]: {
-                marginTop: spacing(1)
+                marginTop: one
             }
         },
         codeBlocksWrapper: { 
@@ -59,7 +61,7 @@ const codePanelStyles = makeStyles(({
         },
         cancelButton: {
             backgroundColor: "#ffea00",
-            marginLeft: spacing(2),
+            marginLeft: two,
             '&:hover': {
                 backgroundColor: "#ffd600"
             },
@@ -68,7 +70,7 @@ const codePanelStyles = makeStyles(({
             }
         },
         btnPadding: {
-            padding: spacing(1)
+            padding: one
         }
     })
 });
@@ -80,7 +82,6 @@ const CodePanel = props => {
         providedFunc,
         btnText, 
         btnDisclaimer,
-        resultFullWidth,
         cancelText,
         cancelFunc,
         ...outputProps
@@ -120,13 +121,10 @@ const CodePanel = props => {
                 >
                     <Grid item xs={11} lg={12} className={ codeBlocksWrapper }>
                         <Grid container direction="row" justify="center" spacing={3}>
-                            <Grid item xl={(resultFullWidth) ? 10 : 7} className={ codeBlock }>
+                            <Grid item xl={(props.resultFullWidth) ? 10 : 7} className={ codeBlock }>
                                 { children }
                             </Grid>
-                            <OutPutBlock 
-                                { ...outputProps }
-                                resultFullWidth={ resultFullWidth }
-                            />
+                            <OutPutBlock { ...outputProps } />
                         </Grid>
                     </Grid>
                     <Grid item xs={12} className={ btnJuxtapose }>

@@ -9,12 +9,10 @@ export default _ => {
     const selectedDevice = useSelector(state => state.selectedDevice);
     const removeDeviceDispatch = useDispatch();
     const { isSmallScreen } = useScreenSize();
+    
     const removeDevice = async() => {
-        if (selectedDevice) {
-            if (selectedDevice.hasOwnProperty("deviceInterface")) {
-                await selectedDevice.deviceInterface.closeDevice()
-            }
-        }
+        if (selectedDevice && selectedDevice.hasOwnProperty("deviceInterface")) 
+            await selectedDevice.deviceInterface.closeDevice();
 
         return void removeDeviceDispatch( clearDevice() );
     }

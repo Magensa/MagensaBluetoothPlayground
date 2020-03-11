@@ -1,8 +1,11 @@
 import { displayItems } from './browserInfo';
 //#region routeNames
-const manageDevicePath = "/manage-devices";
 const compatabilityPath = "/compatibility-info";
+const sendCommandsPath = "/send-commands";
+const additionalOps = "/additional-operations";
 //#endregion
+
+const githubLink = "https://github.com/Magensa";
 
 const deviceImages = [
     {
@@ -29,7 +32,25 @@ const emvKeys = [
     "batchDataParsed"
 ];
 
-export const startTransactionOptions = {
+const operationsText = [
+    {
+        id: 101,
+        text: "Send Raw Commands",
+        linkPath: sendCommandsPath
+    },
+    {
+        id: 102,
+        text: "Device Operations",
+        linkPath: "/"
+    },
+    {
+        id: 103,
+        text: "Additional Commands",
+        linkPath: additionalOps
+    }
+];
+
+const startTransactionOptions = {
     reportVerbosity: "verbose",
     cardType: "all",
     timeout: 30,
@@ -38,10 +59,22 @@ export const startTransactionOptions = {
     transactionType: "purchase"
 };
 
+const unSuccessfulPair = (function() { 
+    let notSuccessfulPair = new Error();
+    notSuccessfulPair.name = "UnsuccessfulPair";
+    notSuccessfulPair.message = "Selected Device did not pair successfully, please try again";
+    return notSuccessfulPair;
+})();
+
 export {
-    manageDevicePath,
     compatabilityPath,
     displayItems,
     deviceImages,
-    emvKeys
+    emvKeys,
+    sendCommandsPath,
+    additionalOps,
+    startTransactionOptions,
+    operationsText,
+    unSuccessfulPair,
+    githubLink
 }

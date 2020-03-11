@@ -51,7 +51,7 @@ export default memo(_ =>
             logVar={callBackData}
         />
         <NewLine repetitions={2} />
-        <ConstBlue>const </ConstBlue>
+        <ConstBlue />
         <FuncYellow>pairDevice </FuncYellow>
         <Equals end />
         <ConstBlue>async</ConstBlue>
@@ -62,7 +62,7 @@ export default memo(_ =>
         <KeywordPurple>try </KeywordPurple>
         <OpenCurly newLine />
         <Tab />
-        <ConstBlue>const </ConstBlue>
+        <ConstBlue />
         {device}
         <Equals begin />
         <KeywordPurple> await </KeywordPurple>

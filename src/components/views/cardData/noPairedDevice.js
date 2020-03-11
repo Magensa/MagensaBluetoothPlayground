@@ -54,8 +54,9 @@ const noPairedDeviceStyles = makeStyles(({ spacing, breakpoints: { only, down } 
     }
 }));
 
-export default ({ pairDevice }) => {
-const { noDeviceWrapper, noDevicePaper, supportedBanner, dividerStyles } = noPairedDeviceStyles();
+export default ({ trxHandler }) => {
+    const { noDeviceWrapper, noDevicePaper, supportedBanner, dividerStyles } = noPairedDeviceStyles();
+
     return (
         <Grid 
             container 
@@ -74,7 +75,7 @@ const { noDeviceWrapper, noDevicePaper, supportedBanner, dividerStyles } = noPai
                     <Typography variant='h6' align="center" paragraph>
                         Please pair a MagTek® device to get started
                     </Typography>
-                    <PairButton pairDevice={ pairDevice } btnText="Pair Device" />
+                    <PairButton trxHandler={ trxHandler } btnText="Pair Device" />
                 </Paper>
             </Grid>
 
@@ -100,7 +101,7 @@ const { noDeviceWrapper, noDevicePaper, supportedBanner, dividerStyles } = noPai
                             <DeviceCard 
                                 key={ deviceImg.deviceName }
                                 deviceImg={ deviceImg }  
-                                pairDevice={ pairDevice } 
+                                trxHandler={ trxHandler } 
                             />
                         )}
                     </Grid>
