@@ -6,6 +6,7 @@ const additionalOps = "/additional-operations";
 //#endregion
 
 const githubLink = "https://github.com/Magensa";
+const readDateTimeCmdLink = "https://www.magtek.com/content/documentationfiles/d998200226.pdf#page=121";
 
 const deviceImages = [
     {
@@ -76,5 +77,6 @@ export {
     startTransactionOptions,
     operationsText,
     unSuccessfulPair,
-    githubLink
+    githubLink,
+    readDateTimeCmdLink
 }

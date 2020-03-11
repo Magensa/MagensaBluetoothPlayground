@@ -7,25 +7,18 @@ import {
     EmvPanel
 } from './operationPanels';
 
-export default memo(({ trxHandler }) => {
-    console.log(
-        '%c Tip: You may access your paired `MagTekDevice` directly in this console. Be sure to prefix all function invocations with `await`', 
-        'background: #78909c; color: #e1f5fe'
-    );
+export default memo(({ trxHandler }) => 
+    <CardDataLayout
+        trxHandler={ trxHandler }
+    >
+        <>
+            <Typography variant='h4' align='center' paragraph>
+                Please expand a device operation for details
+            </Typography>
 
-    return (
-        <CardDataLayout
-            trxHandler={ trxHandler }
-        >
-            <>
-                <Typography variant='h4' align='center' paragraph>
-                    Please expand a device operation for details
-                </Typography>
-
-                <InitializationPanel />
-                <SwipePanel />
-                <EmvPanel />
-            </>
-        </CardDataLayout>
-    )
-});
+            <InitializationPanel />
+            <SwipePanel />
+            <EmvPanel />
+        </>
+    </CardDataLayout>
+);

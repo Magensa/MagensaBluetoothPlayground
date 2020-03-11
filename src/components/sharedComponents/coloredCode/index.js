@@ -17,7 +17,7 @@ const ColoredCode = ({ children = scanForDevicesBrackets }) => {
 }
 
 ColoredCode.propTypes = {
-    children: PropTypes.string
+    children: PropTypes.oneOfType([PropTypes.string, PropTypes.node])
 }
 
 export default ColoredCode;

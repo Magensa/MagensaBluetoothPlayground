@@ -6,8 +6,9 @@ import { operationsText } from '../../../constants';
 const operationsNavStyles = makeStyles(({ 
     spacing, 
     zIndex: { appBar }, 
-    breakpoints: { down }, 
-    shape: { borderRadius }  
+    breakpoints: { down, only }, 
+    shape: { borderRadius },
+    typography: { pxToRem }
 }) => ({
     operationNavBar: {
         marginBottom: spacing(2),
@@ -27,6 +28,9 @@ const operationsNavStyles = makeStyles(({
         padding: spacing(1),
         '&:hover': {
             backgroundColor: '#b0bec5'
+        },
+        [only('xs')]: {
+            fontSize: pxToRem(16)
         }
     }
 }));

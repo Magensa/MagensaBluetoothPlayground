@@ -1,16 +1,19 @@
 import React from 'react';
-import CardDataLayout from '../../sharedComponents/cardDataLayout';
 import Typography from '@material-ui/core/Typography';
 
-export default ({ trxHandler }) => {
+import SendCommandDetails from './sendCommandDetails';
+import NoPairedDevice from '../../sharedComponents/noPairedDevice';
+import CardDataLayout from '../../sharedComponents/cardDataLayout';
 
-    return (
-        <CardDataLayout
-            trxHandler={trxHandler}
-        >
-            <Typography variant='h4' align='center' paragraph>
-                Please expand a device operation for details
-            </Typography>
-        </CardDataLayout>
-    )
-}
+
+export default ({ trxHandler, selectedDevice }) => (selectedDevice) ?
+    <CardDataLayout
+        trxHandler={trxHandler}
+    >
+        <Typography variant='h4' align='center' paragraph>
+            Send Command to Device
+        </Typography>
+        <SendCommandDetails />
+    </CardDataLayout>
+    :
+    <NoPairedDevice trxHandler={ trxHandler } />

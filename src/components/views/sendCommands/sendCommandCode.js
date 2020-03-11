@@ -1,5 +1,5 @@
 import React, { Fragment, memo } from 'react';
-import PreWrapper from '../../../../sharedComponents/preWrapper';
+import PreWrapper from '../../sharedComponents/preWrapper';
 import { 
     FuncYellow, 
     KeywordPurple, 
@@ -17,8 +17,8 @@ import {
     ParenParam,
     FuncDeclare,
     Comma
-} from '../../../../sharedComponents/styledCodeSpans';
-import { space, magTekDevice, dotInterface } from '../../../../../constants/messageTemplates';
+} from '../../sharedComponents/styledCodeSpans';
+import { space, magTekDevice, dotInterface } from '../../../constants/messageTemplates';
 
 const rawCommand = `rawCommand`;
 const commandResp = `commandResp`;

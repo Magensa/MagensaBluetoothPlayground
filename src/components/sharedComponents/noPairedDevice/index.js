@@ -6,7 +6,7 @@ import {
     Grid, 
     Divider 
 } from '@material-ui/core';
-import PairButton from '../../sharedComponents/pairButton';
+import PairButton from '../pairButton';
 import DeviceCard from './deviceCard';
 import { flexBase } from '../../../constants/styleConstants';
 import { deviceImages } from '../../../constants';
