@@ -67,6 +67,8 @@ const unSuccessfulPair = (function() {
     return notSuccessfulPair;
 })();
 
+let hexRegex = new RegExp(/^[0-9A-Fa-f]+$/i);
+
 export {
     compatabilityPath,
     displayItems,
@@ -78,5 +80,6 @@ export {
     operationsText,
     unSuccessfulPair,
     githubLink,
-    readDateTimeCmdLink
+    readDateTimeCmdLink,
+    hexRegex
 }

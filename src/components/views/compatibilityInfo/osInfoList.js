@@ -1,23 +1,19 @@
 import React from 'react';
 import { List, ListItem, Divider, makeStyles, Typography } from '@material-ui/core';
+import { fullWidth } from '../../../constants/styleConstants';
 
-const osInfoListStyles = makeStyles(({ spacing }) => ({
-    listWrapper: {
-        width: '100%'
-    },
-    liText: {
-        width: '100%'
-    }
-}));
+const osInfoListStyles = makeStyles({
+    listFullWidth: fullWidth
+});
 
 export default ({ osDetails: 
     { osName, minBrowserVersion, minOsVersion, behindFlag, specialInstructions } 
 }) => {
 
-    const { listWrapper, liText } = osInfoListStyles();
+    const { listFullWidth } = osInfoListStyles();
 
     return (
-        <List className={ listWrapper }>
+        <List className={ listFullWidth }>
             <Divider />
             <ListItem divider disableGutters>
                 <Typography 
@@ -25,7 +21,7 @@ export default ({ osDetails:
                     component='p' 
                     color='textSecondary' 
                     align='center' 
-                    className={ liText }
+                    className={ listFullWidth }
                 >
                     <em>Browser version: </em>{`>=${minBrowserVersion}`}
                 </Typography>
@@ -36,7 +32,7 @@ export default ({ osDetails:
                     component='p' 
                     color='textSecondary' 
                     align='center'
-                    className={ liText }
+                    className={ listFullWidth }
                 >
                     <em>{`${osName} version: `}</em>{`>=${minOsVersion}`}
                 </Typography>
@@ -49,7 +45,7 @@ export default ({ osDetails:
                         component='p' 
                         color='textSecondary' 
                         align='center'
-                        className={ liText }
+                        className={ listFullWidth }
                     >
                         <em>WebBluetooth is behind flag: </em>{`${behindFlag}`}
                     </Typography>
@@ -63,7 +59,7 @@ export default ({ osDetails:
                         component='p' 
                         color='textSecondary' 
                         align='center'
-                        className={ liText }
+                        className={ listFullWidth }
                     >
                         {specialInstructions}
                     </Typography>

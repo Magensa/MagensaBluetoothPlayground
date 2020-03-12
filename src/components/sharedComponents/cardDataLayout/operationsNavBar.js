@@ -14,7 +14,8 @@ const operationsNavStyles = makeStyles(({
         marginBottom: spacing(2),
         marginTop: spacing(1),
         backgroundColor: '#cfd8dc',
-        zIndex: appBar - 1
+        zIndex: appBar - 1,
+        borderRadius: borderRadius,
     },
     operationsToolbar: {
         justifyContent: 'space-around',

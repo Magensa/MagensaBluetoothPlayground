@@ -25,6 +25,8 @@ export const codeBlockStyles = spacing => ({
 
 export const whiteColor = { color: '#ffffff' };
 
-export const constBlue = {color: '#1e88e5'};
+export const constBlue = { color: '#1e88e5'};
 
 export const blueGrey = "#607d8b";
+
+export const fullWidth = { width: '100%' };

@@ -9,10 +9,9 @@ import {
 
 import CodePanelLayout from '../codePanelLayout';
 import OutPutBlock from './outputBlock';
-import { codeBlockStyles } from '../../../constants/styleConstants';
+import { codeBlockStyles, fullWidth } from '../../../constants/styleConstants';
 
 const codePanelStyles = makeStyles(({ spacing, breakpoints: { down } }) => {
-    const fullWidth = '100%';
     const one = spacing(1);
     const two = spacing(2);
 
@@ -23,14 +22,14 @@ const codePanelStyles = makeStyles(({ spacing, breakpoints: { down } }) => {
             textAlign: 'center',
             marginTop:  two,
             marginBottom: one,
-            width: fullWidth,
+            ...fullWidth,
             [down('sm')]: {
                 marginTop: one
             }
         },
         codeBlocksWrapper: { 
             flexBasis: 0,
-            width: fullWidth
+            ...fullWidth
         },
         cancelButton: {
             backgroundColor: "#ffea00",

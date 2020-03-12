@@ -10,6 +10,7 @@ import DeviceConnection from './deviceConnection';
 import RemoveDeviceBtn from './removeDeviceBtn';
 import OperationsNav from './operationsNavBar';
 import ScrollButton from '../../helperComponents/scrollButton';
+import { fullWidth } from '../../../constants/styleConstants';
 
 const cardDataLayoutStyles = makeStyles(({ spacing, breakpoints: { only } }) => {
     const one = spacing(1);
@@ -22,7 +23,7 @@ const cardDataLayoutStyles = makeStyles(({ spacing, breakpoints: { only } }) => 
             justifyContent: 'space-between',
             flexDirection: "row",
             flexWrap: 'wrap',
-            width: '100%',
+            ...fullWidth,
             margin: one,
             padding: one,
             [only('xs')]: {
@@ -50,13 +51,19 @@ const cardDataLayoutStyles = makeStyles(({ spacing, breakpoints: { only } }) => 
                 padding: one,
                 margin: one
             }
+        },
+        bottomMargin: {
+            marginBottom: spacing(5),
+            [only('xs')] : {
+                marginBottom: spacing(8)
+            }
         }
     })
 });
 
 
 export default ({ children, trxHandler }) => {
-    const { operationsWrapper, cardDataBtnWrapper } = cardDataLayoutStyles();
+    const { operationsWrapper, cardDataBtnWrapper, bottomMargin } = cardDataLayoutStyles();
 
     return (
         <>
@@ -66,7 +73,7 @@ export default ({ children, trxHandler }) => {
                 <RemoveDeviceBtn />
             </div>
 
-            <Grid container justify='center'>
+            <Grid container justify='center' className={ bottomMargin }>
                 <Grid item xs={12} lg={11} xl={11}>
                     <Paper className={ operationsWrapper }>
                         <OperationsNav />

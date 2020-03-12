@@ -5,13 +5,14 @@ import {
     makeStyles, 
     useTheme 
 } from '@material-ui/core';
-import { preStyling } from '../../../constants/styleConstants';
-import LoadingWidget from './loadingWidget';
+import LoadingWidget from '../loadingWidget';
+import OutputPaper from '../outputPaper';
+import { preStyling, fullWidth } from '../../../constants/styleConstants';
 
 const outputStyles = makeStyles({
     outputBlock: ({ spacing, down, resultFullWidth }) => ({
         minHeight: 0,
-        width: '100%',
+        ...fullWidth,
         paddingLeft: '0 !important',
         paddingRight: '0 !important',
         marginLeft: (!resultFullWidth) ? spacing(1) : 0,
@@ -51,13 +52,7 @@ export default ({ outputVal, resultFullWidth, isLoading, loadingText }) => {
             {(typeof( outputVal ) === 'string') ?
                 <Grid item xl={(resultFullWidth) ? 12 : 4} className={ outputBlock }>
                     {(!isLoading) ? 
-                        <Paper className={ outputPaper }>
-                            <pre className={ outputPre }>
-                                <code>
-                                    {outputVal}
-                                </code>
-                            </pre>
-                        </Paper>
+                        <OutputPaper outputVal={ outputVal } />
                         :
                         <LoadingWidget 
                             loadingStyles={ loadingStyles }

@@ -7,6 +7,7 @@ import {
     makeStyles
 } from '@material-ui/core';
 import CodeIcon from '@material-ui/icons/Code';
+import { fullWidth } from '../../../constants/styleConstants';
 
 const codePanelLayoutStyles = makeStyles(({ 
     spacing,
@@ -18,9 +19,7 @@ const codePanelLayoutStyles = makeStyles(({
         flex: '1 1 auto',
         width: '80%',
         alignSelf: 'center',
-        [down('md')]: {
-            width: '100%'
-        }
+        [down('md')]: fullWidth
     },
     smScreenPadding: {
         [down('sm')]: {

@@ -9,6 +9,7 @@ import {
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CodePanel from '../codePanel';
+import { fullWidth } from '../../../constants/styleConstants';
 
 
 const initializeLibraryStyles = makeStyles(({ spacing, breakpoints: { down }, typography: { pxToRem } }) => {
@@ -24,9 +25,7 @@ const initializeLibraryStyles = makeStyles(({ spacing, breakpoints: { down }, ty
                 paddingRight: oneSpace
             },
         },
-        initializeHeader: {
-            width: '100%'
-        },
+        initializeHeader: fullWidth,
         smMargin: {
             [down('sm')]: {
                 paddingLeft: oneSpace,
