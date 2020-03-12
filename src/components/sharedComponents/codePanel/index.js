@@ -9,6 +9,7 @@ import {
 
 import CodePanelLayout from '../codePanelLayout';
 import OutPutBlock from './outputBlock';
+import { codeBlockStyles } from '../../../constants/styleConstants';
 
 const codePanelStyles = makeStyles(({ spacing, breakpoints: { down } }) => {
     const fullWidth = '100%';
@@ -16,11 +17,7 @@ const codePanelStyles = makeStyles(({ spacing, breakpoints: { down } }) => {
     const two = spacing(2);
 
     return ({
-        codeBlock: {
-            backgroundColor: '#455a64',
-            color: '#b3e5fc',
-            maxWidth: spacing(105)
-        },
+        codeBlock: codeBlockStyles(spacing),
         btnJuxtapose: {
             flexBasis: 0,
             textAlign: 'center',

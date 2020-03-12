@@ -22,21 +22,20 @@ import { space, magTekDevice, dotInterface } from '../../../constants/messageTem
 
 const rawCommand = `rawCommand`;
 const commandResp = `commandResp`;
-
 const readDateCommand = ["0x49", "0x06", "0x00", "0x00", "0x03", "0x0D"];
 
 export default memo(_ => 
     <PreWrapper>
         <FuncDeclare 
-            funcName="sendDeviceCommand"
+            funcName="sendCommand"
             paramName={ rawCommand }
         />
         {space}
         <OpenCurly newLine />
         <ConstBlue />
         {rawCommand}
-        <Equals end />
-        <OpenParen />
+        <Equals begin />
+        <OpenParen begin />
         {`${rawCommand} || [`}
         {readDateCommand.map( (eachNum, index) => (index !== 5) ?
             <Fragment key={ index }>
@@ -50,26 +49,31 @@ export default memo(_ =>
         {`]`}
         <CloseParen semicolon />
         <NewLine repetitions={2} />
+        <Tab />
         <KeywordPurple>try</KeywordPurple>
+        {space}
         <OpenCurly newLine />
         <Tab />
         <ConstBlue />
-        {commandResp}
+        {`${commandResp} `}
         <Equals end />
         <KeywordPurple>await</KeywordPurple>
-        {`${magTekDevice}${dotInterface}`}
+        {` ${magTekDevice}${dotInterface}`}
         <FuncYellow>sendCommand</FuncYellow>
         <ParenParam semicolon>
             {rawCommand}
         </ParenParam>
         <NewLine />
-        <Tab />
+        <Tab repetitions={2} />
         <ConsoleLog 
             logVar={commandResp}
         />
         <NewLine />
-        <CloseCurly newLine />
-        <CatchError repetitions={2}/>
+        <Tab />
+        <CloseCurly />
+        <NewLine />
+        <Tab />
+        <CatchError />
         <NewLine />
         <CloseCurly />
     </PreWrapper>    

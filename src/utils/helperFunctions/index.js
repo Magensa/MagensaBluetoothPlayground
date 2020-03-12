@@ -30,8 +30,27 @@ const deviceInterfaceRender = {
 const deviceInterfaceReplacer = (key, val) => 
     (key !== 'deviceInterface') ? val : deviceInterfaceRender;
 
+const convertArrayToHexString = array =>
+    Array.from(array, byte =>
+        ('0' + (byte & 0xFF).toString(16)).slice(-2)
+    ).join('').toUpperCase();
+
+const hexStrToArray = hexStr => {
+    let returnArr = [];
+
+    for (let current = 0; current < hexStr.length; current += 2)
+        returnArr.push( 
+            parseInt( hexStr.substr(current, 2), 16 )
+        );
+
+    return returnArr;
+}
+
+
 export {
     catchAndDisplay,
     capitalizeFirstLetter,
-    deviceInterfaceReplacer
+    deviceInterfaceReplacer,
+    convertArrayToHexString,
+    hexStrToArray
 }

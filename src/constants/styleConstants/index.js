@@ -17,6 +17,12 @@ export const preStyling = {
     pageBreakInside: 'avoid'
 };
 
+export const codeBlockStyles = spacing => ({
+    backgroundColor: '#455a64',
+    color: '#b3e5fc',
+    maxWidth: spacing(105)
+});
+
 export const whiteColor = { color: '#ffffff' };
 
 export const constBlue = {color: '#1e88e5'};
