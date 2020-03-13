@@ -18,11 +18,14 @@ import {
     FuncDeclare,
     Comma
 } from '../../sharedComponents/styledCodeSpans';
-import { space, magTekDevice, dotInterface } from '../../../constants/messageTemplates';
-
-const rawCommand = `rawCommand`;
-const commandResp = `commandResp`;
-const readDateCommand = ["0x49", "0x06", "0x00", "0x00", "0x03", "0x0D"];
+import { 
+    space, 
+    magTekDevice, 
+    dotInterface, 
+    rawCommand, 
+    commandResp, 
+    readDateCommand 
+} from '../../../constants/messageTemplates';
 
 export default memo(_ => 
     <PreWrapper>

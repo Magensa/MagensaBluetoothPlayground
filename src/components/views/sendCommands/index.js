@@ -1,7 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 
-import SendCommandDetails from './sendCommandDetails';
+import SendCmdLogic from './sendCmdLogic';
 import NoPairedDevice from '../../sharedComponents/noPairedDevice';
 import CardDataLayout from '../../sharedComponents/cardDataLayout';
 
@@ -13,7 +13,7 @@ export default ({ trxHandler, selectedDevice }) => (selectedDevice) ?
         <Typography variant='h4' align='center' paragraph>
             Send Command to Device
         </Typography>
-        <SendCommandDetails />
+        <SendCmdLogic selectedDevice={ selectedDevice } />
     </CardDataLayout>
     :
     <NoPairedDevice trxHandler={ trxHandler } />
