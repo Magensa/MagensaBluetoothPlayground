@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { useDispatch, useSelector } from 'react-redux';
-
+import useCatchAndDisplay from '../../../../customHooks/useCatchAndDisplay';
 import StartTrxCode from './startTrxCode';
 import {
     LinkToApi,
@@ -9,7 +9,6 @@ import {
     ColoredCode
 } from '../../../../sharedComponents';
 import useEmvHandler from '../../../../customHooks/useEmvHandler';
-import { catchAndDisplay } from '../../../../../utils/helperFunctions';
 import { emvKeys, startTransactionOptions } from '../../../../../constants';
 import { clearDisplayMsg as clearMsg } from '../../../../../redux/actions';
 
@@ -19,7 +18,7 @@ let emvIsMounted = true;
 export default _ => {
     const selectedDevice = useSelector(state => state.selectedDevice);
     const cardData = useSelector(state => state.cardData);
-
+    const catchAndDisplay = useCatchAndDisplay();
     const [ emvResult, setEmvResult ] = useState(() => "");
     const [ loadingDisplay, setLoadingDisplay ] = useState(() => "");
     const [ awaitingEmvData, setAwaitingEmvData ] = useState(() => false);
@@ -27,7 +26,6 @@ export default _ => {
     
     const emvDispatcher = useDispatch();
     const { clearEmvData } = useEmvHandler();
-    const messageDispatcher = catchAndDisplay(emvDispatcher);
 
     const clearDisplayMsg = useCallback(_ => emvDispatcher( clearMsg() ), [emvDispatcher]);
 
@@ -55,12 +53,12 @@ export default _ => {
             }
             else {
                 emvCleanUp();
-                messageDispatcher(emvJsonResp);
+                catchAndDisplay(emvJsonResp);
             }
         }
         catch(err) {
             emvCleanUp();
-            messageDispatcher(err);
+            catchAndDisplay(err);
         }
     }
 

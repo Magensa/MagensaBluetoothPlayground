@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Typography from '@material-ui/core/Typography';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import {
     OperationPanel,
     ColoredCode
 } from '../../../../sharedComponents';
 import SwipeCode from './swipeCode';
-import { catchAndDisplay } from '../../../../../utils/helperFunctions';
 import useSwipeHandler from '../../../../customHooks/useSwipeHandler';
+import useCatchAndDisplay from '../../../../customHooks/useCatchAndDisplay';
 
 let swipeIsMounted = true;
 
@@ -16,15 +16,13 @@ let swipeIsMounted = true;
 export default _ => {
     const selectedDevice = useSelector(state => state.selectedDevice);
     const cardData = useSelector(state => state.cardData);
-
+    const catchAndDisplay = useCatchAndDisplay();
     const [ swipeResult, setSwipeResult ] = useState(() => "");
     const [ awaitingSwipeData, setIsAwaitingSwipeData ] = useState(() => false);
     const [ isLoading, setIsLoading ] = useState(() => false);
     const [ loadingText, setLoadingText ] = useState(() => "");
     
-    const initialDispatcher = useDispatch();
     const { clearSwipeData } = useSwipeHandler();
-    const messageDispatcher = catchAndDisplay(initialDispatcher);
     const cleanUp = useCallback((clearResult) => {
         setLoadingText("");
         setIsLoading(false);
@@ -50,12 +48,12 @@ export default _ => {
             }
             else {
                 cleanUp(true);
-                messageDispatcher(swipeResp);
+                catchAndDisplay(swipeResp);
             }
         }
         catch(err) {
             cleanUp(true);
-            messageDispatcher(err);
+            catchAndDisplay(err);
         }
     }
 

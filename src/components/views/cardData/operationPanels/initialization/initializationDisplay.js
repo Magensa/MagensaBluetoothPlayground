@@ -11,10 +11,10 @@ import { pairDisclaimer } from '../../../../../constants/messageTemplates/initia
 
 export default ({ pairDevice, isLoading, outputResult }) => (
     <OperationPanel 
-        providedFunc={pairDevice} 
+        providedFunc={ pairDevice } 
         btnText="pairDevice();" 
-        outputVal={outputResult} 
-        isLoading={isLoading} 
+        outputVal={ outputResult } 
+        isLoading={ isLoading } 
         loadingText="Initializing Device"
         btnDisclaimer={ pairDisclaimer }
         codeComponent={ InitializationCode }

@@ -20,9 +20,9 @@ export default ({
                 loadingText={
                     `Sending command ${
                         JSON.stringify( 
-                            ((rawCommand) ?  hexStrToArray(rawCommand) 
-                            : [0x49, 0x06, 0x00, 0x00, 0x03, 0x0D, 0x00, 0x00]
-                        ))
+                            ((rawCommand) ? hexStrToArray(rawCommand) 
+                            : [0x49, 0x06, 0x00, 0x00, 0x03, 0x0D, 0x00, 0x00])
+                        )
                     } to device`}
             />
         }

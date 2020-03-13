@@ -6,7 +6,8 @@ import { Grid, makeStyles } from '@material-ui/core';
 import CardData from '../cardData';
 import CompatabilityInfo from '../compatibilityInfo';
 import SendCommands from '../sendCommands';
-import { compatabilityPath, sendCommandsPath } from '../../../constants';
+import AdditionalCommands from '../additionalCommands';
+import { compatabilityPath, sendCommandsPath, additionalOps } from '../../../constants';
 
 const rootWrapperStyles = makeStyles(({ spacing }) => ({
     gridWrapper: {
@@ -42,6 +43,9 @@ export default ({ trxHandler }) => {
                 </Route>
                 <Route path={ sendCommandsPath }>
                     <SendCommands trxHandler={ trxHandler } selectedDevice={ selectedDevice } />
+                </Route>
+                <Route path={ additionalOps }>
+                    <AdditionalCommands trxHandler={ trxHandler } selectedDevice={ selectedDevice } />
                 </Route>
             </Switch>
         </Grid>

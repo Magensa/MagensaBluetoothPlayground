@@ -19,8 +19,8 @@ const logoCardStyles = makeStyles(({ spacing }) => ({
         padding: spacing(1)
     },
     cardImg: {
-        minHeight: 150,
-        minWidth: 150
+        height: 150,
+        width: 150
     },
     cardMediaStyle: flexBase,
     cardBtn: {

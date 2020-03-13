@@ -1,5 +1,4 @@
 import React, { useState, useEffect, memo } from 'react';
-import { useDispatch } from 'react-redux';
 import {
     Grid,
     TextField
@@ -7,7 +6,8 @@ import {
 import SendCmdDisplay from './sendCmdDisplay';
 import SendCmdDisclaimer from './sendCmdDisclaimer';
 import { hexRegex } from '../../../constants';
-import { catchAndDisplay, hexStrToArray, convertArrayToHexString } from '../../../utils/helperFunctions';
+import { hexStrToArray, convertArrayToHexString } from '../../../utils/helperFunctions';
+import useCatchAndDisplay from '../../customHooks/useCatchAndDisplay';
 
 let sendCmdIsMounted = true;
 
@@ -17,9 +17,7 @@ export default memo(({ selectedDevice }) => {
     const [ commandResp, setCommandResp ] = useState(() => "");
     const [ isLoading, setIsLoading ] = useState(() => false);
     const [ inputError, setInputError ] = useState(() => false);
-
-    const commandDispatcher = useDispatch();
-    const msgDispatcher = catchAndDisplay(commandDispatcher);
+    const catchAndDisplay = useCatchAndDisplay();
 
     const sendDeviceCommand = async() => {
         setIsLoading(true);
@@ -39,7 +37,7 @@ export default memo(({ selectedDevice }) => {
             }
         }
         catch(err) {
-            msgDispatcher(err);
+            catchAndDisplay(err);
 
             if (sendCmdIsMounted)
                 setIsLoading(false);

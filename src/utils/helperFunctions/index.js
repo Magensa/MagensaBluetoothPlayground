@@ -1,17 +1,3 @@
-import { loadToastInfo } from '../../redux/actions';
-
-const catchAndDisplay = dispatcher => err => {
-    console.error(err);
-    
-    if (err.code !== 8 || err.name !== "NotFoundError" || !err.message.includes("requestDevice()"))
-        dispatcher(
-            loadToastInfo({
-                toastType: "error",
-                toastMsg: err.message
-            })
-        )
-}
-
 const capitalizeFirstLetter = str => 
     str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -48,7 +34,6 @@ const hexStrToArray = hexStr => {
 
 
 export {
-    catchAndDisplay,
     capitalizeFirstLetter,
     deviceInterfaceReplacer,
     convertArrayToHexString,

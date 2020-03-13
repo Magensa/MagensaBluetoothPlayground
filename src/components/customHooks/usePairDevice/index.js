@@ -1,12 +1,12 @@
 import { scanForDevices } from 'magensa-bluetooth';
 import { useDispatch } from 'react-redux';
 import { selectDevice } from '../../../redux/actions';
-import { catchAndDisplay } from '../../../utils/helperFunctions';
+import useCatchAndDisplay from '../useCatchAndDisplay';
 import { unSuccessfulPair } from '../../../constants';
 
 export default ({ trxHandler }) => {
     const pairDeviceDispatch = useDispatch();
-    const catchDisplayToUser = catchAndDisplay(pairDeviceDispatch);
+    const catchDisplayToUser = useCatchAndDisplay();
 
     const pairDevice = devicePrefix => async(e) => {
         try {
