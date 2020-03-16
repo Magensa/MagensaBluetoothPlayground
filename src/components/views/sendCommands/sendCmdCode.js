@@ -54,8 +54,7 @@ export default memo(_ =>
         <CloseParen semicolon />
         <NewLine repetitions={2} />
         <Tab />
-        <KeywordPurple>try</KeywordPurple>
-        {space}
+        <KeywordPurple end>try</KeywordPurple>
         <OpenCurly newLine />
         <Tab />
         <ConstBlue />

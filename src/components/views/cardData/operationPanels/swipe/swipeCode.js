@@ -27,11 +27,10 @@ export default memo(_ =>
         <OpenCurly begin={true} />
         <NewLine />
         <Tab />
-        <KeywordPurple>if </KeywordPurple>
+        <KeywordPurple end>if</KeywordPurple>
         <OpenParen />
-        <StringOrange>swipeData</StringOrange>
-        {space}
-        <KeywordPurple>in </KeywordPurple>
+        <StringOrange>{`swipeData`}</StringOrange>
+        <ConstBlue>{` in `}</ConstBlue>
         {callBackData}
         <CloseParen end={true} />
         <OpenCurly newLine={true} />
@@ -56,13 +55,13 @@ export default memo(_ =>
         <OpenCurly begin={true} />
         <NewLine />
         <Tab />
-        <KeywordPurple>try </KeywordPurple>
+        <KeywordPurple end>try</KeywordPurple>
         <OpenCurly newLine={true} />
         <Tab />
         <ConstBlue />
-        <FuncYellow>swipeResp </FuncYellow>
-        <Equals />
-        <KeywordPurple> await </KeywordPurple>
+        <FuncYellow>{`swipeResp `}</FuncYellow>
+        <Equals end/>
+        <KeywordPurple end>await</KeywordPurple>
         {`MagTekDevice.deviceInterface.`}
         <FuncYellow>requestCardSwipe</FuncYellow>
         <ParenParam semicolon={true} />

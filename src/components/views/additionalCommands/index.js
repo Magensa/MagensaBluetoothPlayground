@@ -4,17 +4,16 @@ import Typography from '@material-ui/core/Typography';
 import CardDataLayout from '../../sharedComponents/cardDataLayout';
 import NoPairedDevice from '../../sharedComponents/noPairedDevice';
 import OpenCloseTemplate from './additionalPanels/openClosePanels';
+import ClearSessionPanel from './additionalPanels/clearSessionPanel';
 
-export default ({ trxHandler, selectedDevice }) => {
-
-    return (selectedDevice) ?
+export default ({ trxHandler, selectedDevice }) => (selectedDevice) ?
     <CardDataLayout
         trxHandler={trxHandler}
     >
         <Typography variant='h4' align='center' paragraph>
             Additional Commands
         </Typography>
-        
+
         <OpenCloseTemplate 
             selectedDevice={ selectedDevice }
             isOpenDevice
@@ -22,7 +21,14 @@ export default ({ trxHandler, selectedDevice }) => {
         <OpenCloseTemplate 
             selectedDevice={ selectedDevice } 
         />
+        <ClearSessionPanel selectedDevice={ selectedDevice } />
     </CardDataLayout>
     :
     <NoPairedDevice trxHandler={ trxHandler } />
-}
+
+
+    /*
+        clearSession
+        deviceInfo
+        isDeviceOpen
+    */

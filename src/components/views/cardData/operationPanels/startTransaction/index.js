@@ -98,6 +98,7 @@ export default _ => {
     const cancelTrx = async() => {
         await selectedDevice.deviceInterface.cancelTransaction();
         emvCleanUp();
+        clearDisplayMsg();
     }
 
     const operationProps = {

@@ -67,7 +67,7 @@ const OpenCloseTemplate = ({ selectedDevice, isOpenDevice }) => {
         outputVal: openCloseResp,
         isLoading: isLoading,
         codeComponent: CodeComponentToRender,
-        btnText: (isOpenDevice) ? "openDevice();" : "closeDevice();",
+        btnText: (isOpenDevice) ? "openDevice()" : "closeDevice()",
         loadingText: (isOpenDevice) ? "Opening Device..." : "Closing Device...",
         operationTitle: (isOpenDevice) ? "Open Device" : "Close Device",
         cancelText: "Cancel",

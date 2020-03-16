@@ -31,7 +31,7 @@ const ConsoleLog = ({ logString, logVar, isError }) => (
 
 ConsoleLog.propTypes = {
     logString: PropTypes.string,
-    logVar: PropTypes.string,
+    logVar: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     isError: PropTypes.bool
 }
 

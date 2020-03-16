@@ -18,6 +18,7 @@ import {
     SemiColon,
     FuncDeclare
 } from '../../../../sharedComponents/styledCodeSpans';
+
 import { 
     initializeComment,
     magensaBt,
@@ -34,10 +35,9 @@ import {
 
 export default memo(_ =>
     <PreWrapper>
-        <KeywordPurple>import </KeywordPurple>
+        <KeywordPurple end>import</KeywordPurple>
         <OpenCurly end />
-        {space}
-        {scanDevicesName}
+        {` ${scanDevicesName}`}
         <CloseCurly begin />
         <KeywordPurple> from </KeywordPurple>
         <StringOrange>{magensaBt}</StringOrange>
