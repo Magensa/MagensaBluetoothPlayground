@@ -140,7 +140,8 @@ export default memo(_ =>
         <NewLine repetitions={2} />
         <FuncDeclare 
             funcName="requestEmv"
-            paramName={false}
+            paramName={ false }
+            isAsync
         />
         <OpenCurly begin />
         <NewLine />
@@ -150,7 +151,7 @@ export default memo(_ =>
         <NewLine />
         <Tab repetitions={2} />
         <ConstBlue />
-        {startTransactionResp}
+        {`${startTransactionResp} `}
         <Equals end />
         <KeywordPurple>await</KeywordPurple>
         {` ${magTekDevice}${dotInterface}`}

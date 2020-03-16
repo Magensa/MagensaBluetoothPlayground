@@ -9,7 +9,7 @@ export const deviceNamespace = `window.${magTekDevice}`;
 
 export const feedToFunctionComment = `
 /*
-    This callback would be fed to the 'scanForDevices' function during initialization.
+    The above callback would be fed to the 'scanForDevices' function during initialization.
 */
 `;
 

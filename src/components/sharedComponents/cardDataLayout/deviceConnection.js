@@ -37,6 +37,7 @@ const deviceConnectionStyles = makeStyles(({ spacing, breakpoints }) => {
 
 export default _ => {
     const selectedDevice = useSelector(state => state.selectedDevice);
+    const connectionFlag = useSelector(state => state.connectionFlag);
     const [ isOpen, setIsOpen ] = useState(() => false);
     const [ changingDeviceState, setChangingDeviceState ] = useState(() => false);
     const cardData = useSelector(state => state.cardData);
@@ -76,7 +77,7 @@ export default _ => {
                     setIsOpen(currentConnection);
             }
         }
-    }, [selectedDevice, isOpen, setIsOpen, cardData]);
+    }, [selectedDevice, isOpen, setIsOpen, cardData, connectionFlag]);
 
     return (selectedDevice) ? 
         <Chip 

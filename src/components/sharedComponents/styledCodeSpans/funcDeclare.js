@@ -7,12 +7,15 @@ import { ParenParam } from './parenParam';
 import { FuncArrow } from './funcArrow';
 import { space, callBackData, mainCallback } from '../../../constants/messageTemplates';
 
-const FuncDeclare = ({ funcName, paramName }) =>
+const FuncDeclare = ({ funcName, paramName, isAsync }) =>
     <>
         <ConstBlue>const </ConstBlue>
         <FuncYellow>{(funcName || mainCallback)}</FuncYellow>
         {space}
         <Equals end={true}/>
+
+        {isAsync && <ConstBlue>async</ConstBlue>}
+
         {(typeof( paramName ) === 'boolean') ? 
             <ParenParam /> 
             : 
@@ -20,6 +23,7 @@ const FuncDeclare = ({ funcName, paramName }) =>
                 {(paramName || callBackData)}
             </ParenParam>
         }
+
         <FuncArrow begin={true} />
     </>
 

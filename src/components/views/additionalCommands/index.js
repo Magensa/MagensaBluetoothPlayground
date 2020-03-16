@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 
 import CardDataLayout from '../../sharedComponents/cardDataLayout';
 import NoPairedDevice from '../../sharedComponents/noPairedDevice';
-import OpenDevicePanel from './additionalPanels/openDevice';
+import OpenCloseTemplate from './additionalPanels/openClosePanels';
 
 export default ({ trxHandler, selectedDevice }) => {
 
@@ -14,7 +14,14 @@ export default ({ trxHandler, selectedDevice }) => {
         <Typography variant='h4' align='center' paragraph>
             Additional Commands
         </Typography>
-        <OpenDevicePanel selectedDevice={ selectedDevice } />
+        
+        <OpenCloseTemplate 
+            selectedDevice={ selectedDevice }
+            isOpenDevice
+        />
+        <OpenCloseTemplate 
+            selectedDevice={ selectedDevice } 
+        />
     </CardDataLayout>
     :
     <NoPairedDevice trxHandler={ trxHandler } />

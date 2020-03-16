@@ -10,7 +10,6 @@ import {
     Equals,
     OpenCurly,
     CloseCurly,
-    FuncArrow,
     Tab,
     NewLine,
     ConsoleLog,
@@ -51,13 +50,12 @@ export default memo(_ =>
             logVar={callBackData}
         />
         <NewLine repetitions={2} />
-        <ConstBlue />
-        <FuncYellow>pairDevice </FuncYellow>
-        <Equals end />
-        <ConstBlue>async</ConstBlue>
-        <ParenParam />
+        <FuncDeclare 
+            funcName="pairDevice"
+            paramName={ false }
+            isAsync
+        />
         {space}
-        <FuncArrow end />
         <OpenCurly newLine />
         <KeywordPurple>try </KeywordPurple>
         <OpenCurly newLine />

@@ -8,7 +8,8 @@ import {
     LOAD_SWIPE_DATA,
     CLEAR_SWIPE_DATA,
     LOAD_EMV_DATA,
-    CLEAR_EMV_DATA
+    CLEAR_EMV_DATA,
+    FLAG_CONNECTION_CHANGE
 } from './actionTypes';
 
 export const loadToastInfo = toastObj => ({
@@ -47,3 +48,5 @@ export const loadEmvData = emvData => ({
 });
 
 export const clearEmvData = _ => ({ type: CLEAR_EMV_DATA });
+
+export const flagConnectionChange = _ => ({ type: FLAG_CONNECTION_CHANGE });

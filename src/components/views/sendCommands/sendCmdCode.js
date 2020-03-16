@@ -32,6 +32,7 @@ export default memo(_ =>
         <FuncDeclare 
             funcName="sendCommand"
             paramName={ rawCommand }
+            isAsync
         />
         {space}
         <OpenCurly newLine />

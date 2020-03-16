@@ -73,7 +73,7 @@ OperationPanel.propTypes = {
     isLoading: PropTypes.bool.isRequired, 
     loadingText: PropTypes.string.isRequired, 
     btnDisclaimer: PropTypes.string, 
-    codeComponent: PropTypes.object.isRequired
+    codeComponent: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired
 }
 
 export default OperationPanel;

@@ -11,7 +11,6 @@ import {
     CloseParen,
     OpenCurly,
     CloseCurly,
-    FuncArrow,
     Tab,
     NewLine,
     ConsoleLog,
@@ -49,11 +48,11 @@ export default memo(_ =>
         <NewLine />
         <CommentGreen>{feedToFunctionComment}</CommentGreen>
         <NewLine />
-        <ConstBlue />
-        <FuncYellow>cardSwipe </FuncYellow>
-        <Equals end={true} />
-        <ParenParam />
-        <FuncArrow begin={true} />
+        <FuncDeclare 
+            funcName="cardSwipe"
+            paramName={ false }
+            isAsync
+        />
         <OpenCurly begin={true} />
         <NewLine />
         <Tab />
