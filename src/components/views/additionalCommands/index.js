@@ -5,6 +5,8 @@ import CardDataLayout from '../../sharedComponents/cardDataLayout';
 import NoPairedDevice from '../../sharedComponents/noPairedDevice';
 import OpenCloseTemplate from './additionalPanels/openClosePanels';
 import ClearSessionPanel from './additionalPanels/clearSessionPanel';
+import DeviceInfoPanel from './additionalPanels/deviceInfoPanel';
+import IsDeviceOpenPanel from './additionalPanels/isDeviceOpenPanel';
 
 export default ({ trxHandler, selectedDevice }) => (selectedDevice) ?
     <CardDataLayout
@@ -22,6 +24,8 @@ export default ({ trxHandler, selectedDevice }) => (selectedDevice) ?
             selectedDevice={ selectedDevice } 
         />
         <ClearSessionPanel selectedDevice={ selectedDevice } />
+        <DeviceInfoPanel selectedDevice={ selectedDevice } />
+        <IsDeviceOpenPanel selectedDevice={ selectedDevice } />
     </CardDataLayout>
     :
     <NoPairedDevice trxHandler={ trxHandler } />

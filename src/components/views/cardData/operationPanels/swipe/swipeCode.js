@@ -18,7 +18,7 @@ import {
     ParenParam,
     FuncDeclare
 } from '../../../../sharedComponents/styledCodeSpans';
-import { feedToFunctionComment, callBackData, space } from '../../../../../constants/messageTemplates';
+import { feedToFunctionComment, callBackData } from '../../../../../constants/messageTemplates';
 
 
 export default memo(_ => 

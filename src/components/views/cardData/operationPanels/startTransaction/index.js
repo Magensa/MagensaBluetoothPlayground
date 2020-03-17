@@ -43,7 +43,7 @@ export default _ => {
 
         try {
             const emvResp = await selectedDevice.deviceInterface.startTransaction(startTransactionOptions);
-
+            console.log('emvResp: ', emvResp);
             setLoadingDisplay("Please follow device prompts");
             const emvJsonResp = JSON.stringify(emvResp, null, 4);
             setEmvResult([emvJsonResp]);

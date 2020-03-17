@@ -50,7 +50,11 @@ const OperationPanel = props => {
                     root: smMargin
                 }}
             >
-                <Typography variant='subtitle1' className={ initializeHeader } component='p'>
+                <Typography 
+                    variant='subtitle1' 
+                    className={ initializeHeader } 
+                    component='p'
+                >
                     <strong>{operationTitle}</strong>
                 </Typography>
             </ExpansionPanelSummary>

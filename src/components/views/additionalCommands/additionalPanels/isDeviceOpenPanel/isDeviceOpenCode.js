@@ -4,10 +4,7 @@ import {
     FuncYellow,
     KeywordPurple, 
     ConstBlue,
-    StringOrange,
     Equals,
-    OpenParen,
-    CloseParen,
     OpenCurly,
     CloseCurly,
     Tab,
@@ -20,47 +17,36 @@ import {
 
 import { 
     magTekDevice, 
-    dotInterface, 
-    clearSession, 
-    clearResp, 
-    clearSessionScra 
-} from '../../../../../constants/messageTemplates/clearSessionTemplates';
+    dotInterface
+} from '../../../../../constants/messageTemplates';
+
+const getDeviceInfo = `getDeviceInfo`;
+const deviceInfo = `deviceInfo`;
 
 export default memo(_ => 
     <PreWrapper>
         <FuncDeclare 
-            funcName={clearSession}
+            funcName={getDeviceInfo}
             paramName={false}
             isAsync
         />
-        <OpenCurly begin={true} />
+        <OpenCurly begin />
         <NewLine />
         <Tab />
         <KeywordPurple end>try</KeywordPurple>
         <OpenCurly newLine />
         <Tab />
         <ConstBlue />
-        {`${clearResp} `}
+        {`${deviceInfo} `}
         <Equals end />
-        <KeywordPurple>await</KeywordPurple>
-        {` ${magTekDevice}${dotInterface}`}
-        <FuncYellow>{clearSession}</FuncYellow>
+        <KeywordPurple end>await</KeywordPurple>
+        {`${magTekDevice}${dotInterface}`}
+        <FuncYellow>{deviceInfo}</FuncYellow>
         <ParenParam semicolon />
         <NewLine />
-        <Tab repetitions={2}/>
+        <Tab repetitions={2} />
         <ConsoleLog 
-            logVar={ 
-                <>
-                    <NewLine />
-                    <Tab repetitions={3} />
-                    <OpenParen />
-                    {`${clearResp} || `}
-                    <StringOrange>{clearSessionScra}</StringOrange>
-                    <CloseParen end />
-                    <NewLine />
-                    <Tab repetitions={2} />
-                </>
-            }
+            logVar={deviceInfo}
         />
         <NewLine />
         <Tab />
@@ -72,3 +58,13 @@ export default memo(_ =>
         <CloseCurly />
     </PreWrapper>    
 );
+
+// const getDeviceInfo = async() => {
+//     try {
+//         const deviceInfo = await magTekDevice.deviceInterface.deviceInfo();
+//         console.log(deviceInfo);
+//     }
+//     catch(err) {
+//         console.error(err);
+//     }
+// }

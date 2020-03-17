@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import {
-    Typography,
-    List,
-    ListItem
-} from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { OperationPanel, ColoredCode } from '../../../../sharedComponents';
 import useCatchAndDisplay from '../../../../customHooks/useCatchAndDisplay';
 import ClearSessionCode from './clearSessionCode';
+import PanelList from '../panelList';
 
 let clearSessionIsMounted = true;
 
@@ -60,7 +57,7 @@ export default ({ selectedDevice }) => {
         isLoading: isLoading,
         codeComponent: ClearSessionCode,
         btnText: "clearSession()",
-        loadingText: "Closing Session...",
+        loadingText: "Clearing Session...",
         operationTitle:"Clear Session",
         cancelText: "Cancel",
         cancelFunc: cancelClearSession
@@ -68,17 +65,18 @@ export default ({ selectedDevice }) => {
 
     return (
         <OperationPanel  { ...operationPanelProps } >
-            <Typography variant='subtitle1'>
-                Below is an example implementation of how to clear your paired device's volatile memory. Please keep in mind that only PinPad devices retain a volatile memory 
-                session (usually most recent card data, or PIN data). When this command is executed on a device that does not have session (SCRA devices) - it will immediately return
-                a Promise that resolves as <ColoredCode>`undefined`.</ColoredCode> When this command is executed on a PinPad device, there are three possible outcomes:
+
+             <Typography variant='subtitle1' paragraph>
+                Use this command to clear your paired device's session (volatile memory). Please keep in mind that only PinPad devices retain a volatile memory 
+                session (usually most recent card data, or PIN data).
             </Typography>
 
-            <List dense disablePadding>
-                <ListItem>Success (success object returned)</ListItem>
-                <ListItem>Handled Exception (status object returned, detailing the failure encountered)</ListItem>
-                <ListItem>Unhandled Exception (Failure upstream from the library that threw an exception, and is rethrown to the caller)</ListItem>
-            </List>
+            <Typography variant='subtitle2' color="textSecondary">
+                Below is an example implementation of how to clear your paried device's session. When this command is executed on a device that does not have session (SCRA devices) - it will immediately return
+                a Promise that resolves as <ColoredCode>`undefined`.</ColoredCode> When this command is executed on a PinPad device, there are two possible outcomes:
+            </Typography>
+
+            <PanelList noHandled />
 
         </OperationPanel>
     );

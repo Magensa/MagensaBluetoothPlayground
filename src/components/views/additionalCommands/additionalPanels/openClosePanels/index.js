@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import {
-    Typography,
-    List,
-    ListItem
-} from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { OperationPanel } from '../../../../sharedComponents';
 import useCatchAndDisplay from '../../../../customHooks/useCatchAndDisplay';
 import useConnectionFlag from '../../../../customHooks/useConnectionFlag';
 import OpenCloseCode from './openCloseCode';
+import PanelList from '../panelList';
 
 let openDeviceIsMounted = true;
 
@@ -76,17 +73,17 @@ const OpenCloseTemplate = ({ selectedDevice, isOpenDevice }) => {
 
     return (
         <OperationPanel  { ...operationPanelProps } >
-            <Typography variant='subtitle1'>
-                Below is an example implementation of how to {(isOpenDevice ? "open" : "close")} your paired device.  There are no input parameters for this function.
+            
+            <Typography variant='subtitle1' paragraph>
+                Use this command to {(isOpenDevice ? "open" : "close")} your paired device.
+            </Typography>
+
+            <Typography variant='subtitle2' color="textSecondary">
+                Below is an example implementation of how to {(isOpenDevice ? "open" : "close")} your paried device. There are no input parameters for this function.
                 There are three possible outcomes when calling this function:
             </Typography>
 
-            <List dense disablePadding>
-                <ListItem>Success (success object returned)</ListItem>
-                <ListItem>Handled Exception (status object returned, detailing the failure encountered)</ListItem>
-                <ListItem>Unhandled Exception (Failure upstream from the library that threw an exception, and is rethrown to the caller)</ListItem>
-            </List>
-
+            <PanelList />
         </OperationPanel>
     );
 }

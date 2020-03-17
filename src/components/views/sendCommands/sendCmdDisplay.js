@@ -30,9 +30,7 @@ const sendCmdStyles = makeStyles(({ spacing, breakpoints: { down } }) => ({
     },
     outputBlock: {
         minHeight: 0,
-        width: '50%',
         marginBottom: spacing(3),
-        textAlign: 'center',
         [down('sm')]: {
             marginLeft: 0,
             ...fullWidth

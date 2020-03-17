@@ -1,5 +1,4 @@
-import React, { memo, useCallback //useEffect 
-} from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 
 import { useRouteMatch } from 'react-router-dom';
 import ToastMsg from '../../helperComponents/toastMsg';
@@ -13,7 +12,7 @@ import useEmvHandler from '../../customHooks/useEmvHandler';
 import { sendCommandsPath } from '../../../constants';
 
 //TODO: Remove debug Event Listener when ready to deploy.
-//const debugFunc = logInfo => console.log(logInfo.detail);
+const debugFunc = logInfo => console.log(logInfo.detail);
 
 export default memo(_ => {
     const { clearDisplayMessage, setDisplayMessage } = useDisplayMessage();
@@ -46,14 +45,17 @@ export default memo(_ => {
             }
         }
         
-        mainCallback.disconnectHandler = event => void console.log('[Disconnect Event]', event);
+        mainCallback.disconnectHandler = event => void console.log("[Disconnect Event]:", event);
 
         mainCallback.displayCallback = ({ displayMessage }) => {
             setDisplayMessage(displayMessage);
         }
 
         mainCallback.transactionStatusCallback = statusObj => {
-            if (statusObj.transactionStatus) {
+            console.log("[Trx Status Callback]:", statusObj);
+
+            if (statusObj && statusObj.transactionStatus) {
+                //SCRA
                 if (statusObj.transactionStatus.statusCode === 8) {
                     clearDisplayMessage();
                 }
@@ -70,10 +72,10 @@ export default memo(_ => {
 
     const trxHandler = useCallback(trxCallback, [trxCallback]);
 
-    // useEffect(() => {
-    //     window.addEventListener('deviceLog', debugFunc, { passive: true});
-    //     return () => window.removeEventListener('deviceLog', debugFunc, { passive: true});
-    // }, []);
+    useEffect(() => {
+        window.addEventListener('deviceLog', debugFunc, { passive: true});
+        return () => window.removeEventListener('deviceLog', debugFunc, { passive: true});
+    }, []);
 
     return (
         <>
