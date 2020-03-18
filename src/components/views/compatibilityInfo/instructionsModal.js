@@ -5,6 +5,7 @@ import {
     Typography,
     makeStyles
 } from '@material-ui/core';
+import { generateRandomKey } from '../../../utils/helperFunctions';
 
 const instructionsModalStyles = makeStyles(({ spacing, shadows, palette: { background: { paper } } }) => ({
     modalWrapper: {
@@ -18,7 +19,7 @@ const instructionsModalStyles = makeStyles(({ spacing, shadows, palette: { backg
 }));
 
 
-const InstructionsModal = ({ detailsTitle, details=[1,2,3,4] }) => {
+const InstructionsModal = ({ detailsTitle, details=[1,2,3,4], closeAndClear, modalIsOpen }) => {
     const { modalWrapper } = instructionsModalStyles();
 
     return (
@@ -26,15 +27,19 @@ const InstructionsModal = ({ detailsTitle, details=[1,2,3,4] }) => {
             aria-labelledby=""
             aria-describedby=""
             open={true}
-            onClose={()=>{}}
+            onClose={ closeAndClear() }
         >
             <div className={ modalWrapper }>
                 <Typography component="h3" paragraph variant="h4">
                     { detailsTitle }
                 </Typography>
 
-                {details.map(textLine =>
-                    <Typography variant="subtitle1" component="p">
+                {details.map((textLine, index) =>
+                    <Typography 
+                        key={ generateRandomKey( (index.toString() + 'de') ) }
+                        variant="subtitle1" 
+                        component="p"
+                    >
                         { textLine }
                     </Typography>
                 )}

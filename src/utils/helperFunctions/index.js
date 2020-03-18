@@ -32,10 +32,14 @@ const hexStrToArray = hexStr => {
     return returnArr;
 }
 
+const generateRandomKey = (name) => 
+    name + Math.round((Math.random()*100000)).toString()
+
 
 export {
     capitalizeFirstLetter,
     deviceInterfaceReplacer,
     convertArrayToHexString,
-    hexStrToArray
+    hexStrToArray,
+    generateRandomKey
 }

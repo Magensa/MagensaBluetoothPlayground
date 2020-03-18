@@ -30,9 +30,7 @@ const logoCardStyles = makeStyles(({ spacing }) => ({
 }));
 
 
-export default ({ cardContent: 
-    { title, LogoComponent, versionText, osSupport }
-}) => {
+export default ({ title, LogoComponent, versionText, osSupport, setModalDetails }) => {
 
     const { cardWrapper, cardImg, cardMediaStyle, cardBtn } = logoCardStyles();
 
@@ -61,7 +59,7 @@ export default ({ cardContent:
             <CardActions className={ cardBtn } disableSpacing>
                 <Grid container direction='column'>
                     {osSupport.map( eachOs => (
-                        <OsInfoPanel { ...eachOs } key={ eachOs.osId } />
+                        <OsInfoPanel { ...eachOs } key={ eachOs.osId } setModalDetails={ setModalDetails } />
                     ))}
                 </Grid>
             </CardActions>
