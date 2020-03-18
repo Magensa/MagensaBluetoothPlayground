@@ -3,18 +3,37 @@ import EdgeLogo from './logos/edgeLogo';
 import OperaLogo from './logos/operaLogo';
 import SamsungInternetLogo from './logos/samsungInternetLogo';
 
+const importantPairNote = "NOTE: It is very important that the pair window should prompt you for a pair code.";
+const unsuccessfulPairNote = "If the device pairs without a pair code - this is an unsuccessful pair";
+const oneTimeOperationNote = osName => `Once this process is completed, it does not need to be repeated, unless you unpair your device from ${osName}.`;
+
 const windowsInstructions = {
-    detailsTitle: "Must pair Bluetooth device with Windows, prior to utilizing WebBluetooth.",
+    detailsTitle: "Pair Bluetooth device with Windows, prior to utilizing WebBluetooth.",
     details: [
         "1. Click 'Start', followed by 'Settings' (gear icon).",
         "2. Click 'Devices', 'Bluetooth & other devices'.",
         "3. Ensure the Bluetooth toggle is turned 'On', then click the '+ Add Bluetooth or other device' button.",
         "4. Ensure your device is in 'discovery' mode:",
         `   - PinPad devices - tap the power button to power on the device.`,
-        `   - SCRA devices - tap button to power on device. Once it is on, hold down button for 2.5 seconds (light will turn blue).`,
+        `   - SCRA devices - tap button to power on device. Once it is on, hold down button for 2.5 seconds (light will turn blue, and flash).`,
         "5. Click 'Bluetooth' from the 'Add a device' window. Locate your device and click on it.",
-        "NOTE: It is very important that the pair window should prompt you for a pair code. The pair code is '000000' (six zeros). If the device pairs without a pair code - this is an unsuccessful pair, and you must remove it and start these instructions over again. You can remove a pairing from the 'Bluetooth & other devices' window by locating your device under 'Other devices', click on it, then select 'Remove Device'",
-        "Once this process is completed, it does not need to be repeated, unless you unpair your device from Windows."
+        importantPairNote + " The pair code is '000000' (six zeros). If the device pairs without a pair code - this is an unsuccessful pair, and you must remove it and start these instructions over again. You can remove a pairing from the 'Bluetooth & other devices' window by locating your device under 'Other devices', click on it, then select 'Remove Device'",
+        oneTimeOperationNote("Windows")
+    ]
+}
+
+const macInstructions = {
+    detailsTitle: "Prompt a passcode entry upon initial device pair.",
+    details: [
+        "1. Open your preferred (compatible) browser and navigate to a site the utilizes WebBluetooth (this Magensa Bluetooth Playground, is a good example).",
+        "2.Ensure your device is in 'discovery' mode:",
+        `   - PinPad devices - tap the power button to power on the device.`,
+        `   - SCRA devices - tap button to power on device. Once it is on, hold down button for 2.5 seconds (light will turn blue, and flash).`,
+        "3. When the pair window appears (such as when you click the 'Pair Device' button on the home page of this playground), select your device from the window.",
+        "4. You should be prompted for the pair code - enter the pair code ('000000' - six zeros) and click 'Connect'",
+        "5. Your device is now paired with your macOS, and you will not have to repeat this initial pair process again.",
+        `${importantPairNote} ${unsuccessfulPairNote}.` + " If this happens, please refresh the page and try these steps again to obtain a pair prompt.",
+        oneTimeOperationNote("macOS")
     ]
 }
 
@@ -31,7 +50,8 @@ const displayItems = [
                 minBrowserVersion: "56",
                 minOsVersion: "OS X Yosemite",
                 osLogo: "/images/apple_logo.png",
-                logoAlt: "apple-logo"
+                logoAlt: "apple-logo",
+                detailedInstructions: macInstructions
             },
             {
                 osId: 2,
@@ -75,7 +95,8 @@ const displayItems = [
                 minBrowserVersion: "43",
                 minOsVersion: "OS X Yosemite",
                 osLogo: "/images/apple_logo.png",
-                logoAlt: "apple-logo1"
+                logoAlt: "apple-logo1",
+                detailedInstructions: macInstructions
             },
             {
                 osId: 6,
@@ -120,7 +141,8 @@ const displayItems = [
                 minBrowserVersion: "79",
                 minOsVersion: "OS X Yosemite",
                 osLogo: "/images/apple_logo.png",
-                logoAlt: "apple-logo2"
+                logoAlt: "apple-logo2",
+                detailedInstructions: macInstructions
             },
             {
                 osId: 10,
