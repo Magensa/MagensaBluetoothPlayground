@@ -19,14 +19,14 @@ const instructionsModalStyles = makeStyles(({ spacing, shadows, palette: { backg
 }));
 
 
-const InstructionsModal = ({ detailsTitle, details=[1,2,3,4], closeAndClear, modalIsOpen }) => {
+const InstructionsModal = ({ detailsTitle, details, closeAndClear, modalIsOpen }) => {
     const { modalWrapper } = instructionsModalStyles();
 
     return (
         <Modal
             aria-labelledby=""
             aria-describedby=""
-            open={true}
+            open={ modalIsOpen }
             onClose={ closeAndClear() }
         >
             <div className={ modalWrapper }>

@@ -41,7 +41,6 @@ const displayItems = [
                 osLogo: "/images/windows_logo.png",
                 logoAlt: "windows-logo",
                 trim: 2,
-                specialInstructions: "Must pair device with OS Bluetooth prior to using WebBluetooth",
                 detailedInstructions: windowsInstructions
             },
             {
