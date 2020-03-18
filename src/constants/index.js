@@ -61,9 +61,9 @@ const startTransactionOptions = {
 };
 
 const unSuccessfulPair = (function() { 
-    let notSuccessfulPair = new Error();
+    const errMsg = "Selected Device did not pair successfully, please try again";
+    const notSuccessfulPair = new Error(errMsg);
     notSuccessfulPair.name = "UnsuccessfulPair";
-    notSuccessfulPair.message = "Selected Device did not pair successfully, please try again";
     return notSuccessfulPair;
 })();
 

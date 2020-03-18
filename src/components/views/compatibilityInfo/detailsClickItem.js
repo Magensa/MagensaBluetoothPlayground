@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { ListItem, Typography, Button } from '@material-ui/core';
 
 const OsInfoListItem = ({ listFullWidth, clickHandler }) => 
-    <ListItem divider disableGutters>
+    <ListItem divider disableGutters button>
         <Typography 
             variant='caption' 
-            component={ Button }
             color='textSecondary' 
             align='center'
+            component='h4'
             className={ listFullWidth }
             onClick={ clickHandler }
         >
