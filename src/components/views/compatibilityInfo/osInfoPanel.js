@@ -27,8 +27,8 @@ const useOsInfoPanelStyles = makeStyles({
     osText: fullWidth
 });
 
-export default ({ osInfo }) => {
-    const { osId, osLogo, logoAlt, trim, osName } = osInfo;
+export default props => {
+    const { osId, osLogo, logoAlt, trim, osName } = props;
     const { expansionDetailsWrapper, panelTextImg, trimProps, osText } = useOsInfoPanelStyles(trim);
     
     return (
@@ -58,7 +58,7 @@ export default ({ osInfo }) => {
                 id={`${osId}-os-info-content`}
                 className={ expansionDetailsWrapper }
             >
-                <OsInfoList osDetails={ osInfo }  />
+                <OsInfoList { ...props }  />
             </ExpansionPanelDetails>
         </ExpansionPanel>
     );

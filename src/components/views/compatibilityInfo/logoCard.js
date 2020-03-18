@@ -61,7 +61,7 @@ export default ({ cardContent:
             <CardActions className={ cardBtn } disableSpacing>
                 <Grid container direction='column'>
                     {osSupport.map( eachOs => (
-                        <OsInfoPanel osInfo={ eachOs } key={ eachOs.osId } />
+                        <OsInfoPanel { ...eachOs } key={ eachOs.osId } />
                     ))}
                 </Grid>
             </CardActions>

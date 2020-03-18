@@ -3,6 +3,21 @@ import EdgeLogo from './logos/edgeLogo';
 import OperaLogo from './logos/operaLogo';
 import SamsungInternetLogo from './logos/samsungInternetLogo';
 
+const windowsInstructions = {
+    detailsTitle: "Must pair Bluetooth device with Windows, prior to utilizing WebBluetooth.",
+    details: [
+        "1. Click 'Start', followed by 'Settings' (gear icon).",
+        "2. Click 'Devices', 'Bluetooth & other devices'.",
+        "3. Ensure the Bluetooth toggle is turned 'On', then click the '+ Add Bluetooth or other device' button.",
+        "4. Ensure your device is in 'discovery' mode:",
+        `   - PinPad devices - tap the power button to power on the device.`,
+        `   - SCRA devices - tap button to power on device. Once it is on, hold down button for 2.5 seconds (light will turn blue).`,
+        "5. Click 'Bluetooth' from the 'Add a device' window. Locate your device and click on it.",
+        "NOTE: It is very important that the pair window should prompt you for a pair code. The pair code is '000000' (six zeros). If the device pairs without a pair code - this is an unsuccessful pair, and you must remove it and start these instructions over again. You can remove a pairing from the 'Bluetooth & other devices' window by locating your device under 'Other devices', click on it, then select 'Remove Device'",
+        "Once this process is completed, it does not need to be repeated, unless you unpair your device from Windows."
+    ]
+}
+
 const displayItems = [
     {
         id: "chrome",
@@ -26,7 +41,8 @@ const displayItems = [
                 osLogo: "/images/windows_logo.png",
                 logoAlt: "windows-logo",
                 trim: 2,
-                specialInstructions: "Must pair device with OS Bluetooth prior to using WebBluetooth"
+                specialInstructions: "Must pair device with OS Bluetooth prior to using WebBluetooth",
+                detailedInstructions: windowsInstructions
             },
             {
                 osId: 3,
@@ -70,7 +86,8 @@ const displayItems = [
                 osLogo: "/images/windows_logo.png",
                 logoAlt: "windows-logo1",
                 trim: 2,
-                specialInstructions: "Must pair device with OS Bluetooth prior to using WebBluetooth"
+                specialInstructions: "Must pair device with OS Bluetooth prior to using WebBluetooth",
+                detailedInstructions: windowsInstructions
             },
             {
                 osId: 7,
@@ -114,7 +131,8 @@ const displayItems = [
                 osLogo: "/images/windows_logo.png",
                 logoAlt: "windows-logo2",
                 trim: 2,
-                specialInstructions: "Must pair device with OS Bluetooth prior to using WebBluetooth"
+                specialInstructions: "Must pair device with OS Bluetooth prior to using WebBluetooth",
+                detailedInstructions: windowsInstructions
             },
             {
                 osId: 11,

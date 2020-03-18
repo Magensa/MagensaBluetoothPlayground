@@ -6,9 +6,7 @@ const osInfoListStyles = makeStyles({
     listFullWidth: fullWidth
 });
 
-export default ({ osDetails: 
-    { osName, minBrowserVersion, minOsVersion, behindFlag, specialInstructions } 
-}) => {
+export default ({ osName, minBrowserVersion, minOsVersion, behindFlag, specialInstructions }) => {
 
     const { listFullWidth } = osInfoListStyles();
 
