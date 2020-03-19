@@ -14,8 +14,8 @@ const windowsInstructions = {
         "2. Click 'Devices', 'Bluetooth & other devices'.",
         "3. Ensure the Bluetooth toggle is turned 'On', then click the '+ Add Bluetooth or other device' button.",
         "4. Ensure your device is in 'discovery' mode:",
-        `   - PinPad devices - tap the power button to power on the device.`,
-        `   - SCRA devices - tap button to power on device. Once it is on, hold down button for 2.5 seconds (light will turn blue, and flash).`,
+        `- PinPad devices - tap the power button to power on the device.`,
+        `- SCRA devices - tap button to power on device. Once it is on, hold down button for 2.5 seconds (light will turn blue, and flash).`,
         "5. Click 'Bluetooth' from the 'Add a device' window. Locate your device and click on it.",
         importantPairNote + " The pair code is '000000' (six zeros). If the device pairs without a pair code - this is an unsuccessful pair, and you must remove it and start these instructions over again. You can remove a pairing from the 'Bluetooth & other devices' window by locating your device under 'Other devices', click on it, then select 'Remove Device'",
         oneTimeOperationNote("Windows")

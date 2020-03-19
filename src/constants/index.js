@@ -67,6 +67,13 @@ const unSuccessfulPair = (function() {
     return notSuccessfulPair;
 })();
 
+const notCompatibleBrowser = (function() {
+    const errMsg = "Your current browser is not compatible with WebBluetooth. Please see PlayGround Information for compatability details"
+    const notCompatibleBrowser = new Error(errMsg);
+    notCompatibleBrowser.name = "BrowserNotCompatible"
+    return notCompatibleBrowser;
+})();
+
 let hexRegex = new RegExp(/^[0-9A-Fa-f]+$/i);
 
 export {
@@ -81,5 +88,6 @@ export {
     unSuccessfulPair,
     githubLink,
     readDateTimeCmdLink,
-    hexRegex
+    hexRegex,
+    notCompatibleBrowser
 }

@@ -2,8 +2,7 @@ import { scanForDevices } from 'magensa-bluetooth';
 import { useDispatch } from 'react-redux';
 import { selectDevice } from '../../../redux/actions';
 import useCatchAndDisplay from '../useCatchAndDisplay';
-import { unSuccessfulPair } from '../../../constants';
-import { notCompatibleBrowser } from './notCompatibleBrowser';
+import { unSuccessfulPair, notCompatibleBrowser } from '../../../constants';
 
 export default ({ trxHandler }) => {
     const pairDeviceDispatch = useDispatch();
