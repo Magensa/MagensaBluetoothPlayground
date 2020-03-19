@@ -17,7 +17,7 @@ import { fullWidth } from '../../../constants/styleConstants';
 const instructionsModalStyles = makeStyles(({ 
     spacing, 
     shadows, 
-    typography: { h4, h5 },
+    typography: { h4, h5, fontWeightMedium, fontWeightBold, body1 },
     shape: { borderRadius },
     breakpoints: { down },
     palette: { 
@@ -30,7 +30,6 @@ const instructionsModalStyles = makeStyles(({
         minHeight: '50%',
         maxHeight: '75%',
         backgroundColor: paper,
-        border: '2px solid #000',
         boxShadow: shadows[5],
         padding: spacing(1),
         top: '50%',
@@ -39,8 +38,8 @@ const instructionsModalStyles = makeStyles(({
         borderRadius: borderRadius,
         margin: spacing(1),
         overflowWrap: 'break-word',
+        overflow: 'auto',
         [down('sm')]: {
-            overflow: 'scroll',
             minWidth: '82%',
             transform: 'translate(-53%, -50%)',
         }
@@ -53,7 +52,7 @@ const instructionsModalStyles = makeStyles(({
         display: 'flex',
         justifyContent: 'center',
         '& hr': {
-            width: '80%'
+            width: '85%'
         }
     },
     titleStyles: {
@@ -64,17 +63,25 @@ const instructionsModalStyles = makeStyles(({
             margin: spacing(1, 0, 1),
             ...h5
         }
+    },
+    listWrapper: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    nestedList: {
+        paddingLeft: spacing(4)
     }
 }));
 
 
 const InstructionsModal = ({ detailsTitle, details, closeAndClear, modalIsOpen }) => {
-    const { modalWrapper, closeButtonWrapper, divideWrapper, titleStyles } = instructionsModalStyles();
+    const { modalWrapper, closeButtonWrapper, divideWrapper, titleStyles, listWrapper, nestedList } = instructionsModalStyles();
 
     return (
         <Modal
-            aria-labelledby=""
-            aria-describedby=""
+            aria-labelledby="pairing-details-title"
+            aria-describedby="pairing-details-body"
             open={ modalIsOpen }
             onClose={ closeAndClear() }
         >
@@ -86,27 +93,38 @@ const InstructionsModal = ({ detailsTitle, details, closeAndClear, modalIsOpen }
                             </IconButton>
                         </div>
 
-                        <div className={ titleStyles }>
+                        <div id="pairing-details-title" className={ titleStyles }>
                             { detailsTitle }
                         </div>
 
                     <div className={ divideWrapper }>
                         <Divider />
                     </div>
+
+                   <Grid container justify='center' alignItems='center' style={{padding: '16px'}}>
+                        <Grid item xl={10}>
+                            <List component="nav" id="pairing-details-body">
+                                {details.map((textLine, index) => (typeof( textLine ) === 'string') ?
+                                    <ListItem  key={ generateRandomKey( (index.toString() + 'de') ) }>
+                                        <Typography variant="body1">
+                                            { textLine }
+                                        </Typography>
+                                    </ListItem>
+                                    :
+                                    <List key={ generateRandomKey( (index.toString() + 'de') ) } className={ nestedList }>
+                                        {textLine.map( (subText, index) =>
+                                            <ListItem key={ generateRandomKey( (index.toString() + 'st') ) }>
+                                                <Typography variant="body1">
+                                                    {`- ${subText}`}
+                                                </Typography>
+                                            </ListItem>
+                                        )}
+                                    </List>
+                                )}
+                            </List>
+                       </Grid>
+                   </Grid>
                    
-                    <List component="nav">
-                        {details.map((textLine, index) =>
-                            <ListItem  key={ generateRandomKey( (index.toString() + 'de') ) }>
-                                <Typography
-                                    variant="subtitle1" 
-                                    component="p"
-                                    align='left'
-                                >
-                                    { textLine }
-                                </Typography>
-                            </ListItem>
-                        )}
-                    </List>
                 </Paper>
             </div>
         </Modal>
