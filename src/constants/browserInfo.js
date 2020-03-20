@@ -97,35 +97,35 @@ const displayItems = [
         LogoComponent: OperaLogo,
         versionText: ">=43",
         osSupport: [
-            {
-                osId: 5,
-                osName: "macOS",
-                minBrowserVersion: "43",
-                minOsVersion: "OS X Yosemite",
-                osLogo: "/images/apple_logo.png",
-                logoAlt: "apple-logo1",
-                detailedInstructions: macAndroidInstructions("macOS")
-            },
-            {
-                osId: 6,
-                osName: "Windows",
-                minBrowserVersion: "65",
-                minOsVersion: "10 1703",
-                osLogo: "/images/windows_logo.png",
-                logoAlt: "windows-logo1",
-                trim: 2,
-                detailedInstructions: windowsInstructions
-            },
-            {
-                osId: 7,
-                osName: "Linux",
-                minBrowserVersion: "43",
-                minOsVersion: "Kernel 3.19 BlueZ 5.41",
-                behindFlag: "opera://flags/#enable-web-bluetooth",
-                osLogo: "/images/linux_tux_logo.png",
-                logoAlt: "linux-logo1",
-                trim: 1
-            },
+            // {
+            //     osId: 5,
+            //     osName: "macOS",
+            //     minBrowserVersion: "43",
+            //     minOsVersion: "OS X Yosemite",
+            //     osLogo: "/images/apple_logo.png",
+            //     logoAlt: "apple-logo1",
+            //     detailedInstructions: macAndroidInstructions("macOS")
+            // },
+            // {
+            //     osId: 6,
+            //     osName: "Windows",
+            //     minBrowserVersion: "65",
+            //     minOsVersion: "10 1703",
+            //     osLogo: "/images/windows_logo.png",
+            //     logoAlt: "windows-logo1",
+            //     trim: 2,
+            //     detailedInstructions: windowsInstructions
+            // },
+            // {
+            //     osId: 7,
+            //     osName: "Linux",
+            //     minBrowserVersion: "43",
+            //     minOsVersion: "Kernel 3.19 BlueZ 5.41",
+            //     behindFlag: "opera://flags/#enable-web-bluetooth",
+            //     osLogo: "/images/linux_tux_logo.png",
+            //     logoAlt: "linux-logo1",
+            //     trim: 1
+            // },
             {
                 osId: 8,
                 osName: "Android",
