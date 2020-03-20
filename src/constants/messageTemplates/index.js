@@ -1,47 +1,18 @@
-//#region InitializationTemplates
-export const magensaBt = ` "magensa-bluetooth";
+export const callBackData = `callbackData`;
+export const scanDevicesName = `scanForDevices`;
+export const scanForDevicesBrackets = `{ scanForDevices }`;
+export const space = ` `;
+export const mainCallback = `mainCallback`;
+export const dotInterface = `.deviceInterface.`;
+export const magTekDevice = `MagTekDevice`;
+export const deviceNamespace = `window.${magTekDevice}`;
 
+export const feedToFunctionComment = `
+/*
+    The above callback would be fed to the 'scanForDevices' function during initialization.
+*/
 `;
 
-export const initializeDeclaration = ` = (callbackData) => console.log(`;
-export const initializeDeclaration1 = `, callbackData);
-
-`;
-
-export const initializeDeclaration2 = ` = `;
-
-export const initializeDeclaration3 = `() => {
-    `;
-
-export const initializeDeclaration4 = `{
-        `;
-
-export const initializeDeclaration5 = `device = `;
-
-export const initializeDeclaration6 = `scanForDevices(mainCallback);
-        `;
-        
-export const initializeDeclaration7 = `device.deviceInterface.openDevice();`
-
-export const initializeComment = `
-
-        /*
-            After user selects device from pair window the 'device' variable contains the interface 
-            needed to interact with the device.
-            Store this variable wherever makes sense for your application.
-            For demonstration purposes, this playground will store device to a global namespace.
-        */
-           
-`
-
-export const initializeSuffix = `           window.MagTekDevice = device || window.MagTekDevice;
-    }
-    `;
-    
-export const initializeSuffix1 = `(err) {
-        console.error(err);
-    }
-}`;
-
-export const pairDisclaimer = "When pairing a new device using this function, the chosen device will replace the current device in the window.MagTekDevice namespace."
-//#endregion
+export const rawCommand = `rawCommand`;
+export const commandResp = `commandResp`;
+export const readDateCommand = ["0x49", "0x06", "0x00", "0x00", "0x03", "0x0D"];

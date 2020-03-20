@@ -19,8 +19,8 @@ const logoCardStyles = makeStyles(({ spacing }) => ({
         padding: spacing(1)
     },
     cardImg: {
-        minHeight: 150,
-        minWidth: 150
+        height: 150,
+        width: 150
     },
     cardMediaStyle: flexBase,
     cardBtn: {
@@ -30,9 +30,7 @@ const logoCardStyles = makeStyles(({ spacing }) => ({
 }));
 
 
-export default ({ cardContent: 
-    { title, LogoComponent, versionText, osSupport }
-}) => {
+export default ({ title, LogoComponent, versionText, osSupport, setModalDetails }) => {
 
     const { cardWrapper, cardImg, cardMediaStyle, cardBtn } = logoCardStyles();
 
@@ -61,7 +59,11 @@ export default ({ cardContent:
             <CardActions className={ cardBtn } disableSpacing>
                 <Grid container direction='column'>
                     {osSupport.map( eachOs => (
-                        <OsInfoPanel osInfo={ eachOs } key={ eachOs.osId } />
+                        <OsInfoPanel 
+                            key={ eachOs.osId } 
+                            setModalDetails={ setModalDetails }
+                            { ...eachOs } 
+                        />
                     ))}
                 </Grid>
             </CardActions>

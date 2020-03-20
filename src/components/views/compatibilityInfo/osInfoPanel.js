@@ -9,6 +9,7 @@ import {
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import OsInfoList from './osInfoList';
+import { fullWidth } from '../../../constants/styleConstants';
 
 const useOsInfoPanelStyles = makeStyles({
     expansionDetailsWrapper: {
@@ -20,16 +21,14 @@ const useOsInfoPanelStyles = makeStyles({
         alignItems: 'center'
     },
     trimProps: {
-        width: props => (!props) ? "100%" : (props === 1) ? "86%" : "66%",
-        height: props => (!props || props === 1) ? "100%" : '80%'
+        width: props => (!props) ? fullWidth.width : (props === 1) ? "86%" : "66%",
+        height: props => (!props || props === 1) ? fullWidth.width : '80%'
     },
-    osText: {
-        width: '100%'
-    }
+    osText: fullWidth
 });
 
-export default ({ osInfo }) => {
-    const { osId, osLogo, logoAlt, trim, osName } = osInfo;
+export default props => {
+    const { osId, osLogo, logoAlt, trim, osName } = props;
     const { expansionDetailsWrapper, panelTextImg, trimProps, osText } = useOsInfoPanelStyles(trim);
     
     return (
@@ -59,7 +58,7 @@ export default ({ osInfo }) => {
                 id={`${osId}-os-info-content`}
                 className={ expansionDetailsWrapper }
             >
-                <OsInfoList osDetails={ osInfo }  />
+                <OsInfoList { ...props }  />
             </ExpansionPanelDetails>
         </ExpansionPanel>
     );

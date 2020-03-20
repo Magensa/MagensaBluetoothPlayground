@@ -1,38 +1,41 @@
 import React, { memo, useCallback, useEffect } from 'react';
+
+import { useRouteMatch } from 'react-router-dom';
 import ToastMsg from '../../helperComponents/toastMsg';
+import DisplayMsg from '../../helperComponents/displayMsg';
 import RootRouter from './rootRouter';
 import LandingPageBanner from './landingPageBanner';
 
-//TODO: Remove debug Event Listener when ready to deploy.
-const debugFunc = logInfo => console.log(logInfo.detail);
+import useDisplayMessage from '../../customHooks/useDisplayMessage';
+import useSwipeHandler from '../../customHooks/useSwipeHandler';
+import useEmvHandler from '../../customHooks/useEmvHandler';
+import { sendCommandsPath } from '../../../constants';
+
 
 export default memo(_ => {
+    const { clearDisplayMessage, setDisplayMessage } = useDisplayMessage();
+    const { setSwipeData } = useSwipeHandler();
+    const { setEmvData } = useEmvHandler();
 
+    const isSendCmd = useRouteMatch({
+        path: sendCommandsPath,
+        strict: true,
+        sensitive: true
+    });
+    
     const trxCallback = (function() {
 
         const mainCallback = deviceData => {
+            if (isSendCmd)
+                console.log("Data from main callback: ", deviceData);
+            
             switch(true) {
-                case ("displayMessage" in deviceData):
-                    console.log('displayMessage Handler: ', deviceData);
-                    break;
                 case ("swipeData" in deviceData):
-                    console.log('swipeData Handler: ', deviceData);
+                    setSwipeData(deviceData.swipeData);
                     break;
                 case ("batchData" in deviceData):
-                    console.log('batchData Handler: ', deviceData);
-                    break;
                 case ("arqcData" in deviceData):
-                    console.log('arqcData Handler: ', deviceData);
-                    break;
-                case ("transactionStatus" in deviceData):
-                    if (deviceData.transactionStatus.statusCode === 8) {
-                        console.log('clear Display Message Handler: ', deviceData);
-                    }
-                    else if (deviceData.transactionStatus.statusCode === 3) {
-                        if (deviceData.transactionStatus.progressCode === 44) {
-                            console.log('clear Display Message Handler: ', deviceData);
-                        }
-                    }
+                    setEmvData(deviceData);
                     break;
                 default:
                     console.log('fell out of case/switch: ', deviceData);
@@ -40,22 +43,38 @@ export default memo(_ => {
             }
         }
         
-        mainCallback.disconnectHandler = event => void console.log('[Disconnect Event]', event);
+        mainCallback.disconnectHandler = event => void console.log("[Disconnect Event]:", event);
+
+        mainCallback.displayCallback = ({ displayMessage }) => {
+            setDisplayMessage(displayMessage);
+        }
+
+        mainCallback.transactionStatusCallback = statusObj => {
+            console.log("[Trx Status Callback]:", statusObj);
+
+            if (statusObj && statusObj.transactionStatus) {
+                //SCRA
+                if (statusObj.transactionStatus.statusCode === 8) {
+                    clearDisplayMessage();
+                }
+                else if (statusObj.transactionStatus.statusCode === 3) {
+                    if (statusObj.transactionStatus.progressCode === 44) {
+                        clearDisplayMessage();
+                    }
+                }
+            }
+        }
         
         return mainCallback;
     })();
 
     const trxHandler = useCallback(trxCallback, [trxCallback]);
 
-    useEffect(() => {
-        window.addEventListener('deviceLog', debugFunc, { passive: true});
-        return () => window.removeEventListener('deviceLog', debugFunc, { passive: true});
-    }, []);
-
     return (
         <>
             <ToastMsg />
             <LandingPageBanner />
+            <DisplayMsg />
             <RootRouter trxHandler={ trxHandler } />
         </>
     );

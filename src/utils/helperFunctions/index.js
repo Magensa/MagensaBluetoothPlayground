@@ -1,17 +1,3 @@
-import { loadToastInfo } from '../../redux/actions';
-
-const catchAndDisplay = dispatcher => err => {
-    console.log(err);
-    
-    if (err.code !== 8 || err.name !== "NotFoundError" || !err.message.includes("requestDevice()"))
-        dispatcher(
-            loadToastInfo({
-                toastType: "error",
-                toastMsg: err.message
-            })
-        )
-}
-
 const capitalizeFirstLetter = str => 
     str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -27,10 +13,33 @@ const deviceInterfaceRender = {
     isDeviceOpen: "ƒ",
 };
 
-const deviceInterfaceReplacer = (key, val) => (key !== 'deviceInterface') ? val : deviceInterfaceRender;
+const deviceInterfaceReplacer = (key, val) => 
+    (key !== 'deviceInterface') ? val : deviceInterfaceRender;
+
+const convertArrayToHexString = array =>
+    Array.from(array, byte =>
+        ('0' + (byte & 0xFF).toString(16)).slice(-2)
+    ).join('').toUpperCase();
+
+const hexStrToArray = hexStr => {
+    let returnArr = [];
+
+    for (let current = 0; current < hexStr.length; current += 2)
+        returnArr.push( 
+            parseInt( hexStr.substr(current, 2), 16 )
+        );
+
+    return returnArr;
+}
+
+const generateRandomKey = (name) => 
+    name + Math.round((Math.random()*100000)).toString()
+
 
 export {
-    catchAndDisplay,
     capitalizeFirstLetter,
-    deviceInterfaceReplacer
+    deviceInterfaceReplacer,
+    convertArrayToHexString,
+    hexStrToArray,
+    generateRandomKey
 }

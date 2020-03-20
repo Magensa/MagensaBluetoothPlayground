@@ -1,73 +1,45 @@
 import React from 'react';
-import { List, ListItem, Divider, makeStyles, Typography } from '@material-ui/core';
+import { List, Divider, makeStyles } from '@material-ui/core';
+import OsInfoListItem from './osInfoListItem';
+import DetailsClickItem from './detailsClickItem';
+import { fullWidth } from '../../../constants/styleConstants';
 
-const osInfoListStyles = makeStyles(({ spacing }) => ({
-    listWrapper: {
-        width: '100%'
-    },
-    liText: {
-        width: '100%'
-    }
-}));
+const osInfoListStyles = makeStyles({
+    listFullWidth: fullWidth
+});
 
-export default ({ osDetails: 
-    { osName, minBrowserVersion, minOsVersion, behindFlag, specialInstructions } 
-}) => {
+export default ({ osName, minBrowserVersion, minOsVersion, behindFlag, detailedInstructions, setModalDetails }) => {
 
-    const { listWrapper, liText } = osInfoListStyles();
+    const { listFullWidth } = osInfoListStyles();
 
     return (
-        <List className={ listWrapper }>
+        <List className={ listFullWidth }>
             <Divider />
-            <ListItem divider disableGutters>
-                <Typography 
-                    variant='body1' 
-                    component='p' 
-                    color='textSecondary' 
-                    align='center' 
-                    className={ liText }
-                >
-                    <em>Browser version: </em>{`>=${minBrowserVersion}`}
-                </Typography>
-            </ListItem>
-            <ListItem divider disableGutters>
-                <Typography 
-                    variant='body1' 
-                    component='p' 
-                    color='textSecondary' 
-                    align='center'
-                    className={ liText }
-                >
-                    <em>{`${osName} version: `}</em>{`>=${minOsVersion}`}
-                </Typography>
-            </ListItem>
+            <OsInfoListItem
+                listFullWidth={ listFullWidth }
+            >
+                <em>Browser version: </em>{`>=${minBrowserVersion}`}
+            </OsInfoListItem>
+           
+            <OsInfoListItem
+                listFullWidth={ listFullWidth }
+            >
+                <em>{`${osName} version: `}</em>{`>=${minOsVersion}`}
+            </OsInfoListItem>
 
             {behindFlag &&
-                <ListItem divider disableGutters>
-                    <Typography 
-                        variant='body1' 
-                        component='p' 
-                        color='textSecondary' 
-                        align='center'
-                        className={ liText }
-                    >
-                        <em>WebBluetooth is behind flag: </em>{`${behindFlag}`}
-                    </Typography>
-                </ListItem>
+                <OsInfoListItem
+                    listFullWidth={ listFullWidth }
+                >
+                    <em>WebBluetooth is behind flag: </em>{`${behindFlag}`}
+                </OsInfoListItem>
             }
 
-            {specialInstructions &&
-                <ListItem divider disableGutters>
-                    <Typography 
-                        variant='body1' 
-                        component='p' 
-                        color='textSecondary' 
-                        align='center'
-                        className={ liText }
-                    >
-                        {specialInstructions}
-                    </Typography>
-                </ListItem>
+            {detailedInstructions &&
+                <DetailsClickItem
+                    listFullWidth={ listFullWidth }
+                    clickHandler={ setModalDetails(detailedInstructions) }
+                />
             }
 
         </List>

@@ -16,3 +16,17 @@ export const preStyling = {
     wordWrap: 'break-word',
     pageBreakInside: 'avoid'
 };
+
+export const codeBlockStyles = spacing => ({
+    backgroundColor: '#455a64',
+    color: '#b3e5fc',
+    maxWidth: spacing(105)
+});
+
+export const whiteColor = { color: '#ffffff' };
+
+export const constBlue = { color: '#1e88e5'};
+
+export const blueGrey = "#607d8b";
+
+export const fullWidth = { width: '100%' };
