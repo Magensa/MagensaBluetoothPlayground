@@ -11,8 +11,6 @@ import useSwipeHandler from '../../customHooks/useSwipeHandler';
 import useEmvHandler from '../../customHooks/useEmvHandler';
 import { sendCommandsPath } from '../../../constants';
 
-//TODO: Remove debug Event Listener when ready to deploy.
-const debugFunc = logInfo => console.log(logInfo.detail);
 
 export default memo(_ => {
     const { clearDisplayMessage, setDisplayMessage } = useDisplayMessage();
@@ -71,11 +69,6 @@ export default memo(_ => {
     })();
 
     const trxHandler = useCallback(trxCallback, [trxCallback]);
-
-    useEffect(() => {
-        window.addEventListener('deviceLog', debugFunc, { passive: true});
-        return () => window.removeEventListener('deviceLog', debugFunc, { passive: true});
-    }, []);
 
     return (
         <>

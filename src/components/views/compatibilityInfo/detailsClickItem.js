@@ -1,18 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ListItem, Typography, Button } from '@material-ui/core';
+import { ListItem, Typography } from '@material-ui/core';
 
 const OsInfoListItem = ({ listFullWidth, clickHandler }) => 
-    <ListItem divider disableGutters button>
+    <ListItem 
+        divider 
+        disableGutters 
+        button
+        onClick={ clickHandler }
+    >
         <Typography 
-            variant='caption' 
             color='textSecondary' 
             align='center'
-            component='h4'
             className={ listFullWidth }
-            onClick={ clickHandler }
         >
-            Click For Specific Details
+            <strong>Click For Specific Details</strong>
         </Typography>
     </ListItem>
 

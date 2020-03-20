@@ -17,66 +17,75 @@ import { fullWidth } from '../../../constants/styleConstants';
 const instructionsModalStyles = makeStyles(({ 
     spacing, 
     shadows, 
-    typography: { h4, h5, fontWeightMedium, fontWeightBold, body1 },
+    typography: { h4, h5 },
     shape: { borderRadius },
     breakpoints: { down },
     palette: { 
         background: { paper } 
     } 
-}) => ({
-    modalWrapper: {
-        position: 'absolute',
-        minWidth: '80%',
-        minHeight: '50%',
-        maxHeight: '75%',
-        backgroundColor: paper,
-        boxShadow: shadows[5],
-        padding: spacing(1),
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        borderRadius: borderRadius,
-        margin: spacing(1),
-        overflowWrap: 'break-word',
-        overflow: 'auto',
-        [down('sm')]: {
-            minWidth: '82%',
-            transform: 'translate(-53%, -50%)',
+}) => {
+    const fifty = '50%';
+
+    return ({
+        modalWrapper: {
+            position: 'absolute',
+            minWidth: '60%',
+            minHeight: fifty,
+            maxHeight: '75%',
+            backgroundColor: paper,
+            boxShadow: shadows[5],
+            padding: spacing(1),
+            top: fifty,
+            left: fifty,
+            transform: `translate(-50%, -${fifty})`,
+            borderRadius: borderRadius,
+            margin: spacing(1),
+            overflowWrap: 'break-word',
+            overflow: 'auto',
+            [down('sm')]: {
+                minWidth: '82%',
+                transform: `translate(-53%, -${fifty})`,
+            }
+        },
+        closeButtonWrapper: {
+            textAlign: 'right',
+            ...fullWidth
+        },
+        divideWrapper: {
+            display: 'flex',
+            justifyContent: 'center',
+            '& hr': {
+                width: '85%'
+            }
+        },
+        titleStyles: {
+            margin: spacing(-1, 0, 2),
+            textAlign: 'center',
+            ...h4,
+            [down('sm')]: {
+                margin: spacing(-1, 0, 1),
+                ...h5
+            }
+        },
+        nestedList: {
+            paddingLeft: spacing(4)
+        },
+        twoPadding: {
+            padding: spacing(2)
         }
-    },
-    closeButtonWrapper: {
-        textAlign: 'right',
-        ...fullWidth
-    },
-    divideWrapper: {
-        display: 'flex',
-        justifyContent: 'center',
-        '& hr': {
-            width: '85%'
-        }
-    },
-    titleStyles: {
-        margin: spacing(2, 0, 2),
-        textAlign: 'center',
-        ...h4,
-        [down('sm')]: {
-            margin: spacing(1, 0, 1),
-            ...h5
-        }
-    },
-    listWrapper: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    nestedList: {
-        paddingLeft: spacing(4)
-    }
-}));
+    })
+});
 
 
 const InstructionsModal = ({ detailsTitle, details, closeAndClear, modalIsOpen }) => {
-    const { modalWrapper, closeButtonWrapper, divideWrapper, titleStyles, listWrapper, nestedList } = instructionsModalStyles();
+    const { 
+        modalWrapper, 
+        closeButtonWrapper, 
+        divideWrapper, 
+        titleStyles, 
+        nestedList, 
+        twoPadding 
+    } = instructionsModalStyles();
 
     return (
         <Modal
@@ -101,7 +110,7 @@ const InstructionsModal = ({ detailsTitle, details, closeAndClear, modalIsOpen }
                         <Divider />
                     </div>
 
-                   <Grid container justify='center' alignItems='center' style={{padding: '16px'}}>
+                   <Grid container justify='center' alignItems='center' className={ twoPadding }>
                         <Grid item xl={10}>
                             <List component="nav" id="pairing-details-body">
                                 {details.map((textLine, index) => (typeof( textLine ) === 'string') ?

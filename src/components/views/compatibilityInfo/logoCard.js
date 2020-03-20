@@ -59,7 +59,11 @@ export default ({ title, LogoComponent, versionText, osSupport, setModalDetails 
             <CardActions className={ cardBtn } disableSpacing>
                 <Grid container direction='column'>
                     {osSupport.map( eachOs => (
-                        <OsInfoPanel { ...eachOs } key={ eachOs.osId } setModalDetails={ setModalDetails } />
+                        <OsInfoPanel 
+                            key={ eachOs.osId } 
+                            setModalDetails={ setModalDetails }
+                            { ...eachOs } 
+                        />
                     ))}
                 </Grid>
             </CardActions>
