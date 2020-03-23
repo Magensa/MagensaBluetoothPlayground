@@ -58,13 +58,3 @@ export default memo(_ =>
         <CloseCurly />
     </PreWrapper>    
 );
-
-// const getDeviceInfo = async() => {
-//     try {
-//         const deviceInfo = await magTekDevice.deviceInterface.deviceInfo();
-//         console.log(deviceInfo);
-//     }
-//     catch(err) {
-//         console.error(err);
-//     }
-// }

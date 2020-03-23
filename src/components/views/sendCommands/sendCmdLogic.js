@@ -25,7 +25,6 @@ export default memo(({ selectedDevice }) => {
             hexStrToArray(rawCommand) : [0x49, 0x06, 0x00, 0x00, 0x03, 0x0D, 0x00, 0x00];
 
         try {
-            console.log('cmd: ', userCommand);
             const cmdResp = await selectedDevice.deviceInterface.sendCommand(userCommand);
             console.log(cmdResp);
 
