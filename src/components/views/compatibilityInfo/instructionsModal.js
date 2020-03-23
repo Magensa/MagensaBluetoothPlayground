@@ -112,7 +112,7 @@ const InstructionsModal = ({ detailsTitle, details, closeAndClear, modalIsOpen }
 
                    <Grid container justify='center' alignItems='center' className={ twoPadding }>
                         <Grid item xl={10}>
-                            <List component="nav" id="pairing-details-body">
+                            <List component="nav" id="pairing-details-body" disablePadding>
                                 {details.map((textLine, index) => (typeof( textLine ) === 'string') ?
                                     <ListItem  key={ generateRandomKey( (index.toString() + 'de') ) }>
                                         <Typography variant="body1">

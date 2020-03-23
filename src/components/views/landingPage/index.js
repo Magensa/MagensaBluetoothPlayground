@@ -22,6 +22,12 @@ export default memo(_ => {
         strict: true,
         sensitive: true
     });
+
+    const isOperations = useRouteMatch({
+        path: "/",
+        strict: true,
+        sensitive: true
+    });
     
     const trxCallback = (function() {
 
@@ -38,7 +44,6 @@ export default memo(_ => {
                     setEmvData(deviceData);
                     break;
                 default:
-                    console.log('fell out of case/switch: ', deviceData);
                     break;
             }
         }
@@ -46,6 +51,9 @@ export default memo(_ => {
         mainCallback.disconnectHandler = event => void console.log("[Disconnect Event]:", event);
 
         mainCallback.displayCallback = ({ displayMessage }) => {
+            if (isOperations)
+                console.log('Message from device: ', displayMessage);
+
             setDisplayMessage(displayMessage);
         }
 
