@@ -9,12 +9,20 @@ const importantPairNote = "NOTE: It is very important that the pair window shoul
 const unsuccessfulPairNote = `If the ${device} pairs without a pair code - this is an unsuccessful pair`;
 const oneTimeOperationNote = osName => `Once this process is completed, it does not need to be repeated, unless you unpair your ${device} from ${osName}.`;
 const discoveryMode = num => `${num}. Ensure your ${device} is in 'discovery' mode:`;
-const yourDeviceIsPaired = osName => `5. Your ${device} is now paired with your ${osName}, and you will not have to repeat this initial pair process again.`
+const yourDeviceIsPaired = osName => `5. Your ${device} is now paired with your ${osName}, and you will not have to repeat this initial pair process again.`;
+const navigateToSite = `navigate to a site the utilizes Web${bluetooth} (this Magensa ${bluetooth} Playground, is a good example).`;
+const macLinuxPairNote = `${importantPairNote} ${unsuccessfulPairNote}. If this happens, please refresh the page and try these steps again to obtain a pair prompt.`;
 
 const devicePairMode = [
     `PinPad ${device}s - tap the power button to power on the ${device}.`,
     `SCRA ${device}s - tap button to power on ${device}. Once it is on, hold down button for 2.5 seconds (light will turn blue, and flash).`,
 ];
+
+const promptPairCode = stepNum => [
+    `${stepNum}. When the pair window appears (such as when you click the 'Pair Device' button on the home page of this playground), select your ${device} from the window.`,
+    `${(stepNum + 1)}. You should be prompted for the pair code - enter the pair code ('000000' - six zeros) and click 'Connect'`
+];
+
 
 const windowsInstructions = {
     detailsTitle: `Pair ${bluetooth} ${device} with Windows, prior to utilizing Web${bluetooth}`,
@@ -33,16 +41,29 @@ const windowsInstructions = {
 const macAndroidInstructions = osName => ({
         detailsTitle: `Prompt a passcode entry upon initial ${device} pair`,
         details: [
-            `1. Open your preferred (compatible) browser and navigate to a site the utilizes Web${bluetooth} (this Magensa ${bluetooth} Playground, is a good example).`,
+            `1. Open your preferred (compatible) browser and ${navigateToSite}`,
             discoveryMode(2),
             devicePairMode,
-            `3. When the pair window appears (such as when you click the 'Pair Device' button on the home page of this playground), select your ${device} from the window.`,
-            "4. You should be prompted for the pair code - enter the pair code ('000000' - six zeros) and click 'Connect'",
+            ...promptPairCode(3),
             yourDeviceIsPaired(osName),
-            `${importantPairNote} ${unsuccessfulPairNote}. If this happens, please refresh the page and try these steps again to obtain a pair prompt.`,
+            macLinuxPairNote,
             oneTimeOperationNote(osName)
         ]
 });
+
+const linuxInstructions = {
+    detailsTitle: `Activate WebBluetooth and prompt passcode entry`,
+    details: [
+        "1. Ensure you have BlueZ version greater than 5.41 (5.43+ preferred). Check your version with command 'bluetoothd --version'",
+        "2. Open a Google Chrome browser and enable the WebBluetooth flag: chrome://flags/#enable-experimental-web-platform-features. You will be prompted to restart the browser - do so.",
+        `3. Once the browser has reloaded with flag enabled, ${navigateToSite}`,
+        discoveryMode(4),
+        devicePairMode,
+        ...promptPairCode(5),
+        macLinuxPairNote,
+        oneTimeOperationNote("Linux")
+    ]
+}
 
 const displayItems = [
     {
@@ -74,10 +95,11 @@ const displayItems = [
                 osId: 3,
                 osName: "Linux",
                 minBrowserVersion: "56",
-                minOsVersion: "Kernel 3.19 BlueZ 5.41",
+                minOsVersion: "Kernel 3.19, BlueZ >=5.41",
                 behindFlag: "chrome://flags/#enable-experimental-web-platform-features",
                 osLogo: "/images/linux_tux_logo.png",
                 logoAlt: "linux-logo",
+                detailedInstructions: linuxInstructions,
                 trim: 1
             },
             {
@@ -166,11 +188,21 @@ const displayItems = [
                 osId: 11,
                 osName: "Linux",
                 minBrowserVersion: "79",
-                minOsVersion: "Kernel 3.19 BlueZ 5.41",
+                minOsVersion: "Kernel 3.19, BlueZ >=5.41",
                 behindFlag: "edge://flags/#enable-experimental-web-platform-features",
                 osLogo: "/images/linux_tux_logo.png",
                 logoAlt: "linux-logow",
+                detailedInstructions: linuxInstructions,
                 trim: 1
+            },
+            {
+                osId: 12,
+                osName: "Android",
+                minBrowserVersion: "79",
+                minOsVersion: "6.0 Marshmallow",
+                osLogo: "/images/android_logo.png",
+                logoAlt: "android-logo",
+                detailedInstructions: macAndroidInstructions("Android")
             }
         ]
     },
@@ -181,7 +213,7 @@ const displayItems = [
         versionText: ">=6.4",
         osSupport: [
             {
-                osId: 12,
+                osId: 13,
                 osName: "Android",
                 minBrowserVersion: "6.4",
                 minOsVersion: "6.0 Marshmallow",
