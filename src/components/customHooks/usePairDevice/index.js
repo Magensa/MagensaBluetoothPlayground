@@ -13,7 +13,7 @@ export default ({ trxHandler }) => {
             try {
                 const device = (!devicePrefix) ? await scanForDevices(trxHandler) 
                     : await scanForDevices(trxHandler, devicePrefix);
-    
+                    
                 if (device) {
                     await device.deviceInterface.openDevice();
     

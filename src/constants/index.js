@@ -5,7 +5,7 @@ const sendCommandsPath = "/send-commands";
 const additionalOps = "/additional-operations";
 //#endregion
 
-const githubLink = "https://github.com/Magensa";
+const githubLink = "https://github.com/Magensa/magensa-bluetooth";
 const readDateTimeCmdLink = "https://www.magtek.com/content/documentationfiles/d998200226.pdf#page=121";
 
 const deviceImages = [

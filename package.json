@@ -1,6 +1,6 @@
 {
   "name": "magensa-bluetooth-playground",
-  "version": "0.1.0",
+  "version": "1.0.6",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.2",
@@ -9,7 +9,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "magensa-bluetooth": "file:../../_Modules/magensa-bluetooth/",
+    "magensa-bluetooth": "^1.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",

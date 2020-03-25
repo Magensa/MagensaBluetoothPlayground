@@ -5,35 +5,30 @@ import {
     Typography,
     makeStyles
 } from '@material-ui/core';
-import { blueGrey } from '../../../constants/styleConstants';
+import { blueGrey, whiteColor } from '../../../constants/styleConstants';
 
 
-const deviceConnectionStyles = makeStyles(({ spacing, breakpoints }) => {
-    let blueGreyBorder = "1px solid #455a64";
-    let white = "white";
-
-    return {
-        chipStyles: {
-            flex: '0 1 auto',
-            minWidth: spacing(50),
+const deviceConnectionStyles = makeStyles(({ spacing, breakpoints }) => ({
+    chipStyles: {
+        flex: '0 1 auto',
+        minWidth: spacing(50),
+        background: blueGrey,
+        ...whiteColor,
+        '&:hover': {
+            background: "#90a4ae",
+            border: "1px solid #455a64",
+            ...whiteColor
+        },
+        '&:focus': {
             background: blueGrey,
-            color: white,
-            '&:hover': {
-                background: "#90a4ae",
-                border: blueGreyBorder,
-                color: white
-            },
-            '&:focus': {
-                background: blueGrey,
-                border: blueGreyBorder,
-                color: white
-            },
-            [breakpoints.down('sm')]: {
-                minWidth: spacing(18)
-            }
+            border: "1px solid #455a64",
+            ...whiteColor
+        },
+        [breakpoints.down('sm')]: {
+            minWidth: spacing(18)
         }
     }
-});
+}));
 
 export default _ => {
     const selectedDevice = useSelector(state => state.selectedDevice);
