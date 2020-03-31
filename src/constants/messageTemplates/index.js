@@ -1,6 +1,6 @@
 export const callBackData = `callbackData`;
 export const scanDevicesName = `scanForDevices`;
-export const scanForDevicesBrackets = `{ scanForDevices }`;
+export const scanForDevicesBrackets = `{ ${scanDevicesName} }`;
 export const space = ` `;
 export const mainCallback = `mainCallback`;
 export const dotInterface = `.deviceInterface.`;
@@ -9,7 +9,7 @@ export const deviceNamespace = `window.${magTekDevice}`;
 
 export const feedToFunctionComment = `
 /*
-    The above callback would be fed to the 'scanForDevices' function during initialization.
+    The above callback would be fed to the '${scanDevicesName}' function during initialization.
 */
 `;
 

@@ -42,10 +42,16 @@ export default ({ trxHandler }) => {
                     <CompatabilityInfo />
                 </Route>
                 <Route path={ sendCommandsPath }>
-                    <SendCommands trxHandler={ trxHandler } selectedDevice={ selectedDevice } />
+                    <SendCommands 
+                        trxHandler={ trxHandler } 
+                        selectedDevice={ selectedDevice } 
+                    />
                 </Route>
                 <Route path={ additionalOps }>
-                    <AdditionalCommands trxHandler={ trxHandler } selectedDevice={ selectedDevice } />
+                    <AdditionalCommands 
+                        trxHandler={ trxHandler } 
+                        selectedDevice={ selectedDevice } 
+                    />
                 </Route>
             </Switch>
         </Grid>

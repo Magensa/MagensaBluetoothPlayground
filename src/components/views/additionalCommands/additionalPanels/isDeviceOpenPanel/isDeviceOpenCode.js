@@ -2,15 +2,13 @@ import React, { memo } from 'react';
 import PreWrapper from '../../../../sharedComponents/preWrapper';
 import { 
     FuncYellow,
-    KeywordPurple, 
     ConstBlue,
     Equals,
     OpenCurly,
-    CloseCurly,
     Tab,
     NewLine,
     ConsoleLog,
-    CatchError,
+    CloseCurly,
     ParenParam,
     FuncDeclare
 } from '../../../../sharedComponents/styledCodeSpans';
@@ -28,32 +26,21 @@ export default memo(_ =>
         <FuncDeclare 
             funcName={getDeviceInfo}
             paramName={false}
-            isAsync
         />
         <OpenCurly begin />
         <NewLine />
         <Tab />
-        <KeywordPurple end>try</KeywordPurple>
-        <OpenCurly newLine />
-        <Tab />
         <ConstBlue />
         {`${deviceInfo} `}
         <Equals end />
-        <KeywordPurple end>await</KeywordPurple>
         {`${magTekDevice}${dotInterface}`}
         <FuncYellow>{deviceInfo}</FuncYellow>
         <ParenParam semicolon />
         <NewLine />
-        <Tab repetitions={2} />
+        <Tab />
         <ConsoleLog 
             logVar={deviceInfo}
         />
-        <NewLine />
-        <Tab />
-        <CloseCurly />
-        <NewLine />
-        <Tab />
-        <CatchError />
         <NewLine />
         <CloseCurly />
     </PreWrapper>    

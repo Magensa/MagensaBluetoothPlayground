@@ -1,20 +1,20 @@
-#Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Magensa Bluetooth Playground
+Welcome to [Magensa Bluetooth Playground](https://btplayground.magensa.dev).  
 
-#Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+This web app utilizes the library [```magensa-bluetooth```](https://www.npmjs.com/package/magensa-bluetooth).  
+This web app was designed to exhibit the capabilities of the ```magensa-bluetooth``` library, and to serve as an example application on how to consume the library as well.  
 
-#Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+In order to utilize anything ```magensa-bluetooth```, you will first need a compatible MagTek® device.  
+Currently, the devices compatible are:  
+- [eDynamo](https://www.magtek.com/product/edynamo)
+- [tDynamo](https://www.magtek.com/product/tdynamo)
+- [DynaPro Mini](https://www.magtek.com/product/dynapro-mini)  
+ 
+If you would like to purchase a device, please head over to the [MagTek Store](https://shop.magtek.com/).  
 
-#Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+To use your device in the playground, you can head over to the production deployment [here](https://btplayground.magensa.dev), or you can fork/clone this repo and run it locally yourself.  
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://www.visualstudio.com/en-us/docs/git/create-a-readme). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+For complete API information, please see the ```magensa-bluetooth``` repo [here](https://github.com/Magensa/magensa-bluetooth).  
+
+MagTek® is a registered trademark of MagTek, Inc.
+Magensa™ is a trademark of MagTek, Inc.

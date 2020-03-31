@@ -6,11 +6,10 @@ import {
     ConstBlue,
     Equals,
     OpenCurly,
-    CloseCurly,
     Tab,
     NewLine,
     ConsoleLog,
-    CatchError,
+    FormatCatchAndEnd,
     ParenParam,
     FuncDeclare
 } from '../../../../sharedComponents/styledCodeSpans';
@@ -48,13 +47,6 @@ export default memo(_ =>
         <ConsoleLog 
             logVar={deviceInfo}
         />
-        <NewLine />
-        <Tab />
-        <CloseCurly />
-        <NewLine />
-        <Tab />
-        <CatchError />
-        <NewLine />
-        <CloseCurly />
+        <FormatCatchAndEnd />
     </PreWrapper>    
 );

@@ -8,12 +8,11 @@ import {
     OpenParen,
     CloseParen,
     OpenCurly,
-    CloseCurly,
     Tab,
     Num,
     NewLine,
     ConsoleLog,
-    CatchError,
+    FormatCatchAndEnd,
     ParenParam,
     FuncDeclare,
     Comma
@@ -71,13 +70,6 @@ export default memo(_ =>
         <ConsoleLog 
             logVar={commandResp}
         />
-        <NewLine />
-        <Tab />
-        <CloseCurly />
-        <NewLine />
-        <Tab />
-        <CatchError />
-        <NewLine />
-        <CloseCurly />
+        <FormatCatchAndEnd />
     </PreWrapper>    
 );

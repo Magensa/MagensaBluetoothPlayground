@@ -14,7 +14,7 @@ import {
     Tab,
     NewLine,
     ConsoleLog,
-    CatchError,
+    FormatCatchAndEnd,
     ParenParam,
     FuncDeclare
 } from '../../../../sharedComponents/styledCodeSpans';
@@ -71,13 +71,6 @@ export default memo(_ =>
             logString={`Request Swipe Response: `}
             logVar={`swipeResp`}
         />
-        <NewLine />
-        <Tab />
-        <CloseCurly />
-        <NewLine />
-        <Tab />
-        <CatchError />
-        <NewLine />
-        <CloseCurly />
+        <FormatCatchAndEnd />
     </PreWrapper>    
 );

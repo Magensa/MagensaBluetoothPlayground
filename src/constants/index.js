@@ -1,4 +1,5 @@
 import { displayItems } from './browserInfo';
+
 //#region routeNames
 const compatabilityPath = "/compatibility-info";
 const sendCommandsPath = "/send-commands";

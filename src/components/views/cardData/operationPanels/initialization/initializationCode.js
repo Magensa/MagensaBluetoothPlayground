@@ -13,7 +13,7 @@ import {
     Tab,
     NewLine,
     ConsoleLog,
-    CatchError,
+    FormatCatchAndEnd,
     ParenParam,
     SemiColon,
     FuncDeclare
@@ -83,12 +83,5 @@ export default memo(_ =>
         <Equals end />
         {assingNamespace}
         <SemiColon />
-        <NewLine />
-        <Tab />
-        <CloseCurly />
-        <NewLine />
-        <Tab />
-        <CatchError />
-        <NewLine />
-        <CloseCurly />
+        <FormatCatchAndEnd />
     </PreWrapper>);

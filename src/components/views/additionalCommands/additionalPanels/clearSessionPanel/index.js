@@ -23,8 +23,6 @@ export default ({ selectedDevice }) => {
                 JSON.stringify(openDeviceResp, null, 4) 
                 : "Successfully executed 'clearSession' on a SCRA Device";
 
-            console.log(resp);
-
             if (clearSessionIsMounted) {
                 setClearSessionResp(resp);
 

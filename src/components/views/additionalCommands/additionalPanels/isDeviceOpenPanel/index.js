@@ -40,7 +40,7 @@ export default ({ selectedDevice }) => {
             
             <Typography variant='subtitle2' color="textSecondary">
                 This is the only synchronous function in the <ColoredCode>deviceInterface.</ColoredCode>The output will be a boolean denoting if the device is open.
-                Below you will find a simple implementation of how to invoke this function.
+                Below you will find a simple implementation of how to utilize this function.
             </Typography>
 
         </OperationPanel>

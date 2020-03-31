@@ -1,10 +1,7 @@
 import React from 'react';
 
 export default ({
-    svgViewBox = "-12 -15 2700 2700",
-    svgStyle = {},
-    svgWidth = "250px",
-    svgHeight = "250px"
+    svgViewBox = "-12 -15 2700 2700"
 }) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox={ svgViewBox }>
         <path d="M1037.57 0h612.86C2223.46 0 2688 464.536 2688 1037.57v612.86C2688 2223.46 2223.46 2688 1650.43 2688h-612.86C464.536 2688 0 2223.46 0 1650.43v-612.86C0 464.536 464.536 0 1037.57 0z" fill="#7882FF"/>

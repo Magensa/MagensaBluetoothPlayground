@@ -62,13 +62,13 @@ export default memo(_ => {
 
             if (statusObj && statusObj.transactionStatus) {
                 //SCRA
-                if (statusObj.transactionStatus.statusCode === 8) {
+                const { transactionStatus } = statusObj;
+
+                if (transactionStatus.statusCode === 8) {
                     clearDisplayMessage();
                 }
-                else if (statusObj.transactionStatus.statusCode === 3) {
-                    if (statusObj.transactionStatus.progressCode === 44) {
-                        clearDisplayMessage();
-                    }
+                else if (transactionStatus.statusCode === 3 && transactionStatus.progressCode === 44) {
+                    clearDisplayMessage();
                 }
             }
         }

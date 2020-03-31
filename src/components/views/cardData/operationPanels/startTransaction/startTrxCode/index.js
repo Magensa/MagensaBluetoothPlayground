@@ -17,7 +17,7 @@ import {
     NewLine,
     ConsoleLog,
     ParenParam,
-    CatchError,
+    FormatCatchAndEnd,
     SemiColon,
     FuncDeclare,
     Colon
@@ -166,13 +166,6 @@ export default memo(_ =>
             logString="Start Transaction Response: "
             logVar={startTransactionResp}
         />
-        <NewLine />
-        <Tab />
-        <CloseCurly />
-        <NewLine />
-        <Tab />
-        <CatchError />
-        <NewLine />
-        <CloseCurly />
+        <FormatCatchAndEnd />
     </PreWrapper>
 );

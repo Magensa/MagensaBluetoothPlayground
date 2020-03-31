@@ -5,7 +5,6 @@ import { displayItems } from '../../../constants';
 import InstructionsModal from './instructionsModal';
 
 
-
 export default _ => {
     const [ pairingDetails, setPairingDetails ] = useState(() => null);
     const [ modalIsOpen, setModalIsOpen ] = useState(() => false);

@@ -13,12 +13,12 @@ import { Tab } from './tab';
 import { NewLine } from './newLine';
 import { ConsoleLog } from './consoleLog';
 import { ParenParam } from './parenParam';
-import { CatchError } from './catchError';
 import { SemiColon } from './semiColon';
 import { FuncDeclare } from './funcDeclare';
 import { Colon } from './colon';
 import { Comma } from './comma';
 import { Num } from './number';
+import { FormatCatchAndEnd } from './formatCatchAndEnd';
 
 
 export {
@@ -37,10 +37,10 @@ export {
     NewLine,
     ConsoleLog,
     ParenParam,
-    CatchError,
     SemiColon,
     FuncDeclare,
     Colon,
     Comma,
-    Num
+    Num,
+    FormatCatchAndEnd
 }

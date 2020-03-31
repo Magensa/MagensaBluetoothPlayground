@@ -7,14 +7,13 @@ import {
     ConstBlue,
     Equals,
     OpenCurly,
-    CloseCurly,
     Tab,
     NewLine,
     ConsoleLog,
-    CatchError,
     ParenParam,
     FuncDeclare,
-    SemiColon
+    SemiColon,
+    FormatCatchAndEnd
 } from '../../../../sharedComponents/styledCodeSpans';
 
 import {
@@ -47,13 +46,6 @@ export default memo(({ definitionName }) =>
         <NewLine />
         <Tab repetitions={2} />
         <ConsoleLog logVar={`${definitionName}Resp`} />
-        <NewLine />
-        <Tab />
-        <CloseCurly />
-        <NewLine />
-        <Tab />
-        <CatchError />
-        <NewLine />
-        <CloseCurly />
+        <FormatCatchAndEnd />
     </PreWrapper>
 );

@@ -29,10 +29,4 @@ export default ({ trxHandler, selectedDevice }) => (selectedDevice) ?
     </CardDataLayout>
     :
     <NoPairedDevice trxHandler={ trxHandler } />
-
-
-    /*
-        clearSession
-        deviceInfo
-        isDeviceOpen
-    */
+    

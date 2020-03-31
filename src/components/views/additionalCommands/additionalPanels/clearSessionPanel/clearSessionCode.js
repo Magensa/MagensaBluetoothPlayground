@@ -9,11 +9,10 @@ import {
     OpenParen,
     CloseParen,
     OpenCurly,
-    CloseCurly,
     Tab,
     NewLine,
     ConsoleLog,
-    CatchError,
+    FormatCatchAndEnd,
     ParenParam,
     FuncDeclare
 } from '../../../../sharedComponents/styledCodeSpans';
@@ -62,13 +61,6 @@ export default memo(_ =>
                 </>
             }
         />
-        <NewLine />
-        <Tab />
-        <CloseCurly />
-        <NewLine />
-        <Tab />
-        <CatchError />
-        <NewLine />
-        <CloseCurly />
+        <FormatCatchAndEnd />
     </PreWrapper>    
 );

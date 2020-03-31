@@ -33,7 +33,7 @@ const hexStrToArray = hexStr => {
 }
 
 const generateRandomKey = (name) => 
-    name + Math.round((Math.random()*100000)).toString()
+    name + Math.round( (Math.random() * 100000) ).toString()
 
 
 export {
