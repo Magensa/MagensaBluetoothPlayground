@@ -18,3 +18,4 @@ For complete API information, please see the ```magensa-bluetooth``` repo [here]
 
 MagTek® is a registered trademark of MagTek, Inc.  
 Magensa™ is a trademark of MagTek, Inc.
+
