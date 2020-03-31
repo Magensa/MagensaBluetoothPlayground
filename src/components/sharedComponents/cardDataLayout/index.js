@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     makeStyles,
     Grid,
@@ -62,7 +63,7 @@ const cardDataLayoutStyles = makeStyles(({ spacing, breakpoints: { only } }) => 
 });
 
 
-export default ({ children, trxHandler }) => {
+const CardDataLayout = ({ children, trxHandler }) => {
     const { operationsWrapper, cardDataBtnWrapper, bottomMargin } = cardDataLayoutStyles();
 
     return (
@@ -85,3 +86,10 @@ export default ({ children, trxHandler }) => {
         </>
     );
 }
+
+CardDataLayout.propTypes = {
+    trxHandler: PropTypes.func.isRequired,
+    children: PropTypes.node.isRequired
+}
+
+export default CardDataLayout;

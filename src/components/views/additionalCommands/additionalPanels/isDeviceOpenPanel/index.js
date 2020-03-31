@@ -15,8 +15,6 @@ export default ({ selectedDevice }) => {
         const isDeviceOpenResp = selectedDevice.deviceInterface.isDeviceOpen();
         let resp = isDeviceOpenResp.toString();
 
-        console.log(resp);
-
         setIsOpenResp(resp);
         setIsLoading(false);
     }

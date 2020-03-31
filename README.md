@@ -12,9 +12,9 @@ Currently, the devices compatible are:
  
 If you would like to purchase a device, please head over to the [MagTek Store](https://shop.magtek.com/).  
 
-To use your device in the playground, you can head over to the production deployment [here](https://btplayground.magensa.dev), or you can fork/clone this repo and run it locally yourself.  
+To use your device in the playground, you can head over to the production deployment [here](https://btplayground.magensa.dev), or you can fork this repo and run it locally yourself.  
 
 For complete API information, please see the ```magensa-bluetooth``` repo [here](https://github.com/Magensa/magensa-bluetooth).  
 
-MagTek® is a registered trademark of MagTek, Inc.
+MagTek® is a registered trademark of MagTek, Inc.  
 Magensa™ is a trademark of MagTek, Inc.

@@ -20,8 +20,6 @@ export default ({ selectedDevice }) => {
             const deviceInfoResp = await selectedDevice.deviceInterface.deviceInfo();
             let resp = JSON.stringify(deviceInfoResp, null, 4);
 
-            console.log(resp);
-
             if (deviceInfoIsMounted) {
                 setDeviceInfoResp(resp);
                 setIsLoading(false);

@@ -76,6 +76,9 @@ export default _ => {
 
     return (selectedDevice) ? 
         <Chip 
+            onClick={ toggleConnection }
+            disabled={ changingDeviceState }
+            className={ chipStyles }
             label={
                 <Typography variant='body2' color='inherit'>
                     { (changingDeviceState) ? `${(isOpen ? 'Disconnecting...' : 'Connecting...')}` : 
@@ -83,9 +86,6 @@ export default _ => {
                     }
                 </Typography>
             }
-            onClick={ toggleConnection }
-            disabled={ changingDeviceState }
-            className={ chipStyles }
         />
         : null
 }

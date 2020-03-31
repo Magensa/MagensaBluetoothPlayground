@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { 
     Paper, 
     makeStyles, 
@@ -54,7 +55,7 @@ const noPairedDeviceStyles = makeStyles(({ spacing, breakpoints: { only, down } 
     }
 }));
 
-export default ({ trxHandler }) => {
+const NoPairedDevice = ({ trxHandler }) => {
     const { noDeviceWrapper, noDevicePaper, supportedBanner, dividerStyles } = noPairedDeviceStyles();
 
     return (
@@ -112,3 +113,8 @@ export default ({ trxHandler }) => {
     );
 }
 
+NoPairedDevice.propTypes = {
+    trxHandler: PropTypes.func.isRequired
+}
+
+export default NoPairedDevice;

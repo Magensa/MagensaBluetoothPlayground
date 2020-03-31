@@ -146,6 +146,7 @@ const displayItems = [
             //     behindFlag: "opera://flags/#enable-web-bluetooth",
             //     osLogo: "/images/linux_tux_logo.png",
             //     logoAlt: "linux-logo1",
+            //     detailedInstructions: linuxInstructions,
             //     trim: 1
             // },
             {

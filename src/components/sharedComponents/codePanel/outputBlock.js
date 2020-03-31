@@ -5,6 +5,7 @@ import {
     makeStyles, 
     useTheme 
 } from '@material-ui/core';
+import PropTypes from 'prop-types';
 import LoadingWidget from '../loadingWidget';
 import OutputPaper from '../outputPaper';
 import { preStyling, fullWidth } from '../../../constants/styleConstants';
@@ -38,7 +39,7 @@ const outputStyles = makeStyles({
     }
 });
 
-export default ({ outputVal, resultFullWidth, isLoading, loadingText }) => {
+const OutputBlock = ({ outputVal, resultFullWidth, isLoading, loadingText }) => {
     const { spacing, breakpoints: { down } } = useTheme();
     const { loadingStyles, outputPre, outputPaper, outputBlock } = outputStyles({
         resultFullWidth,
@@ -93,3 +94,14 @@ export default ({ outputVal, resultFullWidth, isLoading, loadingText }) => {
         </>
     );
 }
+
+
+OutputBlock.propTypes = {
+    outputVal: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired, 
+    resultFullWidth: PropTypes.bool, 
+    isLoading: PropTypes.bool.isRequired, 
+    loadingText: PropTypes.string.isRequired
+}
+
+
+export default OutputBlock;

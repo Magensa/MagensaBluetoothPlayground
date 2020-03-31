@@ -26,7 +26,7 @@ export default _ => {
     return (toastInfo) ? (
         <Snackbar 
             open={ displayAlert } 
-            autoHideDuration={4000} 
+            autoHideDuration={ 4000 } 
             onClose={ closeAlert }
             anchorOrigin={{ 
                 vertical: "top",

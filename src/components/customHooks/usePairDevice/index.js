@@ -27,11 +27,11 @@ export default ({ trxHandler }) => {
                     catchDisplayToUser( unSuccessfulPair );
             }
             catch(err) {
-                catchDisplayToUser(err);
+                catchDisplayToUser( err );
             }
         }
         else 
-            catchDisplayToUser(notCompatibleBrowser);
+            catchDisplayToUser( notCompatibleBrowser );
     }
 
     return pairDevice;
