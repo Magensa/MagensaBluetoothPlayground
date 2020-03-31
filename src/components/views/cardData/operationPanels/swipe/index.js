@@ -40,7 +40,10 @@ export default _ => {
         try {
             const swipeResp = await selectedDevice.deviceInterface.requestCardSwipe();
             const stringResp = JSON.stringify(swipeResp, null, 4);
-            setSwipeResult([ stringResp ]);
+            
+            setSwipeResult(prevState => (!prevState) ? 
+                [stringResp] : [stringResp, prevState[1]]
+            );
 
             if (swipeResp.code === 0 && swipeIsMounted) {
                 setLoadingText("Please swipe your card");
@@ -68,8 +71,15 @@ export default _ => {
         if (awaitingSwipeData && ("swipeData" in cardData)) {
             if (swipeIsMounted) {
                 setSwipeResult(prevState => {
-                    prevState[1] = JSON.stringify(cardData.swipeData, null, 4);
-                    return prevState;
+                    if (!prevState) {
+                        let newState = [];
+                        newState[1] = JSON.stringify(cardData.swipeData, null, 4);
+                        return newState;
+                    }
+                    else {
+                        prevState[1] = JSON.stringify(cardData.swipeData, null, 4);
+                        return prevState;
+                    }
                 });
     
                 cleanUp();

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { List, Divider, makeStyles } from '@material-ui/core';
 import OsInfoListItem from './osInfoListItem';
 import DetailsClickItem from './detailsClickItem';
@@ -8,7 +9,7 @@ const osInfoListStyles = makeStyles({
     listFullWidth: fullWidth
 });
 
-export default ({ osName, minBrowserVersion, minOsVersion, behindFlag, detailedInstructions, setModalDetails }) => {
+const OsInfoList = ({ osName, minBrowserVersion, minOsVersion, behindFlag, detailedInstructions, setModalDetails }) => {
 
     const { listFullWidth } = osInfoListStyles();
 
@@ -45,3 +46,14 @@ export default ({ osName, minBrowserVersion, minOsVersion, behindFlag, detailedI
         </List>
     );
 }
+
+OsInfoList.propTypes = {
+    osName: PropTypes.string.isRequired, 
+    minBrowserVersion: PropTypes.string.isRequired, 
+    minOsVersion: PropTypes.string.isRequired, 
+    behindFlag: PropTypes.string, 
+    detailedInstructions: PropTypes.object.isRequired, 
+    setModalDetails: PropTypes.func.isRequired
+}
+
+export default OsInfoList;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     Grid,
     Modal,
@@ -140,5 +141,11 @@ const InstructionsModal = ({ detailsTitle, details, closeAndClear, modalIsOpen }
     );
 }
 
+InstructionsModal.propTypes = { 
+    detailsTitle: PropTypes.string.isRequired, 
+    details: PropTypes.array.isRequired, 
+    closeAndClear: PropTypes.func.isRequired, 
+    modalIsOpen: PropTypes.bool.isRequired 
+}
 
 export default InstructionsModal;

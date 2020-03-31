@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     Typography,
     Grid,
@@ -38,7 +39,7 @@ const sendCmdStyles = makeStyles(({ spacing, breakpoints: { down } }) => ({
     }
 }));
 
-export default ({ sendDeviceCommand, children, ...outputProps }) => {
+const SendCmdDisplay = ({ sendDeviceCommand, children, ...outputProps }) => {
     const { codeBlock, wrapperFullWidth, inputWrapper, loadingStyles, outputBlock } = sendCmdStyles();
 
     return (
@@ -101,3 +102,10 @@ export default ({ sendDeviceCommand, children, ...outputProps }) => {
         </>
     );
 }
+
+SendCmdDisplay.propTypes = {
+    sendDeviceCommand: PropTypes.func.isRequired, 
+    children: PropTypes.node.isRequired
+}
+
+export default SendCmdDisplay;

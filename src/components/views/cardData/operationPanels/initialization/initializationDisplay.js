@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-
+import PropTypes from 'prop-types';
 import InitializationCode from './initializationCode';
 import {
     OperationPanel,
@@ -9,7 +9,7 @@ import {
 } from '../../../../sharedComponents';
 import { pairDisclaimer } from '../../../../../constants/messageTemplates/initializationTemplates';
 
-export default ({ pairDevice, isLoading, outputResult }) => (
+const InitializationDisplay = ({ pairDevice, isLoading, outputResult }) => (
     <OperationPanel 
         providedFunc={ pairDevice } 
         btnText="pairDevice();" 
@@ -44,3 +44,12 @@ export default ({ pairDevice, isLoading, outputResult }) => (
         <LinkToApi />
     </OperationPanel>
 );
+
+
+InitializationDisplay.propTypes = {
+    pairDevice: PropTypes.func.isRequired, 
+    isLoading: PropTypes.bool.isRequired, 
+    outputResult: PropTypes.string.isRequired
+}
+
+export default InitializationDisplay;

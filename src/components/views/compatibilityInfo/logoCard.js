@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     Card,
     CardActionArea,
@@ -30,7 +31,7 @@ const logoCardStyles = makeStyles(({ spacing }) => ({
 }));
 
 
-export default ({ title, LogoComponent, versionText, osSupport, setModalDetails }) => {
+const LogoCard = ({ title, LogoComponent, versionText, osSupport, setModalDetails }) => {
 
     const { cardWrapper, cardImg, cardMediaStyle, cardBtn } = logoCardStyles();
 
@@ -70,3 +71,13 @@ export default ({ title, LogoComponent, versionText, osSupport, setModalDetails 
         </Card>
     );
 }
+
+LogoCard.propTypes = {
+    title: PropTypes.string.isRequired, 
+    LogoComponent: PropTypes.func.isRequired, 
+    versionText: PropTypes.string.isRequired, 
+    osSupport: PropTypes.array.isRequired, 
+    setModalDetails: PropTypes.func.isRequired
+}
+
+export default LogoCard;

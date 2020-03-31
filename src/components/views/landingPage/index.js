@@ -32,6 +32,7 @@ export default memo(_ => {
     const trxCallback = (function() {
 
         const mainCallback = deviceData => {
+            console.log('TODO: ', deviceData);
             if (isSendCmd)
                 console.log("Data from main callback: ", deviceData);
             
@@ -64,12 +65,12 @@ export default memo(_ => {
                 //SCRA
                 const { transactionStatus } = statusObj;
 
-                if (transactionStatus.statusCode === 8) {
+                if (transactionStatus.statusCode === 8)
                     clearDisplayMessage();
-                }
-                else if (transactionStatus.statusCode === 3 && transactionStatus.progressCode === 44) {
+                else if (transactionStatus.statusCode === 3 && transactionStatus.progressCode === 44)
                     clearDisplayMessage();
-                }
+                else if (transactionStatus.progressCode === 44)
+                    clearDisplayMessage();
             }
         }
         

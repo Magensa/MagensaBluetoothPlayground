@@ -38,20 +38,21 @@ export default _ => {
 
     const requestEmv = async() => {
         setLoadingDisplay("Requesting EMV transaction from device");
+        setEmvResult("");
         clearEmvData();
         setIsLoading(true);
 
         try {
+            setAwaitingEmvData(true);
             const emvResp = await selectedDevice.deviceInterface.startTransaction(startTransactionOptions);
-            
+            console.log('EMV RESP', emvResp);
             setLoadingDisplay("Please follow device prompts");
             const emvJsonResp = JSON.stringify(emvResp, null, 4);
-            setEmvResult([emvJsonResp]);
+            setEmvResult(prevState => (!prevState) ? 
+                [emvJsonResp] : [emvJsonResp, prevState[1]]
+            );
 
-            if (emvResp.code === 0 && emvIsMounted) {
-                setAwaitingEmvData(true);
-            }
-            else {
+            if (emvResp.code !== 0 && emvIsMounted) {
                 emvCleanUp();
                 catchAndDisplay(emvJsonResp);
             }
@@ -73,9 +74,17 @@ export default _ => {
             });
 
             if (Object.keys(returnObj).length && emvIsMounted) {
+
                 setEmvResult(prevState => {
-                    prevState[1] = JSON.stringify(returnObj, null, 4);
-                    return prevState;
+                    if (!prevState) {
+                        let newState = [];
+                        newState[1] = JSON.stringify(returnObj, null, 4);
+                        return newState;
+                    }
+                    else {
+                        prevState[1] = JSON.stringify(returnObj, null, 4);
+                        return prevState;
+                    }
                 });
 
                 if (("batchData" in returnObj) && emvIsMounted) {

@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { LoadingWidget, OutputPaper } from '../../sharedComponents';
 import { hexStrToArray } from '../../../utils/helperFunctions';
 
 
-export default ({ 
+const SendCmdOutput = ({ 
     isLoading, 
     commandResp, 
     rawCommand, 
@@ -27,3 +28,13 @@ export default ({
             />
         }
     </Grid>
+
+SendCmdOutput.propTypes = {
+    isLoading: PropTypes.bool.isRequired, 
+    commandResp: PropTypes.string.isRequired, 
+    rawCommand: PropTypes.string.isRequired, 
+    loadingStyles: PropTypes.string.isRequired, 
+    outputBlock: PropTypes.string.isRequired 
+}
+
+export default SendCmdOutput;
