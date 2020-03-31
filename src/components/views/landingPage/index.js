@@ -32,7 +32,6 @@ export default memo(_ => {
     const trxCallback = (function() {
 
         const mainCallback = deviceData => {
-            console.log('TODO: ', deviceData);
             if (isSendCmd)
                 console.log("Data from main callback: ", deviceData);
             

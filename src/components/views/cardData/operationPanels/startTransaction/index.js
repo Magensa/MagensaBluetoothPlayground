@@ -45,7 +45,7 @@ export default _ => {
         try {
             setAwaitingEmvData(true);
             const emvResp = await selectedDevice.deviceInterface.startTransaction(startTransactionOptions);
-            console.log('EMV RESP', emvResp);
+            
             setLoadingDisplay("Please follow device prompts");
             const emvJsonResp = JSON.stringify(emvResp, null, 4);
             setEmvResult(prevState => (!prevState) ? 
