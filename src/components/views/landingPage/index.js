@@ -71,9 +71,9 @@ export default memo(_ => {
 
                 if (transactionStatus.statusCode === 8)
                     clearDisplayMessage();
-                else if (transactionStatus.statusCode === 3 && transactionStatus.progressCode === 44)
-                    clearDisplayMessage();
                 else if (transactionStatus.progressCode === 44)
+                    clearDisplayMessage();
+                else if (transactionStatus.progressCode === 60)
                     clearDisplayMessage();
             }
         }
