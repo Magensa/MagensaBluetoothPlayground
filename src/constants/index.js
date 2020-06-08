@@ -24,6 +24,11 @@ const deviceImages = [
         deviceName: "DynaPro Mini",
         imgPath: "./images/DynaProMini_profile.jpg",
         prefix: "DPMini"
+    },
+    {
+        deviceName: "DynaPro Go",
+        imgPath: "./images/dynapro-go.jpg",
+        prefix: "DPG"
     }
 ]
 
