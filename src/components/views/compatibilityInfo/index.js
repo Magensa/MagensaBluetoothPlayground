@@ -51,7 +51,7 @@ export default _ => {
                             align='center'
                             className={ topSpace }
                         >
-                            All MagTek® devices use pairing code: <code>000000</code>
+                            All MagTek® devices' default pairing code is: <code>000000</code>
                         </Typography>
                     </Grid>
                 </Grid>

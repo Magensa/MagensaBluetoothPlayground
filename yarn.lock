@@ -6648,10 +6648,10 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
-magensa-bluetooth@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/magensa-bluetooth/-/magensa-bluetooth-1.0.2.tgz#9dd3341565b4036cf55eabd81d0c80d7c8d779ba"
-  integrity sha512-2hMkvPR/C9Pmnwqd+/mQnYlSqQCZ7SjKXYcvoq9K5JMZ4OzRfPTffLGuDOohQjNsKS4s1bdQQK+CO36X7KJdCA==
+magensa-bluetooth@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/magensa-bluetooth/-/magensa-bluetooth-1.0.3.tgz#ec80702aeeaed9935766a48a99d91d8fb8b3d933"
+  integrity sha512-unZH/sIkBtWn1Uklab65DlUwiVZ22P+rJSyDqJKk3sQNe1eoFOVQeaaXTdW3SHgfuMZvrU2oKw31oanB9PvEqw==
 
 make-dir@^2.0.0, make-dir@^2.1.0:
   version "2.1.0"

@@ -9,6 +9,7 @@ import LandingPageBanner from './landingPageBanner';
 import useDisplayMessage from '../../customHooks/useDisplayMessage';
 import useSwipeHandler from '../../customHooks/useSwipeHandler';
 import useEmvHandler from '../../customHooks/useEmvHandler';
+import useConnectionFlag from '../../customHooks/useConnectionFlag';
 import { sendCommandsPath } from '../../../constants';
 
 
@@ -16,6 +17,7 @@ export default memo(_ => {
     const { clearDisplayMessage, setDisplayMessage } = useDisplayMessage();
     const { setSwipeData } = useSwipeHandler();
     const { setEmvData } = useEmvHandler();
+    const flagConnectionChange = useConnectionFlag();
 
     const isSendCmd = useRouteMatch({
         path: sendCommandsPath,
@@ -48,7 +50,10 @@ export default memo(_ => {
             }
         }
         
-        mainCallback.disconnectHandler = event => void console.log("[Disconnect Event]:", event);
+        mainCallback.disconnectHandler = event => {
+            console.log("[Disconnect Event]:", event);
+            flagConnectionChange();
+        } 
 
         mainCallback.displayCallback = ({ displayMessage }) => {
             if (isOperations)
@@ -66,9 +71,9 @@ export default memo(_ => {
 
                 if (transactionStatus.statusCode === 8)
                     clearDisplayMessage();
-                else if (transactionStatus.statusCode === 3 && transactionStatus.progressCode === 44)
-                    clearDisplayMessage();
                 else if (transactionStatus.progressCode === 44)
+                    clearDisplayMessage();
+                else if (transactionStatus.progressCode === 60)
                     clearDisplayMessage();
             }
         }
