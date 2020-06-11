@@ -1,27 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { OperationPanel, ColoredCode } from '../../../../sharedComponents';
 import useCatchAndDisplay from '../../../../customHooks/useCatchAndDisplay';
+import usePanelBase from '../../../../customHooks/usePanelBase';
 import DeviceInfoCode from './deviceInfoCode';
-
-let deviceInfoIsMounted = true;
 
 
 export default ({ selectedDevice }) => {
-    const [ deviceInfoResp, setDeviceInfoResp ] = useState(() => "");
-    const [ isLoading, setIsLoading ] = useState(() => false);
+    const [ 
+        deviceInfoResult, 
+        setDeviceInfoResult,
+        isLoading, 
+        setIsLoading,
+        deviceInfoIsMounted
+    ] = usePanelBase();
     const catchAndDisplay = useCatchAndDisplay();
 
     const getDeviceInfo = async() => {
-        setDeviceInfoResp("");
+        setDeviceInfoResult("");
         setIsLoading(true);
 
         try {
             const deviceInfoResp = await selectedDevice.deviceInterface.deviceInfo();
-            let resp = JSON.stringify(deviceInfoResp, null, 4);
+            const resp = JSON.stringify(deviceInfoResp, null, 4);
 
             if (deviceInfoIsMounted) {
-                setDeviceInfoResp(resp);
+                setDeviceInfoResult(resp);
                 setIsLoading(false);
             }
         }
@@ -29,25 +33,20 @@ export default ({ selectedDevice }) => {
             catchAndDisplay(err);
 
             if (deviceInfoIsMounted) { 
-                setDeviceInfoResp("");
+                setDeviceInfoResult("");
                 setIsLoading(false);
             }
         }
     }
 
-    useEffect(() => {
-        deviceInfoIsMounted = true;
-        return () => (deviceInfoIsMounted = false);
-    }, []);
-
     const cancelGetInfo = _ => {
-        setDeviceInfoResp("");
+        setDeviceInfoResult("");
         setIsLoading(false);
     }
 
     const operationPanelProps = ({
         providedFunc: getDeviceInfo,
-        outputVal: deviceInfoResp,
+        outputVal: deviceInfoResult,
         isLoading: isLoading,
         codeComponent: DeviceInfoCode,
         btnText: "getDeviceInfo()",
@@ -55,7 +54,7 @@ export default ({ selectedDevice }) => {
         operationTitle:"Get Device Info",
         cancelText: "Cancel",
         cancelFunc: cancelGetInfo
-    });
+    });                                                                          
 
     return (
         <OperationPanel  { ...operationPanelProps } >

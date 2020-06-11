@@ -1,18 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
 import { OperationPanel } from '../../../../sharedComponents';
 import useCatchAndDisplay from '../../../../customHooks/useCatchAndDisplay';
 import useConnectionFlag from '../../../../customHooks/useConnectionFlag';
+import usePanelBase from '../../../../customHooks/usePanelBase';
 import OpenCloseCode from './openCloseCode';
 import PanelList from '../panelList';
 
-let openDeviceIsMounted = true;
-
 
 const OpenCloseTemplate = ({ selectedDevice, isOpenDevice }) => {
-    const [ openCloseResp, setOpenCloseResp ] = useState(() => "");
-    const [ isLoading, setIsLoading ] = useState(() => false);
+    const [ 
+        openCloseResp, 
+        setOpenCloseResp,
+        isLoading, 
+        setIsLoading,
+        openDeviceIsMounted
+    ] = usePanelBase();
+
     const catchAndDisplay = useCatchAndDisplay();
     const fireConnectionFlag = useConnectionFlag();
 
@@ -44,11 +49,6 @@ const OpenCloseTemplate = ({ selectedDevice, isOpenDevice }) => {
 
         fireConnectionFlag();
     }
-
-    useEffect(() => {
-        openDeviceIsMounted = true;
-        return () => (openDeviceIsMounted = false);
-    }, []);
 
     const cancelOpenClose = _ => {
         setIsLoading(false);

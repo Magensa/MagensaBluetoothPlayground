@@ -7,8 +7,8 @@ import {
     NewLine,
     Comma,
     Num
-} from '../../../../../sharedComponents/styledCodeSpans';
-import { space } from '../../../../../../constants/messageTemplates';
+} from '.';
+import { space } from '../../../constants/messageTemplates';
 
 
 const ObjectProps = ({ repetitions, propName, propVal }) => 

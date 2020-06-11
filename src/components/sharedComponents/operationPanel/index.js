@@ -38,7 +38,7 @@ const initializeLibraryStyles = makeStyles(({ spacing, breakpoints: { down }, ty
 
 const OperationPanel = props => {
     const { initialDetails, initializeHeader, smMargin } = initializeLibraryStyles();
-    const { codeComponent: CodeComponent, operationTitle, children, mountExpand, ...rest } = props;
+    const { codeComponent: CodeComponent, operationTitle, children, mountExpand, subHeading, ...rest } = props;
 
     return (
         <ExpansionPanel defaultExpanded={ mountExpand }>
@@ -57,6 +57,17 @@ const OperationPanel = props => {
                 >
                     <strong>{operationTitle}</strong>
                 </Typography>
+
+                {subHeading &&
+                    <Typography 
+                        variant='subtitle1' 
+                        className={ initializeHeader } 
+                        component='p'
+                        color="textSecondary"
+                    >
+                        {subHeading}
+                    </Typography>
+                }
             </ExpansionPanelSummary>
             <ExpansionPanelDetails className={ initialDetails }>
                 {children}

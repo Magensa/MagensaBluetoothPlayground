@@ -5,6 +5,7 @@ import {
     Typography,
     makeStyles
 } from '@material-ui/core';
+import useCatchAndDisplay from '../../customHooks/useCatchAndDisplay';
 import { blueGrey, whiteColor } from '../../../constants/styleConstants';
 
 
@@ -33,9 +34,10 @@ const deviceConnectionStyles = makeStyles(({ spacing, breakpoints }) => ({
 export default _ => {
     const selectedDevice = useSelector(state => state.selectedDevice);
     const connectionFlag = useSelector(state => state.connectionFlag);
+    const cardData = useSelector(state => state.cardData);
     const [ isOpen, setIsOpen ] = useState(() => false);
     const [ changingDeviceState, setChangingDeviceState ] = useState(() => false);
-    const cardData = useSelector(state => state.cardData);
+    const catchAndDisplay = useCatchAndDisplay();
     const { chipStyles } = deviceConnectionStyles();
 
     const toggleConnection = async _ => {
@@ -44,18 +46,18 @@ export default _ => {
                 setChangingDeviceState(true);
 
                 try {
-                    let toggleOpenResp = (isOpen) ? 
+                    const deviceIsOpen = selectedDevice.deviceInterface.isDeviceOpen();
+                    const toggleOpenResp = (deviceIsOpen) ? 
                         await selectedDevice.deviceInterface.closeDevice() 
                         : await selectedDevice.deviceInterface.openDevice();
 
                     if (toggleOpenResp.code === 0) {
-                        setIsOpen(!isOpen);
+                        setIsOpen(!deviceIsOpen);
                     }
                 }
                 catch(err) {
-                    console.warn("Error encountered while trying to open device. Error details below");
-                    console.error(err);
                     setIsOpen(false);
+                    catchAndDisplay(err);
                 }
                
                 return setChangingDeviceState(false);
@@ -66,7 +68,7 @@ export default _ => {
     useEffect(() => {
         if (selectedDevice) {
             if (selectedDevice.hasOwnProperty('deviceInterface')) {
-                let currentConnection = selectedDevice.deviceInterface.isDeviceOpen();
+                const currentConnection = selectedDevice.deviceInterface.isDeviceOpen();
     
                 if (isOpen !== currentConnection)
                     setIsOpen(currentConnection);

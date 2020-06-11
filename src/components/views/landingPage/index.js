@@ -10,6 +10,7 @@ import useDisplayMessage from '../../customHooks/useDisplayMessage';
 import useSwipeHandler from '../../customHooks/useSwipeHandler';
 import useEmvHandler from '../../customHooks/useEmvHandler';
 import useConnectionFlag from '../../customHooks/useConnectionFlag';
+import usePinTipHandler from '../../customHooks/usePinTipHandler';
 import { sendCommandsPath } from '../../../constants';
 
 
@@ -17,6 +18,7 @@ export default memo(_ => {
     const { clearDisplayMessage, setDisplayMessage } = useDisplayMessage();
     const { setSwipeData } = useSwipeHandler();
     const { setEmvData } = useEmvHandler();
+    const { setPinTipData } = usePinTipHandler()
     const flagConnectionChange = useConnectionFlag();
 
     const isSendCmd = useRouteMatch({
@@ -44,6 +46,18 @@ export default memo(_ => {
                 case ("batchData" in deviceData):
                 case ("arqcData" in deviceData):
                     setEmvData(deviceData);
+                    break;
+                case ("pinData" in deviceData):
+                    setPinTipData("pin", deviceData)
+                    break;
+                case ("tipCashbackReport" in deviceData):
+                    setPinTipData("tipCashback", deviceData);
+                    break;
+                case ("operationStatus" in deviceData):
+                    if (deviceData.operationStatusCode === 4) {
+                        setPinTipData("pin", deviceData);
+                    }
+                    
                     break;
                 default:
                     break;

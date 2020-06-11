@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { OperationPanel, ColoredCode } from '../../../../sharedComponents';
+import usePanelBase from '../../../../customHooks/usePanelBase';
 import IsDeviceOpenCode from './isDeviceOpenCode';
 
 
 export default ({ selectedDevice }) => {
-    const [ isOpenResp, setIsOpenResp ] = useState(() => "");
-    const [ isLoading, setIsLoading ] = useState(() => false);
+    const [ 
+        isOpenResp, 
+        setIsOpenResp,
+        isLoading, 
+        setIsLoading
+    ] = usePanelBase();
 
     const isDeviceOpen = () => {
         setIsOpenResp("");

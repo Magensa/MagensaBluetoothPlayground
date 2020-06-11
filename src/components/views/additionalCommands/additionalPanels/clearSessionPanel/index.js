@@ -1,16 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Typography } from '@material-ui/core';
 import { OperationPanel, ColoredCode } from '../../../../sharedComponents';
 import useCatchAndDisplay from '../../../../customHooks/useCatchAndDisplay';
+import usePanelBase from '../../../../customHooks/usePanelBase';
 import ClearSessionCode from './clearSessionCode';
 import PanelList from '../panelList';
 
-let clearSessionIsMounted = true;
-
 
 export default ({ selectedDevice }) => {
-    const [ clearSessionResp, setClearSessionResp ] = useState(() => "");
-    const [ isLoading, setIsLoading ] = useState(() => false);
+    const [ 
+        clearSessionResp, 
+        setClearSessionResp,
+        isLoading, 
+        setIsLoading,
+        clearSessionIsMounted
+    ] = usePanelBase();
+
+
     const catchAndDisplay = useCatchAndDisplay();
 
     const clearSession = async() => {
@@ -38,11 +44,6 @@ export default ({ selectedDevice }) => {
             }
         }
     }
-
-    useEffect(() => {
-        clearSessionIsMounted = true;
-        return () => (clearSessionIsMounted = false);
-    }, []);
 
     const cancelClearSession = _ => {
         setIsLoading(false);

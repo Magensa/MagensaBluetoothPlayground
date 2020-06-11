@@ -1,15 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { scanForDevices } from 'magensa-bluetooth';
 import useCatchAndDisplay from '../../../../customHooks/useCatchAndDisplay';
+import usePanelBase from '../../../../customHooks/usePanelBase';
 import InitializationDisplay from './initializationDisplay';
 import { deviceInterfaceReplacer } from '../../../../../utils/helperFunctions';
 
 
-let initialIsMounted = true;
-
 export default _ => {
-    const [ result, setResult ] = useState(() => "");
-    const [ isLoading, setIsLoading ] = useState(() => false);
+    const [ 
+        result, 
+        setResult,
+        isLoading, 
+        setIsLoading,
+        initialIsMounted
+    ] = usePanelBase();
+
     const catchAndDisplay = useCatchAndDisplay();
     const mainCallback = callbackData => console.log("Callback Data: ", callbackData);
     
@@ -39,11 +44,6 @@ export default _ => {
         if (initialIsMounted)
             setIsLoading(false);
     }
-
-    useEffect(() => {
-        initialIsMounted = true;
-        return () => initialIsMounted = false;
-    }, []);
 
     return (
         <InitializationDisplay 

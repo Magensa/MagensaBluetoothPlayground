@@ -19,6 +19,7 @@ import { Colon } from './colon';
 import { Comma } from './comma';
 import { Num } from './number';
 import { FormatCatchAndEnd } from './formatCatchAndEnd';
+import ObjectProps from './objectProperties';
 
 
 export {
@@ -42,5 +43,6 @@ export {
     Colon,
     Comma,
     Num,
-    FormatCatchAndEnd
+    FormatCatchAndEnd,
+    ObjectProps
 }

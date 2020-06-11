@@ -7,6 +7,8 @@ import OpenCloseTemplate from './additionalPanels/openClosePanels';
 import ClearSessionPanel from './additionalPanels/clearSessionPanel';
 import DeviceInfoPanel from './additionalPanels/deviceInfoPanel';
 import IsDeviceOpenPanel from './additionalPanels/isDeviceOpenPanel';
+import SetDeviceDateTimePanel from './additionalPanels/setDeviceDateTime';
+import SetDisplayMsg from './additionalPanels/setDisplayMessage';
 
 export default ({ trxHandler, selectedDevice }) => (selectedDevice) ?
     <CardDataLayout
@@ -26,6 +28,8 @@ export default ({ trxHandler, selectedDevice }) => (selectedDevice) ?
         <ClearSessionPanel selectedDevice={ selectedDevice } />
         <DeviceInfoPanel selectedDevice={ selectedDevice } />
         <IsDeviceOpenPanel selectedDevice={ selectedDevice } />
+        <SetDeviceDateTimePanel selectedDevice={ selectedDevice } />
+        <SetDisplayMsg selectedDevice={ selectedDevice } />
     </CardDataLayout>
     :
     <NoPairedDevice trxHandler={ trxHandler } />

@@ -5,8 +5,8 @@ import { ColoredCode } from '../../sharedComponents';
 export default _ => 
     <>
         <Typography paragraph variant='subtitle1' align='center'>
-            <ColoredCode>sendCommand</ColoredCode> is a function that accepts an array of numbers and sends this command directly to the device. Any JavaScript array is accepted, 
-            but it is recommended to send a simple array of numbers. The numbers can be either decimal or hex. No floats accepted. The library will parse the array and send the subsequent byte array directly to the device.
+            <ColoredCode>sendCommand</ColoredCode> is a function that accepts an array of numbers, or hex string, and sends this command directly to the device. Any JavaScript array is accepted, 
+            but it is recommended to send a simple array of numbers. The numbers can be either decimal or hex. No floats accepted. The library will parse the command and send the subsequent byte array directly to the device.
         </Typography>
         <Typography gutterBottom variant='subtitle2' align='center' color='textSecondary'>
             When utilizing other deviceInterface commands, the library parses and formats the device response before returning it to the caller. 

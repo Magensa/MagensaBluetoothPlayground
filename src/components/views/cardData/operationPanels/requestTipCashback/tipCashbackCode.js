@@ -16,9 +16,11 @@ import {
     ConsoleLog,
     FormatCatchAndEnd,
     ParenParam,
-    FuncDeclare
+    FuncDeclare,
+    ObjectProps,
+    SemiColon
 } from '../../../../sharedComponents/styledCodeSpans';
-import { feedToFunctionComment, callBackData, deviceDotInterface } from '../../../../../constants/messageTemplates';
+import { feedToFunctionComment, callBackData, deviceDotInterface, tipCashbackObj } from '../../../../../constants/messageTemplates';
 
 
 export default memo(_ => 
@@ -29,16 +31,16 @@ export default memo(_ =>
         <Tab />
         <KeywordPurple end>if</KeywordPurple>
         <OpenParen />
-        <StringOrange>{`swipeData`}</StringOrange>
+        <StringOrange>{`tipCashbackReport`}</StringOrange>
         <ConstBlue>{` in `}</ConstBlue>
         {callBackData}
         <CloseParen end={true} />
         <OpenCurly newLine={true} />
         <Tab />
-        <CommentGreen>{`//Handle swipe data.`}</CommentGreen>
+        <CommentGreen>{`//Handle tip or cashback data.`}</CommentGreen>
         <NewLine />
         <Tab repetitions={2} />
-        <ConsoleLog logVar={`${callBackData}.swipeData`}/>
+        <ConsoleLog logVar={`${callBackData}.tipCashbackReport`}/>
         <NewLine />
         <Tab />
         <CloseCurly />
@@ -47,8 +49,23 @@ export default memo(_ =>
         <NewLine />
         <CommentGreen>{feedToFunctionComment}</CommentGreen>
         <NewLine />
+        <ConstBlue />
+        {`tipOptions `}
+        <Equals end />
+        <OpenCurly />
+        <NewLine />
+        {tipCashbackObj.map(({ keyName, val }) =>
+            <ObjectProps 
+                key={ keyName }
+                propName={ keyName }
+                propVal={ val }
+            />
+        )}
+        <CloseCurly />
+        <SemiColon />
+        <NewLine repetitions={2}/>
         <FuncDeclare 
-            funcName="cardSwipe"
+            funcName="requestTip"
             paramName={ false }
             isAsync
         />
@@ -58,18 +75,24 @@ export default memo(_ =>
         <KeywordPurple end>try</KeywordPurple>
         <OpenCurly newLine={true} />
         <Tab />
+        <KeywordPurple end>await</KeywordPurple>
+        {deviceDotInterface}
+        <FuncYellow>clearSession</FuncYellow>
+        <ParenParam semicolon={true} />
+        <NewLine />
+        <Tab repetitions={2}/>
         <ConstBlue />
-        {`swipeResp `}
+        {`tipResp `}
         <Equals end/>
         <KeywordPurple end>await</KeywordPurple>
         {deviceDotInterface}
-        <FuncYellow>requestCardSwipe</FuncYellow>
-        <ParenParam semicolon={true} />
+        <FuncYellow>requestTipOrCashback</FuncYellow>
+        <ParenParam semicolon={true}>tipOptions</ParenParam>
         <NewLine />
         <Tab repetitions={2} />
         <ConsoleLog 
-            logString={`Request Swipe Response: `}
-            logVar={`swipeResp`}
+            logString={`Request Tip Response: `}
+            logVar={`tipResp`}
         />
         <FormatCatchAndEnd />
     </PreWrapper>    

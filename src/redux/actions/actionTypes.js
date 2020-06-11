@@ -13,3 +13,8 @@ export const LOAD_EMV_DATA = "LOAD_EMV_DATA";
 export const CLEAR_EMV_DATA = "CLEAR_EMV_DATA";
 
 export const FLAG_CONNECTION_CHANGE = "FLAG_CONNECTION_CHANGE";
+
+export const LOAD_PIN_DATA = "LOAD_PIN_DATA";
+export const CLEAR_PIN_DATA = "CLEAR_PIN_DATA";
+export const LOAD_TIP_DATA = "LOAD_TIP_DATA";
+export const CLEAR_TIP_DATA = "CLEAR_TIP_DATA";

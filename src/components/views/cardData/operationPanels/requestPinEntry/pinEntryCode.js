@@ -18,7 +18,7 @@ import {
     ParenParam,
     FuncDeclare
 } from '../../../../sharedComponents/styledCodeSpans';
-import { feedToFunctionComment, callBackData, deviceDotInterface } from '../../../../../constants/messageTemplates';
+import { feedToFunctionComment, callBackData } from '../../../../../constants/messageTemplates';
 
 
 export default memo(_ => 
@@ -29,16 +29,16 @@ export default memo(_ =>
         <Tab />
         <KeywordPurple end>if</KeywordPurple>
         <OpenParen />
-        <StringOrange>{`swipeData`}</StringOrange>
+        <StringOrange>{`pinData`}</StringOrange>
         <ConstBlue>{` in `}</ConstBlue>
         {callBackData}
         <CloseParen end={true} />
         <OpenCurly newLine={true} />
         <Tab />
-        <CommentGreen>{`//Handle swipe data.`}</CommentGreen>
+        <CommentGreen>{`//Handle PIN data.`}</CommentGreen>
         <NewLine />
         <Tab repetitions={2} />
-        <ConsoleLog logVar={`${callBackData}.swipeData`}/>
+        <ConsoleLog logVar={`${callBackData}.pinData`}/>
         <NewLine />
         <Tab />
         <CloseCurly />
@@ -48,7 +48,7 @@ export default memo(_ =>
         <CommentGreen>{feedToFunctionComment}</CommentGreen>
         <NewLine />
         <FuncDeclare 
-            funcName="cardSwipe"
+            funcName="requestPin"
             paramName={ false }
             isAsync
         />
@@ -58,18 +58,24 @@ export default memo(_ =>
         <KeywordPurple end>try</KeywordPurple>
         <OpenCurly newLine={true} />
         <Tab />
+        <KeywordPurple end>await</KeywordPurple>
+        {`MagTekDevice.deviceInterface.`}
+        <FuncYellow>clearSession</FuncYellow>
+        <ParenParam semicolon={true} />
+        <NewLine />
+        <Tab repetitions={2}/>
         <ConstBlue />
-        {`swipeResp `}
+        {`pinResp `}
         <Equals end/>
         <KeywordPurple end>await</KeywordPurple>
-        {deviceDotInterface}
-        <FuncYellow>requestCardSwipe</FuncYellow>
-        <ParenParam semicolon={true} />
+        {`MagTekDevice.deviceInterface.`}
+        <FuncYellow>requestTipOrCashback</FuncYellow>
+        <ParenParam semicolon={true}>tipOptions</ParenParam>
         <NewLine />
         <Tab repetitions={2} />
         <ConsoleLog 
-            logString={`Request Swipe Response: `}
-            logVar={`swipeResp`}
+            logString={`Request PIN Response: `}
+            logVar={`pinResp`}
         />
         <FormatCatchAndEnd />
     </PreWrapper>    

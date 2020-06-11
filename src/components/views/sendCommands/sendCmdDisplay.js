@@ -10,7 +10,7 @@ import clsx from 'clsx';
 import SendCmdCode from './sendCmdCode';
 import SendCmdCodeText from './sendCmdCodeText';
 import SendCmdOutput from './sendCmdOutput';
-import { ColoredCode, CodePanelLayout } from '../../sharedComponents';
+import { CodePanelLayout } from '../../sharedComponents';
 import { fullWidth, codeBlockStyles } from '../../../constants/styleConstants';
 
 const sendCmdStyles = makeStyles(({ spacing, breakpoints: { down } }) => ({
@@ -73,7 +73,7 @@ const SendCmdDisplay = ({ sendDeviceCommand, children, ...outputProps }) => {
                     <Typography paragraph variant='subtitle1' align='center'>
                         <em>
                             For demonstration purposes, both the input and output are in hex format. Be aware that when this function is 
-                            implemented in code, both input and output types are <ColoredCode>Arrays.</ColoredCode>
+                            implemented in code, this function accepts either hex string or array of numbers.
                         </em>
                     </Typography>
                 </Grid>

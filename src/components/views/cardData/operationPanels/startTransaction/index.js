@@ -105,7 +105,13 @@ export default _ => {
     }, [cardData, awaitingEmvData, clearDisplayMsg]);
 
     const cancelTrx = async() => {
-        await selectedDevice.deviceInterface.cancelTransaction();
+        try {
+            await selectedDevice.deviceInterface.cancelTransaction();
+        }
+        catch(err) {
+            catchAndDisplay(err);
+        }
+        
         emvCleanUp();
         clearDisplayMsg();
     }
@@ -138,7 +144,7 @@ export default _ => {
                 Next, the transaction configuration is defined as `startTransactionOptions`. Keep in mind this object is optional, and every property will have default values. 
                 Whatever object property you supply to this function will override the default value. We then invoke the `startTransaction` function with the configuration that has been defined.
             </Typography>
-           <LinkToApi />
+           <LinkToApi sublink="EMV-Options-Object"/>
         </OperationPanel>
     );
 }
