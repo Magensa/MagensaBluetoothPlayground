@@ -83,12 +83,16 @@ export default memo(_ => {
                 //SCRA
                 const { transactionStatus } = statusObj;
 
-                if (transactionStatus.statusCode === 8)
-                    clearDisplayMessage();
-                else if (transactionStatus.progressCode === 44)
-                    clearDisplayMessage();
-                else if (transactionStatus.progressCode === 60)
-                    clearDisplayMessage();
+                switch(true) {
+                    case (transactionStatus.statusCode === 8):
+                    case (transactionStatus.progressCode === 44):
+                    case (transactionStatus.progressCode === 60):
+                    case (transactionStatus.statusCode === 6 && transactionStatus.progressCode === 21):
+                        clearDisplayMessage();
+                        break;
+                    default:
+                        break;
+                }
             }
         }
         
