@@ -80,7 +80,7 @@ const notCompatibleBrowser = (function() {
     return notCompatibleBrowser;
 })();
 
-let hexRegex = new RegExp(/^[0-9A-Fa-f]+$/i);
+const hexRegex = new RegExp(/^[0-9A-Fa-f]+$/i);
 
 export {
     compatabilityPath,
