@@ -6648,8 +6648,10 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
-"magensa-bluetooth@C:\\BluetoothEffort\\magensa-bluetooth-dpgo\\dist":
+magensa-bluetooth@^1.1.1:
   version "1.1.1"
+  resolved "https://registry.yarnpkg.com/magensa-bluetooth/-/magensa-bluetooth-1.1.1.tgz#b457d72dbf8d5cb04f9e549a6badaa0e985aef83"
+  integrity sha512-fOynRzW2xWSmMslSXow0cqD8/SReSPzMYF7wbHJNNC+NCJrFbB5hdqPm5+bIdBV7Z/C91OKKNf7qSwo4KYYAlQ==
 
 make-dir@^2.0.0, make-dir@^2.1.0:
   version "2.1.0"
