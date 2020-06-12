@@ -9,6 +9,7 @@ Currently, the devices compatible are:
 - [eDynamo](https://www.magtek.com/product/edynamo)
 - [tDynamo](https://www.magtek.com/product/tdynamo)
 - [DynaPro Mini](https://www.magtek.com/product/dynapro-mini)  
+- [DynaPro Go](https://www.magtek.com/product/dynapro-go)
  
 If you would like to purchase a device, please head over to the [MagTek Store](https://shop.magtek.com/).  
 
