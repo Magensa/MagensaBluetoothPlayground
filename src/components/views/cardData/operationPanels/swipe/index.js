@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { useSelector } from 'react-redux';
 
@@ -9,85 +9,62 @@ import {
 import SwipeCode from './swipeCode';
 import useSwipeHandler from '../../../../customHooks/useSwipeHandler';
 import useCatchAndDisplay from '../../../../customHooks/useCatchAndDisplay';
-
-let swipeIsMounted = true;
+import useOperationFuncs from '../../../../customHooks/useOperationFuncs';
 
 
 export default _ => {
     const selectedDevice = useSelector(state => state.selectedDevice);
     const cardData = useSelector(state => state.cardData);
     const catchAndDisplay = useCatchAndDisplay();
-    const [ swipeResult, setSwipeResult ] = useState(() => "");
-    const [ awaitingSwipeData, setIsAwaitingSwipeData ] = useState(() => false);
-    const [ isLoading, setIsLoading ] = useState(() => false);
-    const [ loadingText, setLoadingText ] = useState(() => "");
+
+    const [
+        swipeResult, 
+        isLoading, 
+        setIsLoading, 
+        loadingText, 
+        setLoadingText, 
+        cancelSwipe,
+        setIsAwaitingSwipeData,
+        setSwipeResult,
+        cleanUp,
+        swipeIsMounted
+    ] = useOperationFuncs("swipeData", cardData, selectedDevice);
     
     const { clearSwipeData } = useSwipeHandler();
-    const cleanUp = useCallback((clearResult) => {
-        setLoadingText("");
-        setIsLoading(false);
-        setIsAwaitingSwipeData(false);
-
-        if (clearResult)
-            setSwipeResult("");
-    }, [setLoadingText, setIsLoading, setSwipeResult]);
 
     const cardSwipe = async() => {
+        setSwipeResult("");
         setLoadingText("Requesting swipe from device");
         clearSwipeData();
         setIsLoading(true);
 
         try {
             const swipeResp = await selectedDevice.deviceInterface.requestCardSwipe();
-            const stringResp = JSON.stringify(swipeResp, null, 4);
             
-            setSwipeResult(prevState => (!prevState) ? 
-                [stringResp] : [stringResp, prevState[1]]
-            );
-
-            if (swipeResp.code === 0 && swipeIsMounted) {
-                setLoadingText("Please swipe your card");
-                setIsAwaitingSwipeData(true);
+            if (swipeResp) {
+                const stringResp = JSON.stringify(swipeResp, null, 4);
+                
+                setSwipeResult(prevState => (!prevState) ? 
+                    [stringResp] : [stringResp, prevState[1]]
+                );
+    
+                if (swipeResp.code === 0 && swipeIsMounted) {
+                    setLoadingText("Please swipe your card");
+                    setIsAwaitingSwipeData(true);
+                    return;
+                }
+                else {
+                    catchAndDisplay(swipeResp);
+                }
             }
-            else {
-                cleanUp(true);
-                catchAndDisplay(swipeResp);
-            }
+            
+            cleanUp(true);
         }
         catch(err) {
             cleanUp(true);
             catchAndDisplay(err);
         }
     }
-
-    const cancelSwipe = async() => {
-        await selectedDevice.deviceInterface.cancelTransaction();
-        cleanUp(true);
-    }
-
-    useEffect(() => {
-        swipeIsMounted = true;
-
-        if (awaitingSwipeData && ("swipeData" in cardData)) {
-            if (swipeIsMounted) {
-                setSwipeResult(prevState => {
-                    if (!prevState) {
-                        let newState = [];
-                        newState[1] = JSON.stringify(cardData.swipeData, null, 4);
-                        return newState;
-                    }
-                    else {
-                        prevState[1] = JSON.stringify(cardData.swipeData, null, 4);
-                        return prevState;
-                    }
-                });
-    
-                cleanUp();
-            }
-        }
-
-        return () => (swipeIsMounted = false);
-    }, [cardData, awaitingSwipeData, cleanUp]);
     
     const panelProps = {
         providedFunc: cardSwipe,
@@ -97,7 +74,7 @@ export default _ => {
         loadingText: loadingText,
         codeComponent: SwipeCode,
         cancelText: "Cancel Swipe",
-        cancelFunc: cancelSwipe ,
+        cancelFunc: () => cancelSwipe(true),
         resultFullWidth: true,
         operationTitle: <strong> Request Card Swipe </strong>
     }

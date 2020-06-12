@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouteMatch } from 'react-router-dom';
 import { 
     Grid,
     Paper,
@@ -8,7 +9,8 @@ import {
 import PropTypes from 'prop-types';
 import LoadingWidget from '../loadingWidget';
 import OutputPaper from '../outputPaper';
-import { preStyling, fullWidth } from '../../../constants/styleConstants';
+import { preStyling, fullWidth, loadingStyleBase } from '../../../constants/styleConstants';
+import { additionalOps } from '../../../constants';
 
 const outputStyles = makeStyles({
     outputBlock: ({ spacing, down, resultFullWidth }) => ({
@@ -30,22 +32,28 @@ const outputStyles = makeStyles({
         padding: (outputVal) ? spacing(1) : 0,
         cursor: 'text'
     }),
-    loadingStyles: {
-        textAlign: 'center',
-        position: 'relative',
-        top: '50%',
-        transform: 'perspective(1px) translateY(-50%)',
-        color: '#37474f'
-    }
+    loadingStyles: ({ isAddCmdRoute }) => (!isAddCmdRoute) ? 
+    loadingStyleBase : ({
+        ...loadingStyleBase,
+        transform: 'perspective(1px) translateY(-50%)'
+    })
 });
 
 const OutputBlock = ({ outputVal, resultFullWidth, isLoading, loadingText }) => {
     const { spacing, breakpoints: { down } } = useTheme();
+
+    const isAddCmdRoute = useRouteMatch({
+        path: additionalOps,
+        strict: true,
+        sensitive: true
+    });
+    
     const { loadingStyles, outputPre, outputPaper, outputBlock } = outputStyles({
         resultFullWidth,
         spacing,
         down,
-        outputVal
+        outputVal,
+        isAddCmdRoute
     });
 
     return (

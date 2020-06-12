@@ -17,6 +17,13 @@ export const preStyling = {
     pageBreakInside: 'avoid'
 };
 
+export const loadingStyleBase = {
+    textAlign: 'center',
+    position: 'relative',
+    top: '50%',
+    color: '#37474f'
+};
+
 export const codeBlockStyles = spacing => ({
     backgroundColor: '#455a64',
     color: '#b3e5fc',

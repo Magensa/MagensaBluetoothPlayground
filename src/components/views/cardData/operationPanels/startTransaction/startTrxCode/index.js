@@ -1,7 +1,6 @@
 import React, { memo, Fragment } from 'react';
 import PreWrapper from '../../../../../sharedComponents/preWrapper';
 import StartTrxCodeCase from './startTrxCodeCase';
-import ObjectProps from './objectProperties';
 import {
     FuncYellow,
     CommentGreen,
@@ -20,7 +19,8 @@ import {
     FormatCatchAndEnd,
     SemiColon,
     FuncDeclare,
-    Colon
+    Colon,
+    ObjectProps
 } from '../../../../../sharedComponents/styledCodeSpans';
 
 import { 
@@ -34,7 +34,6 @@ import {
     displayMessage,
     startTransactionOptions,
     startTransactionResp
-
 } from '../../../../../../constants/messageTemplates/startTransactionTemplates';
 
 
@@ -124,7 +123,7 @@ export default memo(_ =>
         </CommentGreen>
         <NewLine />
         <ConstBlue />
-        {startTransactionOptions}
+        {`${startTransactionOptions} `}
         <Equals end />
         <OpenCurly />
         <NewLine />

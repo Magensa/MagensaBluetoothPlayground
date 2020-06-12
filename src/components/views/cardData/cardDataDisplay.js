@@ -4,7 +4,9 @@ import CardDataLayout from '../../sharedComponents/cardDataLayout';
 import {
     SwipePanel,
     InitializationPanel,
-    EmvPanel
+    EmvPanel,
+    RequestPinPanel,
+    RequestTipCashback
 } from './operationPanels';
 
 export default memo(({ trxHandler }) => 
@@ -19,6 +21,8 @@ export default memo(({ trxHandler }) =>
             <InitializationPanel />
             <SwipePanel />
             <EmvPanel />
+            <RequestPinPanel />
+            <RequestTipCashback />
         </>
     </CardDataLayout>
 );
