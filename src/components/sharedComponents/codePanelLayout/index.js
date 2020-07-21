@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-    ExpansionPanel,
-    ExpansionPanelSummary,
-    ExpansionPanelDetails,
+    Accordion ,
+    AccordionSummary,
+    AccordionDetails,
     Typography,
     makeStyles
 } from '@material-ui/core';
@@ -35,21 +35,21 @@ export default ({ children }) => {
     const { codeRoot, smScreenPadding, showCodeStyles } = codePanelLayoutStyles();
 
     return (
-        <ExpansionPanel className={ codeRoot }>
-            <ExpansionPanelSummary
+        <Accordion className={ codeRoot }>
+            <AccordionSummary
                 expandIcon={ <CodeIcon /> }
             >
                 <Typography variant='caption' className={ showCodeStyles }>
                     <strong>Show the Code!</strong>
                 </Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails
+            </AccordionSummary>
+            <AccordionDetails
                 classes={{
                     root: smScreenPadding
                 }}
             >
                 {children}
-            </ExpansionPanelDetails>
-        </ExpansionPanel>
+            </AccordionDetails>
+        </Accordion>
     );
 }

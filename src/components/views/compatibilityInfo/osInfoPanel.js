@@ -1,8 +1,8 @@
 import React from 'react';
 import { 
-    ExpansionPanel,
-    ExpansionPanelSummary,
-    ExpansionPanelDetails,
+    Accordion,
+    AccordionSummary,
+    AccordionDetails,
     Typography,
     Avatar,
     makeStyles
@@ -32,8 +32,8 @@ export default props => {
     const { expansionDetailsWrapper, panelTextImg, trimProps, osText } = useOsInfoPanelStyles(trim);
     
     return (
-        <ExpansionPanel>
-            <ExpansionPanelSummary
+        <Accordion>
+            <AccordionSummary
                 expandIcon={ <ExpandMoreIcon /> }
                 aria-controls={`${osId}-os-info-content`}
                 id={`${osId}-os-info-header`}
@@ -53,13 +53,14 @@ export default props => {
                     <strong>{osName}</strong>
                 </Typography>
 
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails
+            </AccordionSummary>
+            <AccordionDetails
                 id={`${osId}-os-info-content`}
                 className={ expansionDetailsWrapper }
             >
                 <OsInfoList { ...props }  />
-            </ExpansionPanelDetails>
-        </ExpansionPanel>
+            </AccordionDetails>
+        </Accordion>
     );
+    
 }

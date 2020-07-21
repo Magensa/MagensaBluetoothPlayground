@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-    ExpansionPanel,
-    ExpansionPanelSummary,
-    ExpansionPanelDetails,
+    Accordion,
+    AccordionSummary,
+    AccordionDetails,
     Typography,
     makeStyles
 } from '@material-ui/core';
@@ -12,25 +12,22 @@ import CodePanel from '../codePanel';
 import { fullWidth } from '../../../constants/styleConstants';
 
 
-const initializeLibraryStyles = makeStyles(({ spacing, breakpoints: { down }, typography: { pxToRem } }) => {
-    let oneSpace = spacing(1)
+const initializeLibraryStyles = makeStyles(({ spacing, breakpoints: { down } }) => {
+    const onePadding = {
+        paddingLeft: spacing(1),
+        paddingRight: spacing(1)
+    };
 
     return ({
         initialDetails: {
             flexDirection: 'column',
             justifyContent: 'space-evenly',
             alignItems: 'flex-start',
-            [down('md')]: {
-                paddingLeft: oneSpace,
-                paddingRight: oneSpace
-            },
+            [down('md')]: onePadding,
         },
         initializeHeader: fullWidth,
         smMargin: {
-            [down('sm')]: {
-                paddingLeft: oneSpace,
-                paddingRight: oneSpace
-            }
+            [down('sm')]: onePadding
         }
     });
 });
@@ -41,8 +38,8 @@ const OperationPanel = props => {
     const { codeComponent: CodeComponent, operationTitle, children, mountExpand, subHeading, ...rest } = props;
 
     return (
-        <ExpansionPanel defaultExpanded={ mountExpand }>
-            <ExpansionPanelSummary
+        <Accordion defaultExpanded={ mountExpand }>
+            <AccordionSummary
                 expandIcon={ <ExpandMoreIcon /> }
                 aria-controls="initialization-details"
                 id="initialization-summary"
@@ -68,14 +65,14 @@ const OperationPanel = props => {
                         {subHeading}
                     </Typography>
                 }
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails className={ initialDetails }>
+            </AccordionSummary>
+            <AccordionDetails className={ initialDetails }>
                 {children}
                 <CodePanel { ...rest }>
                     <CodeComponent />
                 </CodePanel>
-            </ExpansionPanelDetails>
-        </ExpansionPanel>
+            </AccordionDetails>
+        </Accordion>
     );
 }
 
